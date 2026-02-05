@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基礎語法 - Python教學</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 0 0;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #e8f4f8;
+            color: #2c3e50;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-left: 0;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .main-content h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #34495e;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .main-content ul, .main-content ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .main-content li {
+            margin-bottom: 8px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">首頁</a>
+                <a href="install.html">安裝Python</a>
+                <a href="basics.html" style="color: #3498db;">基礎語法</a>
+                <a href="advanced.html">進階</a>
+                <a href="practice.html">練習</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一個Python程式</a></li>
+                <li><a href="basics.html" class="active">基礎語法</a></li>
+                <li><a href="functions.html">函數</a></li>
+                <li><a href="oop.html">面向物件</a></li>
+                <li><a href="practice.html">實戰練習</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python基礎語法</h1>
+
+            <p>在學習Python之前，了解其基礎語法是非常重要的。Python以简洁易读著称，让我们一起来看看吧。</p>
+
+            <h2>Python的語法特點</h2>
+
+            <ul>
+                <li><strong>简洁优雅：</strong>程式碼读起来像英语一样自然</li>
+                <li><strong>使用縮排：</strong>用縮排来表示程式碼块，而不是花括号</li>
+                <li><strong>大小写敏感：</strong>variable和Variable是两個不同的變數</li>
+                <li><strong>不需要分号：</strong>每行敘述的结尾不需要分号</li>
+            </ul>
+
+            <h2>註解</h2>
+
+            <p>註解是用来直譯程式碼的，Python会忽略它们。</p>
+
+            <h3>单行註解</h3>
+
+            <div class="code-block"><span class="comment"># 这是一個单行註解</span>
+<span class="function">print</span>(<span class="string">"Hello"</span>)  <span class="comment"># 註解也可以写在程式碼后面</span></div>
+
+            <h3>多行註解</h3>
+
+            <div class="code-block"><span class="comment">'''
+这是一個多行註解
+可以写多行內容
+'''</span>
+
+<span class="comment">"""
+这也是一個多行註解
+通常用于函數或模組的說明
+"""</span></div>
+
+            <h2>縮排和程式碼块</h2>
+
+            <p>Python使用縮排来组织程式碼块。相同縮排级别的程式碼属于同一個程式碼块。</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 重要：</strong> Python对縮排非常严格！必須一致使用空格或制表符，推薦使用4個空格作为縮排。
+            </div>
+
+            <div class="code-block"><span class="keyword">if</span> <span class="number">5</span> > <span class="number">3</span>:
+    <span class="function">print</span>(<span class="string">"5大於3"</span>)  <span class="comment"># 这是if敘述的程式碼块</span>
+    <span class="function">print</span>(<span class="string">"这也是if敘述的一部分"</span>)
+<span class="function">print</span>(<span class="string">"这不在if敘述中"</span>)</div>
+
+            <div class="output">5大於3
+这也是if敘述的一部分
+这不在if敘述中</div>
+
+            <h2>變數</h2>
+
+            <p>變數是用来存储資料的容器。在Python中，你不需要宣告變數類型。</p>
+
+            <div class="code-block"><span class="comment"># 建立變數</span>
+name = <span class="string">"小明"</span>
+age = <span class="number">25</span>
+height = <span class="number">1.75</span>
+is_student = <span class="keyword">True</span>
+
+<span class="comment"># 使用變數</span>
+<span class="function">print</span>(<span class="string">"姓名:"</span>, name)
+<span class="function">print</span>(<span class="string">"年龄:"</span>, age)
+<span class="function">print</span>(<span class="string">"身高:"</span>, height)
+<span class="function">print</span>(<span class="string">"是学生:"</span>, is_student)</div>
+
+            <h3>變數命名规则</h3>
+
+            <div class="info-box">
+                <ul>
+                    <li>變數名必須以字母或下划线开头</li>
+                    <li>變數名只能包含字母、數字和下划线</li>
+                    <li>變數名区分大小写</li>
+                    <li>不能使用Python关鍵字作为變數名</li>
+                    <li>變數名要有意義，见名知意</li>
+                </ul>
+            </div>
+
+            <div class="code-block"><span class="comment"># 合法的變數名</span>
+my_name = <span class="string">"张三"</span>
+_user_id = <span class="number">123</span>
+age2 = <span class="number">30</span>
+
+<span class="comment"># 非法的變數名</span>
+<span class="comment"># 2name = "李四"    # 錯誤：不能以數字开头</span>
+<span class="comment"># my-name = "王五"   # 錯誤：不能包含连字元</span>
+<span class="comment"># class = "赵六"     # 錯誤：class是关鍵字</span></div>
+
+            <h2>資料類型</h2>
+
+            <p>Python有几种基本資料類型：</p>
+
+            <h3>整数（int）</h3>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">-5</span>
+c = <span class="number">0</span>
+d = <span class="number">1_000_000</span>  <span class="comment"># 大數字可以用下划线分隔</span>
+
+<span class="function">print</span>(a, b, c, d)</div>
+
+            <h3>浮点数（float）</h3>
+
+            <div class="code-block">pi = <span class="number">3.14159</span>
+temperature = <span class="number">-10.5</span>
+scientific = <span class="number">1.23e-5</span>  <span class="comment"># 科学计数法</span>
+
+<span class="function">print</span>(pi, temperature, scientific)</div>
+
+            <h3>字串（str）</h3>
+
+            <div class="code-block">name1 = <span class="string">'单引号字串'</span>
+name2 = <span class="string">"双引号字串"</span>
+name3 = <span class="string">"""三引号字串</span>
+<span class="string">可以换行"""</span>
+
+<span class="function">print</span>(name1)
+<span class="function">print</span>(name2)
+<span class="function">print</span>(name3)</div>
+
+            <h3>布尔值（bool）</h3>
+
+            <div class="code-block">is_true = <span class="keyword">True</span>
+is_false = <span class="keyword">False</span>
+
+<span class="function">print</span>(is_true, is_false)</div>
+
+            <h2>基本運算</h2>
+
+            <h3>算术運算子</h3>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">3</span>
+
+<span class="function">print</span>(<span class="string">"加法:"</span>, a + b)      <span class="comment"># 13</span>
+<span class="function">print</span>(<span class="string">"减法:"</span>, a - b)      <span class="comment"># 7</span>
+<span class="function">print</span>(<span class="string">"乘法:"</span>, a * b)      <span class="comment"># 30</span>
+<span class="function">print</span>(<span class="string">"除法:"</span>, a / b)      <span class="comment"># 3.3333...</span>
+<span class="function">print</span>(<span class="string">"整除:"</span>, a // b)     <span class="comment"># 3</span>
+<span class="function">print</span>(<span class="string">"取余:"</span>, a % b)      <span class="comment"># 1</span>
+<span class="function">print</span>(<span class="string">"幂運算:"</span>, a ** b)   <span class="comment"># 1000</span></div>
+
+            <h3>比较運算子</h3>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">5</span>
+
+<span class="function">print</span>(<span class="string">"a == b:"</span>, a == b)  <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"a != b:"</span>, a != b)  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"a > b:"</span>, a > b)    <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"a < b:"</span>, a < b)    <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"a >= b:"</span>, a >= b)  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"a <= b:"</span>, a <= b)  <span class="comment"># False</span></div>
+
+            <h3>逻辑運算子</h3>
+
+            <div class="code-block">a = <span class="keyword">True</span>
+b = <span class="keyword">False</span>
+
+<span class="function">print</span>(<span class="string">"a and b:"</span>, a <span class="keyword">and</span> b)  <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"a or b:"</span>, a <span class="keyword">or</span> b)   <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"not a:"</span>, <span class="keyword">not</span> a)      <span class="comment"># False</span></div>
+
+            <h2>字串操作</h2>
+
+            <h3>字串拼接</h3>
+
+            <div class="code-block">first_name = <span class="string">"张"</span>
+last_name = <span class="string">"三"</span>
+full_name = first_name + last_name
+
+<span class="function">print</span>(full_name)  <span class="comment"># 张三</span></div>
+
+            <h3>字串重复</h3>
+
+            <div class="code-block">echo = <span class="string">"Hello "</span> * <span class="number">3</span>
+<span class="function">print</span>(echo)  <span class="comment"># Hello Hello Hello </span></div>
+
+            <h3>字串格式化</h3>
+
+            <div class="code-block">name = <span class="string">"小明"</span>
+age = <span class="number">25</span>
+
+<span class="comment"># 方法1：使用f-string（Python 3.6+）</span>
+<span class="function">print</span>(<span class="string">f"我叫{name}，今年{age}岁"</span>)
+
+<span class="comment"># 方法2：使用format()</span>
+<span class="function">print</span>(<span class="string">"我叫{}，今年{}岁"</span>.<span class="function">format</span>(name, age))
+
+<span class="comment"># 方法3：使用%操作符</span>
+<span class="function">print</span>(<span class="string">"我叫%s，今年%d岁"</span> % (name, age))</div>
+
+            <div class="output">我叫小明，今年25岁
+我叫小明，今年25岁
+我叫小明，今年25岁</div>
+
+            <h2>類型转换</h2>
+
+            <p>有時候我们需要将一种類型转换为另一种類型：</p>
+
+            <div class="code-block"><span class="comment"># 转换为整数</span>
+x = <span class="function">int</span>(<span class="string">"123"</span>)
+<span class="function">print</span>(x)         <span class="comment"># 123</span>
+<span class="function">print</span>(<span class="function">type</span>(x))  <span class="comment"># <class 'int'></span>
+
+<span class="comment"># 转换为浮点数</span>
+y = <span class="function">float</span>(<span class="string">"3.14"</span>)
+<span class="function">print</span>(y)         <span class="comment"># 3.14</span>
+
+<span class="comment"># 转换为字串</span>
+z = <span class="function">str</span>(<span class="number">123</span>)
+<span class="function">print</span>(z)         <span class="comment"># "123"</span>
+
+<span class="comment"># 转换为布尔值</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">1</span>))     <span class="comment"># True</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">0</span>))     <span class="comment"># False</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">""</span>))    <span class="comment"># False</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">"abc"</span>))  <span class="comment"># True</span></div>
+
+            <h2>获取使用者輸入</h2>
+
+            <p>使用 <code>input()</code> 函數可以获取使用者的鍵磁碟輸入：</p>
+
+            <div class="code-block">name = <span class="function">input</span>(<span class="string">"請輸入你的名字："</span>)
+<span class="function">print</span>(<span class="string">"你好，"</span> + name + <span class="string">"！"</span>)</div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> input()函數返回的永远是字串，如果需要數字，要进行類型转换：
+            </div>
+
+            <div class="code-block">age = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"請輸入你的年龄："</span>))
+<span class="function">print</span>(<span class="string">"明年你将"</span> + <span class="function">str</span>(age + <span class="number">1</span>) + <span class="string">"岁"</span>)</div>
+
+            <h2>練習题</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 编写程式，計算圆的面积（使用者輸入半径）
+                <br><br>
+                <strong>練習2：</strong> 编写程式，将摄氏温度转换为华氏温度（公式：F = C × 1.8 + 32）
+                <br><br>
+                <strong>練習3：</strong> 编写程式，交换两個變數的值
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小结</strong>
+                <ul>
+                    <li>Python使用縮排来组织程式碼块</li>
+                    <li>變數不需要宣告類型</li>
+                    <li>Python有整数、浮点数、字串、布尔值等基本資料類型</li>
+                    <li>可以使用各种運算子进行計算</li>
+                    <li>使用input()获取使用者輸入，使用print()輸出內容</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="first-step.html" class="btn btn-secondary">← 上一章</a>
+                <a href="data-types.html" class="btn">下一章：資料類型詳解 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 让编程學習变得简单有趣</p>
+    </footer>
+</body>
+</html>

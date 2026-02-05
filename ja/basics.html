@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基礎構文 - Pythonチュートリアル</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #e8f4f8;
+            color: #2c3e50;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-left: 0;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .main-content h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #34495e;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .main-content ul, .main-content ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        .main-content li {
+            margin-bottom: 8px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Pythonチュートリアル</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">ホーム</a>
+                <a href="install.html">Pythonのインストール</a>
+                <a href="basics.html" style="color: #3498db;">基礎構文</a>
+                <a href="advanced.html">応用</a>
+                <a href="practice.html">練習問題</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 チュートリアル目次</h3>
+            <ul>
+                <li><a href="../index.html">はじめに</a></li>
+                <li><a href="install.html">Pythonのインストール</a></li>
+                <li><a href="first-step.html">最初のPythonプログラム</a></li>
+                <li><a href="basics.html" class="active">基礎構文</a></li>
+                <li><a href="functions.html">関数</a></li>
+                <li><a href="oop.html">オブジェクト指向</a></li>
+                <li><a href="practice.html">実践問題</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python基礎構文</h1>
+
+            <p>Pythonを学習する前に、その基礎構文を理解することが重要です。Pythonは簡潔で読みやすいことで知られています。一緒に見ていきましょう。</p>
+
+            <h2>Pythonの構文の特徴</h2>
+
+            <ul>
+                <li><strong>簡潔でエレガント：</strong>英語のように自然に読めるコード</li>
+                <li><strong>インデントを使用：</strong>中括弧の代わりにインデントでコードブロックを表現</li>
+                <li><strong>大文字と小文字を区別：</strong>variableとVariableは異なる変数</li>
+                <li><strong>セミコロン不要：</strong>文の終わりにセミコロンは不要</li>
+            </ul>
+
+            <h2>コメント</h2>
+
+            <p>コメントはコードを説明するためのもので、Pythonはそれらを無視します。</p>
+
+            <h3>一行コメント</h3>
+
+            <div class="code-block"><span class="comment"># これは一行コメントです</span>
+<span class="function">print</span>(<span class="string">"Hello"</span>)  <span class="comment"># コメントはコードの後にも書けます</span></div>
+
+            <h3>複数行コメント</h3>
+
+            <div class="code-block"><span class="comment">'''
+これは複数行コメントです
+複数行にわたって書けます
+'''</span>
+
+<span class="comment">"""
+これも複数行コメントです
+通常は関数やモジュールの説明に使用されます
+"""</span></div>
+
+            <h2>インデントとコードブロック</h2>
+
+            <p>Pythonはインデントを使ってコードブロックを整理します。同じインデントレベルのコードは同じコードブロックに属します。</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 重要：</strong> Pythonはインデントに非常に厳格です！スペースまたはタブを一貫して使用する必要があります。4つのスペースでのインデントが推奨されます。
+            </div>
+
+            <div class="code-block"><span class="keyword">if</span> <span class="number">5</span> > <span class="number">3</span>:
+    <span class="function">print</span>(<span class="string">"5は3より大きい"</span>)  <span class="comment"># これはif文のコードブロックです</span>
+    <span class="function">print</span>(<span class="string">"これもif文の一部です"</span>)
+<span class="function">print</span>(<span class="string">"これはif文の外です"</span>)</div>
+
+            <div class="output">5は3より大きい
+これもif文の一部です
+これはif文の外です</div>
+
+            <h2>変数</h2>
+
+            <p>変数はデータを格納するコンテナです。Pythonでは、変数の型を宣言する必要はありません。</p>
+
+            <div class="code-block"><span class="comment"># 変数の作成</span>
+name = <span class="string">"太郎"</span>
+age = <span class="number">25</span>
+height = <span class="number">1.75</span>
+is_student = <span class="keyword">True</span>
+
+<span class="comment"># 変数の使用</span>
+<span class="function">print</span>(<span class="string">"名前:"</span>, name)
+<span class="function">print</span>(<span class="string">"年齢:"</span>, age)
+<span class="function">print</span>(<span class="string">"身長:"</span>, height)
+<span class="function">print</span>(<span class="string">"学生:"</span>, is_student)</div>
+
+            <h3>変数の命名規則</h3>
+
+            <div class="info-box">
+                <ul>
+                    <li>変数名は文字またはアンダースコアで始める必要がある</li>
+                    <li>変数名は文字、数字、アンダースコアのみを含めることができる</li>
+                    <li>変数名は大文字と小文字を区別する</li>
+                    <li>Pythonのキーワードを変数名として使用できない</li>
+                    <li>変数名は意味を持たせ、見て分かる名前にする</li>
+                </ul>
+            </div>
+
+            <div class="code-block"><span class="comment"># 有効な変数名</span>
+my_name = <span class="string">"山田太郎"</span>
+_user_id = <span class="number">123</span>
+age2 = <span class="number">30</span>
+
+<span class="comment"># 無効な変数名</span>
+<span class="comment"># 2name = "佐藤"    # エラー：数字で始めることはできません</span>
+<span class="comment"># my-name = "鈴木"   # エラー：ハイフンを含めることはできません</span>
+<span class="comment"># class = "田中"     # エラー：classはキーワードです</span></div>
+
+            <h2>データ型</h2>
+
+            <p>Pythonにはいくつかの基本データ型があります：</p>
+
+            <h3>整数（int）</h3>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">-5</span>
+c = <span class="number">0</span>
+d = <span class="number">1_000_000</span>  <span class="comment"># 大きな数字はアンダースコアで区切ることができます</span>
+
+<span class="function">print</span>(a, b, c, d)</div>
+
+            <h3>浮動小数点数（float）</h3>
+
+            <div class="code-block">pi = <span class="number">3.14159</span>
+temperature = <span class="number">-10.5</span>
+scientific = <span class="number">1.23e-5</span>  <span class="comment"># 科学表記法</span>
+
+<span class="function">print</span>(pi, temperature, scientific)</div>
+
+            <h3>文字列（str）</h3>
+
+            <div class="code-block">name1 = <span class="string">'シングルクォート文字列'</span>
+name2 = <span class="string">"ダブルクォート文字列"</span>
+name3 = <span class="string">"""トリプルクォート文字列
+改行できます"""</span>
+
+<span class="function">print</span>(name1)
+<span class="function">print</span>(name2)
+<span class="function">print</span>(name3)</div>
+
+            <h3>ブール値（bool）</h3>
+
+            <div class="code-block">is_true = <span class="keyword">True</span>
+is_false = <span class="keyword">False</span>
+
+<span class="function">print</span>(is_true, is_false)</div>
+
+            <h2>基本的な演算</h2>
+
+            <h3>算術演算子</h3>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">3</span>
+
+<span class="function">print</span>(<span class="string">"加算:"</span>, a + b)      <span class="comment"># 13</span>
+<span class="function">print</span>(<span class="string">"減算:"</span>, a - b)      <span class="comment"># 7</span>
+<span class="function">print</span>(<span class="string">"乗算:"</span>, a * b)      <span class="comment"># 30</span>
+<span class="function">print</span>(<span class="string">"除算:"</span>, a / b)      <span class="comment"># 3.3333...</span>
+<span class="function">print</span>(<span class="string">"整数除算:"</span>, a // b)     <span class="comment"># 3</span>
+<span class="function">print</span>(<span class="string">"剰余:"</span>, a % b)      <span class="comment"># 1</span>
+<span class="function">print</span>(<span class="string">"累乗:"</span>, a ** b)   <span class="comment"># 1000</span></div>
+
+            <h3>比較演算子</h3>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">5</span>
+
+<span class="function">print</span>(<span class="string">"a == b:"</span>, a == b)  <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"a != b:"</span>, a != b)  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"a > b:"</span>, a > b)    <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"a < b:"</span>, a < b)    <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"a >= b:"</span>, a >= b)  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"a <= b:"</span>, a <= b)  <span class="comment"># False</span></div>
+
+            <h3>論理演算子</h3>
+
+            <div class="code-block">a = <span class="keyword">True</span>
+b = <span class="keyword">False</span>
+
+<span class="function">print</span>(<span class="string">"a and b:"</span>, a <span class="keyword">and</span> b)  <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"a or b:"</span>, a <span class="keyword">or</span> b)   <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"not a:"</span>, <span class="keyword">not</span> a)      <span class="comment"># False</span></div>
+
+            <h2>文字列操作</h2>
+
+            <h3>文字列の連結</h3>
+
+            <div class="code-block">first_name = <span class="string">"山田"</span>
+last_name = <span class="string">"太郎"</span>
+full_name = first_name + last_name
+
+<span class="function">print</span>(full_name)  <span class="comment"># 山田太郎</span></div>
+
+            <h3>文字列の繰り返し</h3>
+
+            <div class="code-block">echo = <span class="string">"Hello "</span> * <span class="number">3</span>
+<span class="function">print</span>(echo)  <span class="comment"># Hello Hello Hello </span></div>
+
+            <h3>文字列のフォーマット</h3>
+
+            <div class="code-block">name = <span class="string">"太郎"</span>
+age = <span class="number">25</span>
+
+<span class="comment"># 方法1：f-stringを使用（Python 3.6+）</span>
+<span class="function">print</span>(<span class="string">f"私の名前は{name}で、年齢は{age}歳です"</span>)
+
+<span class="comment"># 方法2：format()を使用</span>
+<span class="function">print</span>(<span class="string">"私の名前は{}で、年齢は{}歳です"</span>.<span class="function">format</span>(name, age))
+
+<span class="comment"># 方法3：%演算子を使用</span>
+<span class="function">print</span>(<span class="string">"私の名前は%sで、年齢は%d歳です"</span> % (name, age))</div>
+
+            <div class="output">私の名前は太郎で、年齢は25歳です
+私の名前は太郎で、年齢は25歳です
+私の名前は太郎で、年齢は25歳です</div>
+
+            <h2>型変換</h2>
+
+            <p>場合によっては、ある型を別の型に変換する必要があります：</p>
+
+            <div class="code-block"><span class="comment"># 整数に変換</span>
+x = <span class="function">int</span>(<span class="string">"123"</span>)
+<span class="function">print</span>(x)         <span class="comment"># 123</span>
+<span class="function">print</span>(<span class="function">type</span>(x))  <span class="comment"># <class 'int'></span>
+
+<span class="comment"># 浮動小数点数に変換</span>
+y = <span class="function">float</span>(<span class="string">"3.14"</span>)
+<span class="function">print</span>(y)         <span class="comment"># 3.14</span>
+
+<span class="comment"># 文字列に変換</span>
+z = <span class="function">str</span>(<span class="number">123</span>)
+<span class="function">print</span>(z)         <span class="comment"># "123"</span>
+
+<span class="comment"># ブール値に変換</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">1</span>))     <span class="comment"># True</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">0</span>))     <span class="comment"># False</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">""</span>))    <span class="comment"># False</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="string">"abc"</span>))  <span class="comment"># True</span></div>
+
+            <h2>ユーザー入力の取得</h2>
+
+            <p><code>input()</code>関数を使用してユーザーのキーボード入力を取得できます：</p>
+
+            <div class="code-block">name = <span class="function">input</span>(<span class="string">"名前を入力してください："</span>)
+<span class="function">print</span>(<span class="string">"こんにちは、"</span> + name + <span class="string">"さん！"</span>)</div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> input()関数は常に文字列を返します。数値が必要な場合は型変換を行う必要があります：
+            </div>
+
+            <div class="code-block">age = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"年齢を入力してください："</span>))
+<span class="function">print</span>(<span class="string">"来年あなたは"</span> + <span class="function">str</span>(age + <span class="number">1</span>) + <span class="string">"歳です"</span>)</div>
+
+            <h2>練習問題</h2>
+
+            <div class="info-box">
+                <strong>練習問題1：</strong> 円の面積を計算するプログラムを書いてください（ユーザーが半径を入力）
+                <br><br>
+                <strong>練習問題2：</strong> 摂氏温度を華氏温度に変換するプログラムを書いてください（公式：F = C × 1.8 + 32）
+                <br><br>
+                <strong>練習問題3：</strong> 2つの変数の値を交換するプログラムを書いてください
+            </div>
+
+            <div class="success-box">
+                <strong>✅ まとめ</strong>
+                <ul>
+                    <li>Pythonはインデントを使ってコードブロックを整理する</li>
+                    <li>変数は型宣言が不要</li>
+                    <li>Pythonには整数、浮動小数点数、文字列、ブール値などの基本データ型がある</li>
+                    <li>様々な演算子を使って計算できる</li>
+                    <li>input()でユーザー入力を取得し、print()で内容を出力する</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="first-step.html" class="btn btn-secondary">← 前の章</a>
+                <a href="data-types.html" class="btn">次の章：データ型詳解 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Pythonチュートリアル | プログラミング学習をシンプルで楽しく</p>
+    </footer>
+</body>
+</html>

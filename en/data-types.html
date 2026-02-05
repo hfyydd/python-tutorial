@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Types in Detail - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; transition: opacity 0.3s; }
+        .nav-links a:hover { opacity: 0.8; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="install.html">Installing Python</a>
+                <a href="basics.html">Basics</a>
+                <a href="advanced.html">Advanced</a>
+                <a href="practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Tutorial Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Installing Python</a></li>
+                <li><a href="first-step.html">Your First Python Program</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="data-types.html" class="active">Data Types</a></li>
+                <li><a href="strings.html">Strings</a></li>
+                <li><a href="lists.html">Lists</a></li>
+                <li><a href="functions.html">Functions</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Data Types in Detail</h1>
+
+            <p>Python has multiple built-in data types. Understanding these data types is crucial for writing efficient and correct Python programs.</p>
+
+            <h2>Numeric Types</h2>
+
+            <h3>Integers (int)</h3>
+            <p>Integers can be positive, negative, or zero, with no size limit.</p>
+
+            <div class="code-block"><span class="comment"># Integer examples</span>
+a = <span class="number">10</span>
+b = <span class="number">-5</span>
+c = <span class="number">0</span>
+big_number = <span class="number">999999999999999999999999999</span>
+
+<span class="comment"># Base representations</span>
+binary = <span class="number">0b1010</span>   <span class="comment"># Binary 10</span>
+octal = <span class="number">0o12</span>      <span class="comment"># Octal 10</span>
+hexadecimal = <span class="number">0xA</span>  <span class="comment"># Hexadecimal 10</span>
+
+<span class="function">print</span>(binary, octal, hexadecimal)  <span class="comment"># 10 10 10</span></div>
+
+            <h3>Floats (float)</h3>
+            <p>Floats are numbers with decimal points.</p>
+
+            <div class="code-block"><span class="comment"># Float examples</span>
+a = <span class="number">3.14</span>
+b = <span class="number">-0.001</span>
+c = <span class="number">1.23e5</span>    <span class="comment"># Scientific notation: 123000.0</span>
+d = <span class="number">1.23e-2</span>   <span class="comment"># Scientific notation: 0.0123</span>
+
+<span class="function">print</span>(a, b, c, d)</div>
+
+            <div class="warning-box">
+                <strong>⚠️ Note:</strong> Float calculations may have precision issues:
+            </div>
+
+            <div class="code-block"><span class="function">print</span>(<span class="number">0.1</span> + <span class="number">0.2</span>)  <span class="comment"># Output: 0.30000000000000004</span></div>
+
+            <h3>Complex Numbers (complex)</h3>
+            <p>Python also supports complex number operations.</p>
+
+            <div class="code-block">z = <span class="number">3</span> + <span class="number">4j</span>  <span class="comment"># j represents the imaginary unit</span>
+<span class="function">print</span>(z.real)  <span class="comment"># Real part: 3.0</span>
+<span class="function">print</span>(z.imag)  <span class="comment"># Imaginary part: 4.0</span></div>
+
+            <h2>Boolean Type</h2>
+            <p>The boolean type has only two values: True and False.</p>
+
+            <div class="code-block">is_sunny = <span class="keyword">True</span>
+is_raining = <span class="keyword">False</span>
+
+<span class="comment"># Boolean operations</span>
+<span class="function">print</span>(is_sunny <span class="keyword">and</span> is_raining)  <span class="comment"># False</span>
+<span class="function">print</span>(is_sunny <span class="keyword">or</span> is_raining)   <span class="comment"># True</span>
+<span class="function">print</span>(<span class="keyword">not</span> is_sunny)            <span class="comment"># False</span></div>
+
+            <div class="info-box">
+                <strong>💡 Truth Value Testing:</strong> In Python, the following values are considered "False":
+                <ul>
+                    <li>False</li>
+                    <li>None</li>
+                    <li>Zero numbers (0, 0.0, 0j)</li>
+                    <li>Empty sequences ('', (), [])</li>
+                    <li>Empty mappings ({})</li>
+                </ul>
+                All other values are considered "True".
+            </div>
+
+            <h2>Strings (str)</h2>
+            <p>Strings are text enclosed in single quotes, double quotes, or triple quotes.</p>
+
+            <div class="code-block"><span class="comment"># Single and double quotes</span>
+s1 = <span class="string">'Hello'</span>
+s2 = <span class="string">"World"</span>
+
+<span class="comment"># Triple quotes can span multiple lines</span>
+s3 = <span class="string">'''
+This is a
+multi-line string
+'''</span>
+
+<span class="comment"># String concatenation</span>
+greeting = s1 + <span class="string">" "</span> + s2
+<span class="function">print</span>(greeting)  <span class="comment"># Hello World</span>
+
+<span class="comment"># String repetition</span>
+laugh = <span class="string">"Ha"</span> * <span class="number">3</span>
+<span class="function">print</span>(laugh)  <span class="comment"># HaHaHa</span></div>
+
+            <h3>String Indexing and Slicing</h3>
+
+            <div class="code-block">s = <span class="string">"Python"</span>
+
+<span class="comment"># Indexing (starts from 0)</span>
+<span class="function">print</span>(s[<span class="number">0</span>])   <span class="comment"># P</span>
+<span class="function">print</span>(s[<span class="number">-1</span>])  <span class="comment"># n (last character)</span>
+
+<span class="comment"># Slicing [start:end:step]</span>
+<span class="function">print</span>(s[<span class="number">0</span>:<span class="number">2</span>])   <span class="comment"># Py</span>
+<span class="function">print</span>(s[<span class="number">2</span>:<span class="number">5</span>])   <span class="comment"># tho</span>
+<span class="function">print</span>(s[:<span class="number">3</span>])    <span class="comment"># Pyt (from start to index 3)</span>
+<span class="function">print</span>(s[<span class="number">3</span>:])    <span class="comment"># hon (from index 3 to end)</span>
+<span class="function">print</span>(s[::<span class="number">2</span>])   <span class="comment"># Pto (every other character)</span>
+<span class="function">print</span>(s[::<span class="number">-1</span>])  <span class="comment"># nohtyP (reverse string)</span></div>
+
+            <h3>String Methods</h3>
+
+            <div class="code-block">s = <span class="string">"  Hello World  "</span>
+
+<span class="comment"># Case conversion</span>
+<span class="function">print</span>(s.<span class="function">upper</span>())    <span class="comment"># "  HELLO WORLD  "</span>
+<span class="function">print</span>(s.<span class="function">lower</span>())    <span class="comment"># "  hello world  "</span>
+<span class="function">print</span>(s.<span class="function">strip</span>())    <span class="comment"># "Hello World" (remove leading/trailing spaces)</span>
+
+<span class="comment"># Searching</span>
+<span class="function">print</span>(s.<span class="function">find</span>(<span class="string">"World"</span>))  <span class="comment"># 8 (returns -1 if not found)</span>
+<span class="function">print</span>(<span class="string">"World"</span> <span class="keyword">in</span> s)      <span class="comment"># True</span>
+
+<span class="comment"># Replacing</span>
+<span class="function">print</span>(s.<span class="function">replace</span>(<span class="string">"World"</span>, <span class="string">"Python"</span>))  <span class="comment"># "  Hello Python  "</span>
+
+<span class="comment"># Splitting</span>
+<span class="function">print</span>(s.<span class="function">split</span>())  <span class="comment"># ["Hello", "World"]</span></div>
+
+            <h2>Lists (list)</h2>
+            <p>Lists are mutable ordered collections.</p>
+
+            <div class="code-block"><span class="comment"># Create lists</span>
+fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+mixed = [<span class="string">"text"</span>, <span class="number">42</span>, <span class="keyword">True</span>, <span class="number">3.14</span>]
+
+<span class="comment"># Access elements</span>
+<span class="function">print</span>(fruits[<span class="number">0</span>])   <span class="comment"># "apple"</span>
+<span class="function">print</span>(fruits[<span class="number">-1</span>])  <span class="comment"># "orange"</span>
+
+<span class="comment"># Modify elements</span>
+fruits[<span class="number">1</span>] = <span class="string">"grape"</span>
+<span class="function">print</span>(fruits)  <span class="comment"># ["apple", "grape", "orange"]</span>
+
+<span class="comment"># Add elements</span>
+fruits.<span class="function">append</span>(<span class="string">"watermelon"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ["apple", "grape", "orange", "watermelon"]</span>
+
+<span class="comment"># Remove elements</span>
+fruits.<span class="function">remove</span>(<span class="string">"orange"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ["apple", "grape", "watermelon"]</span>
+
+<span class="comment"># Get length</span>
+<span class="function">print</span>(<span class="function">len</span>(fruits))  <span class="comment"># 3</span></div>
+
+            <h3>List Slicing</h3>
+
+            <div class="code-block">nums = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="function">print</span>(nums[<span class="number">1</span>:<span class="number">4</span>])   <span class="comment"># [1, 2, 3]</span>
+<span class="function">print</span>(nums[:<span class="number">3</span>])    <span class="comment"># [0, 1, 2]</span>
+<span class="function">print</span>(nums[<span class="number">3</span>:])    <span class="comment"># [3, 4, 5]</span>
+<span class="function">print</span>(nums[::<span class="number">2</span>])   <span class="comment"># [0, 2, 4]</span></div>
+
+            <h2>Tuples (tuple)</h2>
+            <p>Tuples are immutable ordered collections, represented with parentheses.</p>
+
+            <div class="code-block"><span class="comment"># Create tuples</span>
+point = (<span class="number">3</span>, <span class="number">4</span>)
+colors = (<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>)
+
+<span class="comment"># Access elements (same as lists)</span>
+<span class="function">print</span>(point[<span class="number">0</span>])  <span class="comment"># 3</span>
+
+<span class="comment"># Tuples cannot be modified</span>
+<span class="comment"># point[0] = 5  # This will raise an error!</span>
+
+<span class="comment"># Single-element tuples need a comma</span>
+single = (<span class="number">42</span>,)  <span class="comment"># Note the comma</span></div>
+
+            <div class="info-box">
+                <strong>💡 When to use tuples?</strong>
+                <ul>
+                    <li>When data should not be modified</li>
+                    <li>When using as dictionary keys</li>
+                    <li>When returning multiple values from functions</li>
+                </ul>
+            </div>
+
+            <h2>Dictionaries (dict)</h2>
+            <p>Dictionaries are collections of key-value pairs.</p>
+
+            <div class="code-block"><span class="comment"># Create dictionary</span>
+person = {
+    <span class="string">"name"</span>: <span class="string">"John Smith"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>,
+    <span class="string">"city"</span>: <span class="string">"Beijing"</span>
+}
+
+<span class="comment"># Access values</span>
+<span class="function">print</span>(person[<span class="string">"name"</span>])      <span class="comment"># "John Smith"</span>
+<span class="function">print</span>(person.<span class="function">get</span>(<span class="string">"age"</span>))   <span class="comment"># 25</span>
+
+<span class="comment"># Add/modify key-value pairs</span>
+person[<span class="string">"email"</span>] = <span class="string">"test@example.com"</span>
+person[<span class="string">"age"</span>] = <span class="number">26</span>
+
+<span class="comment"># Delete key-value pairs</span>
+<span class="keyword">del</span> person[<span class="string">"city"</span>]
+
+<span class="comment"># Iterate through dictionary</span>
+<span class="keyword">for</span> key, value <span class="keyword">in</span> person.<span class="function">items</span>():
+    <span class="function">print</span>(<span class="string">f"{key}: {value}"</span>)</div>
+
+            <h2>Sets (set)</h2>
+            <p>Sets are unordered collections of unique elements.</p>
+
+            <div class="code-block"><span class="comment"># Create sets</span>
+s1 = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>}
+s2 = {<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>}
+
+<span class="comment"># Set operations</span>
+<span class="function">print</span>(s1 | s2)  <span class="comment"># Union: {1, 2, 3, 4, 5, 6}</span>
+<span class="function">print</span>(s1 & s2)  <span class="comment"># Intersection: {3, 4}</span>
+<span class="function">print</span>(s1 - s2)  <span class="comment"># Difference: {1, 2}</span>
+
+<span class="comment"># Add/remove elements</span>
+s1.<span class="function">add</span>(<span class="number">5</span>)
+s1.<span class="function">remove</span>(<span class="number">2</span>)</div>
+
+            <h2>None Type</h2>
+            <p>None represents "no value" or "empty value".</p>
+
+            <div class="code-block">result = <span class="keyword">None</span>
+
+<span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">None</span>:
+    <span class="function">print</span>(<span class="string">"Result is empty"</span>)</div>
+
+            <h2>Type Checking and Conversion</h2>
+
+            <div class="code-block"><span class="comment"># Type checking</span>
+x = <span class="string">"Hello"</span>
+<span class="function">print</span>(<span class="function">type</span>(x))          <span class="comment"># <class 'str'></span>
+<span class="function">print</span>(<span class="function">isinstance</span>(x, str))  <span class="comment"># True</span>
+
+<span class="comment"># Type conversion</span>
+<span class="function">print</span>(<span class="function">int</span>(<span class="string">"123"</span>))    <span class="comment"># 123</span>
+<span class="function">print</span>(<span class="function">float</span>(<span class="string">"3.14"</span>)) <span class="comment"># 3.14</span>
+<span class="function">print</span>(<span class="function">str</span>(<span class="number">123</span>))     <span class="comment"># "123"</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">1</span>))      <span class="comment"># True</span>
+<span class="function">print</span>(<span class="function">list</span>(<span class="string">"abc"</span>))   <span class="comment"># ["a", "b", "c"]</span>
+<span class="function">print</span>(<span class="function">tuple</span>([<span class="number">1</span>, <span class="number">2</span>]))   <span class="comment"># (1, 2)</span></div>
+
+            <div class="success-box">
+                <strong>✅ Summary</strong>
+                <ul>
+                    <li>Integers (int), floats (float), complex numbers (complex) are numeric types</li>
+                    <li>Strings (str) are used for text processing</li>
+                    <li>Lists (list) are mutable, tuples (tuple) are immutable</li>
+                    <li>Dictionaries (dict) store key-value pairs</li>
+                    <li>Sets (set) store unique elements</li>
+                    <li>None represents empty value</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="basics.html" class="btn btn-secondary">← Previous Chapter</a>
+                <a href="strings.html" class="btn">Next Chapter: Strings in Detail →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+</body>
+</html>

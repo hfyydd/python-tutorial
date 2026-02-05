@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>迴圈 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 250px; background: white; padding: 20px; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">首頁</a>
+                <a href="install.html">安裝Python</a>
+                <a href="basics.html">基礎語法</a>
+                <a href="advanced.html">進階</a>
+                <a href="practice.html">練習</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一個Python程式</a></li>
+                <li><a href="basics.html">基礎語法</a></li>
+                <li><a href="conditions.html">條件判斷</a></li>
+                <li><a href="loops.html" class="active">迴圈</a></li>
+                <li><a href="functions.html">函數</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>迴圈</h1>
+
+            <p>迴圈让程式能夠重复執行某段程式碼。Python有两种主要的迴圈结构：for迴圈和while迴圈。</p>
+
+            <h2>for迴圈</h2>
+
+            <p>for迴圈用于遍歷序列（如列表、字串、元组）或其他可疊代物件。</p>
+
+            <h3>遍歷列表</h3>
+
+            <div class="code-block">fruits = [<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(fruit)</div>
+
+            <div class="output">苹果
+香蕉
+橙子</div>
+
+            <h3>遍歷字串</h3>
+
+            <div class="code-block"><span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">"Python"</span>:
+    <span class="function">print</span>(char)</div>
+
+            <h3>使用range()函數</h3>
+
+            <p>range()函數產生一個整数序列：</p>
+
+            <div class="code-block"><span class="comment"># range(stop): 0到stop-1</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i)  <span class="comment"># 輸出: 0, 1, 2, 3, 4</span>
+
+<span class="comment"># range(start, stop): start到stop-1</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(i)  <span class="comment"># 輸出: 1, 2, 3, 4, 5</span>
+
+<span class="comment"># range(start, stop, step): 指定步长</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>):
+    <span class="function">print</span>(i)  <span class="comment"># 輸出: 0, 2, 4, 6, 8</span></div>
+
+            <h3>遍歷字典</h3>
+
+            <div class="code-block">person = {
+    <span class="string">"name"</span>: <span class="string">"张三"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>,
+    <span class="string">"city"</span>: <span class="string">"北京"</span>
+}
+
+<span class="comment"># 遍歷鍵</span>
+<span class="keyword">for</span> key <span class="keyword">in</span> person:
+    <span class="function">print</span>(key)
+
+<span class="comment"># 遍歷鍵值对</span>
+<span class="keyword">for</span> key, value <span class="keyword">in</span> person.<span class="function">items</span>():
+    <span class="function">print</span>(<span class="string">f"{key}: {value}"</span>)</div>
+
+            <h2>while迴圈</h2>
+
+            <p>while迴圈在條件为True时重复執行程式碼块：</p>
+
+            <div class="code-block">count = <span class="number">0</span>
+
+<span class="keyword">while</span> count < <span class="number">5</span>:
+    <span class="function">print</span>(count)
+    count += <span class="number">1</span></div>
+
+            <div class="output">0
+1
+2
+3
+4</div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 使用while迴圈时，务必确保迴圈條件最终会变为False，否則会造成无限迴圈！
+            </div>
+
+            <h2>迴圈控制敘述</h2>
+
+            <h3>break：跳出迴圈</h3>
+
+            <div class="code-block"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    <span class="keyword">if</span> i == <span class="number">5</span>:
+        <span class="keyword">break</span>  <span class="comment"># 当i等於5时跳出迴圈</span>
+    <span class="function">print</span>(i)  <span class="comment"># 輸出: 0, 1, 2, 3, 4</span></div>
+
+            <h3>continue：跳过本次疊代</h3>
+
+            <div class="code-block"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="keyword">if</span> i == <span class="number">2</span>:
+        <span class="keyword">continue</span>  <span class="comment"># 当i等於2时跳过本次迴圈</span>
+    <span class="function">print</span>(i)  <span class="comment"># 輸出: 0, 1, 3, 4</span></div>
+
+            <h2>else子句</h2>
+
+            <p>迴圈可以带一個else子句，当迴圈正常結束时（没有被break中断）執行：</p>
+
+            <div class="code-block"><span class="comment"># 正常結束，執行else</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"迴圈正常結束"</span>)
+
+<span class="comment"># 被break中断，不執行else</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="keyword">if</span> i == <span class="number">3</span>:
+        <span class="keyword">break</span>
+    <span class="function">print</span>(i)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"这句话不会執行"</span>)</div>
+
+            <h2>嵌套迴圈</h2>
+
+            <div class="code-block"><span class="comment"># 列印乘法表</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">10</span>):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, i + <span class="number">1</span>):
+        <span class="function">print</span>(<span class="string">f"{j}x{i}={i*j}"</span>, end=<span class="string">"\t"</span>)
+    <span class="function">print</span>()  <span class="comment"># 换行</span></div>
+
+            <h2>常见套用场景</h2>
+
+            <h3>1. 計算累加和</h3>
+
+            <div class="code-block">total = <span class="number">0</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">101</span>):
+    total += i
+<span class="function">print</span>(<span class="string">f"1到100的和是: {total}"</span>)</div>
+
+            <h3>2. 尋找列表中的最大值</h3>
+
+            <div class="code-block">numbers = [<span class="number">23</span>, <span class="number">45</span>, <span class="number">12</span>, <span class="number">67</span>, <span class="number">34</span>, <span class="number">89</span>]
+max_num = numbers[<span class="number">0</span>]
+
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    <span class="keyword">if</span> num > max_num:
+        max_num = num
+
+<span class="function">print</span>(<span class="string">f"最大值是: {max_num}"</span>)</div>
+
+            <h3>3. 猜數字游戏</h3>
+
+            <div class="code-block"><span class="keyword">import</span> random
+
+secret = random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">100</span>)
+attempts = <span class="number">0</span>
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    guess = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"猜一個1到100之间的數字: "</span>))
+    attempts += <span class="number">1</span>
+
+    <span class="keyword">if</span> guess == secret:
+        <span class="function">print</span>(<span class="string">f"恭喜你猜对了！用了{attempts}次。"</span>)
+        <span class="keyword">break</span>
+    <span class="keyword">elif</span> guess < secret:
+        <span class="function">print</span>(<span class="string">"太小了！"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"太大了！"</span>)</div>
+
+            <h3>4. 列印圖形</h3>
+
+            <div class="code-block"><span class="comment"># 列印直角三角形</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(<span class="string">"*"</span> * i)</div>
+
+            <div class="output">*
+**
+***
+****
+*****</div>
+
+            <h2>列表推导式</h2>
+
+            <p>列表推导式是一种简洁的建立列表的方式：</p>
+
+            <div class="code-block"><span class="comment"># 传统方式</span>
+squares = []
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    squares.<span class="function">append</span>(i ** <span class="number">2</span>)
+
+<span class="comment"># 列表推导式</span>
+squares = [i ** <span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>)]
+
+<span class="comment"># 带條件的列表推导式</span>
+even_squares = [i ** <span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]
+
+<span class="function">print</span>(squares)      <span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+<span class="function">print</span>(even_squares)  <span class="comment"># [0, 4, 16, 36, 64]</span></div>
+
+            <h2>練習题</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 编写程式，計算1到100之间所有偶数的和
+                <br><br>
+                <strong>練習2：</strong> 编写程式，列印九九乘法表
+                <br><br>
+                <strong>練習3：</strong> 编写程式，找出列表中第二大的数
+                <br><br>
+                <strong>練習4：</strong> 编写程式，判斷一個數字是否为质数
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小结</strong>
+                <ul>
+                    <li>for迴圈用于遍歷序列</li>
+                    <li>while迴圈在條件为True时重复執行</li>
+                    <li>break用于跳出迴圈</li>
+                    <li>continue用于跳过本次疊代</li>
+                    <li>else子句在迴圈正常結束时執行</li>
+                    <li>列表推导式是建立列表的简洁方式</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="conditions.html" class="btn btn-secondary">← 上一章</a>
+                <a href="functions.html" class="btn">下一章：函數 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 让编程學習变得简单有趣</p>
+    </footer>
+</body>
+</html>

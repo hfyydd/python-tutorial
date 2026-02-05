@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Statements - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; transition: opacity 0.3s; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 250px; background: white; padding: 20px; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="install.html">Installing Python</a>
+                <a href="basics.html">Basics</a>
+                <a href="advanced.html">Advanced</a>
+                <a href="practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Tutorial Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Installing Python</a></li>
+                <li><a href="first-step.html">Your First Python Program</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="conditions.html" class="active">Conditional Statements</a></li>
+                <li><a href="loops.html">Loops</a></li>
+                <li><a href="functions.html">Functions</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Conditional Statements</h1>
+
+            <p>Conditional statements allow programs to execute different code based on different situations. This is one of the most fundamental and important control structures in programming.</p>
+
+            <h2>if Statement</h2>
+
+            <p>The simplest conditional statement is the if statement:</p>
+
+            <div class="code-block">age = <span class="number">18</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"You are an adult"</span>)</div>
+
+            <div class="output">You are an adult</div>
+
+            <h2>if-else Statement</h2>
+
+            <p>If you need to execute another block of code when the condition is not met, use else:</p>
+
+            <div class="code-block">age = <span class="number">16</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"You are an adult"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"You are not an adult yet"</span>)</div>
+
+            <div class="output">You are not an adult yet</div>
+
+            <h2>if-elif-else Statement</h2>
+
+            <p>When multiple conditions need to be checked, use elif (short for "else if"):</p>
+
+            <div class="code-block">score = <span class="number">85</span>
+
+<span class="keyword">if</span> score >= <span class="number">90</span>:
+    grade = <span class="string">"A"</span>
+<span class="keyword">elif</span> score >= <span class="number">80</span>:
+    grade = <span class="string">"B"</span>
+<span class="keyword">elif</span> score >= <span class="number">70</span>:
+    grade = <span class="string">"C"</span>
+<span class="keyword">elif</span> score >= <span class="number">60</span>:
+    grade = <span class="string">"D"</span>
+<span class="keyword">else</span>:
+    grade = <span class="string">"F"</span>
+
+<span class="function">print</span>(<span class="string">f"Your grade is: {grade}"</span>)</div>
+
+            <div class="output">Your grade is: B</div>
+
+            <div class="info-box">
+                <strong>💡 Note:</strong> You can have multiple elif statements, but only one else (which can also be omitted). Python checks conditions from top to bottom. Once a condition is True, it executes the corresponding block and skips the remaining condition checks.
+            </div>
+
+            <h2>Comparison Operators</h2>
+
+            <p>Comparison operators commonly used in conditional statements:</p>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">5</span>
+
+<span class="function">print</span>(a == b)  <span class="comment"># Equal</span>
+<span class="function">print</span>(a != b)  <span class="comment"># Not equal</span>
+<span class="function">print</span>(a > b)   <span class="comment"># Greater than</span>
+<span class="function">print</span>(a < b)   <span class="comment"># Less than</span>
+<span class="function">print</span>(a >= b)  <span class="comment"># Greater than or equal</span>
+<span class="function">print</span>(a <= b)  <span class="comment"># Less than or equal</span></div>
+
+            <h2>Logical Operators</h2>
+
+            <p>Use logical operators to combine multiple conditions:</p>
+
+            <div class="code-block">age = <span class="number">25</span>
+has_ticket = <span class="keyword">True</span>
+
+<span class="comment"># and: Both conditions must be True for the result to be True</span>
+<span class="keyword">if</span> age >= <span class="number">18</span> <span class="keyword">and</span> has_ticket:
+    <span class="function">print</span>(<span class="string">"You can enter the cinema"</span>)
+
+<span class="comment"># or: Any condition being True makes the result True</span>
+is_weekend = <span class="keyword">False</span>
+<span class="keyword">if</span> is_weekend <span class="keyword">or</span> age < <span class="number">12</span>:
+    <span class="function">print</span>(<span class="string">"You can enjoy the discount"</span>)
+
+<span class="comment"># not: Negation</span>
+<span class="keyword">if</span> <span class="keyword">not</span> has_ticket:
+    <span class="function">print</span>(<span class="string">"You need to buy a ticket first"</span>)</div>
+
+            <h2>Membership Operators</h2>
+
+            <div class="code-block">fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+
+<span class="comment"># in: Check if contained</span>
+<span class="keyword">if</span> <span class="string">"apple"</span> <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(<span class="string">"We have apples"</span>)
+
+<span class="comment"># not in: Check if not contained</span>
+<span class="keyword">if</span> <span class="string">"watermelon"</span> <span class="keyword">not in</span> fruits:
+    <span class="function">print</span>(<span class="string">"We don't have watermelon"</span>)</div>
+
+            <h2>Identity Operators</h2>
+
+            <div class="code-block">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+b = a
+c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="comment"># is: Check if it's the same object</span>
+<span class="function">print</span>(a <span class="keyword">is</span> b)   <span class="comment"># True (b and a point to the same object)</span>
+<span class="function">print</span>(a <span class="keyword">is</span> c)   <span class="comment"># False (c is a different object)</span>
+<span class="function">print</span>(a == c)   <span class="comment"># True (values are equal)</span></div>
+
+            <h2>Nested Conditions</h2>
+
+            <p>Conditional statements can be nested:</p>
+
+            <div class="code-block">age = <span class="number">20</span>
+has_license = <span class="keyword">True</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="keyword">if</span> has_license:
+        <span class="function">print</span>(<span class="string">"You can drive"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"You need to get a license first"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"You are not of legal age yet"</span>)</div>
+
+            <div class="warning-box">
+                <strong>⚠️ Note:</strong> Too many nesting levels reduces code readability. Consider using logical operators to simplify.
+            </div>
+
+            <h2>Ternary Operator</h2>
+
+            <p>Python has a concise ternary operator (conditional expression):</p>
+
+            <div class="code-block">age = <span class="number">20</span>
+
+<span class="comment"># Traditional way</span>
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    status = <span class="string">"adult"</span>
+<span class="keyword">else</span>:
+    status = <span class="keyword">False</span>
+
+<span class="comment"># Ternary operator way</span>
+status = <span class="string">"adult"</span> <span class="keyword">if</span> age >= <span class="number">18</span> <span class="keyword">else</span> <span class="string">"minor"</span>
+
+<span class="function">print</span>(status)</div>
+
+            <h2>Common Use Cases</h2>
+
+            <h3>1. User Input Validation</h3>
+
+            <div class="code-block">password = <span class="function">input</span>(<span class="string">"Please enter a password: "</span>)
+
+<span class="keyword">if</span> <span class="function">len</span>(password) < <span class="number">6</span>:
+    <span class="function">print</span>(<span class="string">"Password is too short!"</span>)
+<span class="keyword">elif</span> <span class="function">len</span>(password) > <span class="number">20</span>:
+    <span class="function">print</span>(<span class="string">"Password is too long!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Password length is appropriate"</span>)</div>
+
+            <h3>2. Number Range Checking</h3>
+
+            <div class="code-block">temperature = <span class="number">25</span>
+
+<span class="keyword">if</span> temperature < <span class="number">0</span>:
+    <span class="function">print</span>(<span class="string">"Very cold"</span>)
+<span class="keyword">elif</span> temperature < <span class="number">15</span>:
+    <span class="function">print</span>(<span class="string">"A bit cold"</span>)
+<span class="keyword">elif</span> temperature < <span class="number">25</span>:
+    <span class="function">print</span>(<span class="string">"Comfortable temperature"</span>)
+<span class="keyword">elif</span> temperature < <span class="number">35</span>:
+    <span class="function">print</span>(<span class="string">"A bit hot"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Very hot"</span>)</div>
+
+            <h3>3. Odd/Even Number Check</h3>
+
+            <div class="code-block">num = <span class="number">7</span>
+
+<span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:
+    <span class="function">print</span>(<span class="string">f"{num} is even"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"{num} is odd"</span>)</div>
+
+            <h2>Exercises</h2>
+
+            <div class="info-box">
+                <strong>Exercise 1:</strong> Write a program to check if a year is a leap year
+                <br>(Leap year rule: divisible by 4 but not by 100, or divisible by 400)
+                <br><br>
+                <strong>Exercise 2:</strong> Write a simple calculator program where the user enters two numbers and an operator, and it outputs the result
+                <br><br>
+                <strong>Exercise 3:</strong> Write a program to output the corresponding ticket price based on the user's age
+                <br>(Free under 3, half price 3-12, full price 12-65, half price 65+)
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Summary</strong>
+                <ul>
+                    <li>if statements are used for conditional judgment</li>
+                    <li>elif can handle multiple conditions</li>
+                    <li>else handles cases where all conditions are not met</li>
+                    <li>and, or, not are used to combine conditions</li>
+                    <li>in is used to check membership</li>
+                    <li>Ternary operator can simplify simple if-else</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="basics.html" class="btn btn-secondary">← Previous Chapter</a>
+                <a href="loops.html" class="btn">Next Chapter: Loops →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+</body>
+</html>

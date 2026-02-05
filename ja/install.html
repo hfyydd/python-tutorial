@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythonのインストール - Pythonチュートリアル</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 0 0;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #e8f4f8;
+            color: #2c3e50;
+        }
+
+        .sidebar .sub-item {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-left: 0;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .main-content h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #34495e;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .main-content ol, .main-content ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        .main-content li {
+            margin-bottom: 10px;
+        }
+
+        .step-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #3498db;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .image-placeholder {
+            background: #e8f4f8;
+            border: 2px dashed #3498db;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #3498db;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Pythonチュートリアル</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">ホーム</a>
+                <a href="install.html">Pythonのインストール</a>
+                <a href="basics.html">基礎構文</a>
+                <a href="advanced.html">応用</a>
+                <a href="practice.html">練習問題</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 チュートリアル目次</h3>
+            <ul>
+                <li><a href="../index.html">はじめに</a></li>
+                <li><a href="install.html" class="active">Pythonのインストール</a></li>
+                <li><a href="first-step.html">最初のステップ</a></li>
+                <li><a href="basics.html">基礎構文</a>
+                    <ul>
+                        <li><a href="data-types.html" class="sub-item">データ型</a></li>
+                        <li><a href="strings.html" class="sub-item">文字列</a></li>
+                        <li><a href="lists.html" class="sub-item">リスト</a></li>
+                        <li><a href="conditions.html" class="sub-item">条件分岐</a></li>
+                        <li><a href="loops.html" class="sub-item">ループ</a></li>
+                    </ul>
+                </li>
+                <li><a href="functions.html">関数</a></li>
+                <li><a href="oop.html">オブジェクト指向</a></li>
+                <li><a href="modules.html">モジュール</a></li>
+                <li><a href="advanced.html">応用</a></li>
+                <li><a href="practice.html">実践問題</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Pythonのインストール</h1>
+
+            <p>Pythonを学習する前に、コンピューターにPython環境をインストールする必要があります。ご心配なく、とても簡単です！</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 重要なヒント：</strong> Python 3.xバージョン（3.10以降を推奨）をインストールしてください。Python 2.xはすでに保守が終了しており、使用は推奨されません。
+            </div>
+
+            <h2>Pythonがインストールされているか確認する</h2>
+
+            <p>まず、コンピューターにPythonがすでにインストールされているか確認してみましょう：</p>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>ターミナル（Mac/Linux）またはコマンドプロンプト（Windows）を開く</p>
+                <p><span class="step-number">2</span>以下のコマンドを入力します：</p>
+                <div class="code-block">python --version</div>
+                <p><span class="step-number">3</span>または、以下も試してください：</p>
+                <div class="code-block">python3 --version</div>
+            </div>
+
+            <p><code>Python 3.10.6</code>のような出力が表示されたら、おめでとうございます！Pythonはすでにインストールされています。次の章に進むことができます。</p>
+
+            <p>「コマンドが見つかりません」というようなメッセージが表示された場合は、以下のインストール手順に進んでください。</p>
+
+            <h2>Windowsシステムへのインストール</h2>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>Python公式ウェブサイトのダウンロードページにアクセス：<a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></p>
+
+                <p><span class="step-number">2</span>「Download Python」ボタンをクリックして最新版をダウンロード</p>
+
+                <p><span class="step-number">3</span>ダウンロードしたインストーラーを実行</p>
+
+                <div class="image-placeholder">
+                    📷 インストール画面のスクリーンショット<br>
+                    （「Add Python to PATH」にチェックを入れる）
+                </div>
+
+                <p><span class="step-number">4</span><strong>重要：</strong>インストール画面で必ず「Add Python to PATH」にチェックを入れてください</p>
+
+                <p><span class="step-number">5</span>「Install Now」をクリックしてインストールを開始</p>
+
+                <p><span class="step-number">6</span>インストール完了まで待ち、「Close」をクリック</p>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ インストールの確認：</strong>コマンドプロンプトを開き、<code>python --version</code>と入力してください。バージョン番号が表示されればインストール成功です。
+            </div>
+
+            <h2>Macシステムへのインストール</h2>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>Macシステムには通常Pythonがプリインストールされていますが、バージョンが古い可能性があります</p>
+
+                <p><span class="step-number">2</span>Homebrewを使用して最新版のPythonをインストールすることをお勧めします：</p>
+                <div class="code-block"># Homebrewがインストールされていない場合、先にインストール
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Homebrewを使用してPythonをインストール
+brew install python</div>
+
+                <p><span class="step-number">3</span>または、公式ウェブサイトからインストーラーをダウンロード：<a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></p>
+
+                <p><span class="step-number">4</span>macOS用インストーラーをダウンロードし、ダブルクリックしてインストール</p>
+            </div>
+
+            <h2>Linuxシステムへのインストール</h2>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>ほとんどのLinuxディストリビューションにはPythonがプリインストールされています</p>
+
+                <p><span class="step-number">2</span>Ubuntu/Debianシステム：</p>
+                <div class="code-block">sudo apt update
+sudo apt install python3 python3-pip</div>
+
+                <p><span class="step-number">3</span>Fedoraシステム：</p>
+                <div class="code-block">sudo dnf install python3 python3-pip</div>
+
+                <p><span class="step-number">4</span>Arch Linux：</p>
+                <div class="code-block">sudo pacman -S python python-pip</div>
+            </div>
+
+            <h2>インストールの確認</h2>
+
+            <p>インストール完了後、Pythonが正しくインストールされたか確認してみましょう：</p>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>ターミナルまたはコマンドプロンプトを開く</p>
+
+                <p><span class="step-number">2</span>以下のコマンドを入力してPython対話モードに入ります：</p>
+                <div class="code-block">python</div>
+                <p>または</p>
+                <div class="code-block">python3</div>
+
+                <p><span class="step-number">3</span>以下のようなプロンプトが表示されれば、インストール成功です：</p>
+                <div class="code-block">Python 3.10.6 (main, Nov 14 2022) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>></div>
+
+                <p><span class="step-number">4</span><code>exit()</code>と入力するか、<code>Ctrl+D</code>を押してPython環境を終了します</p>
+            </div>
+
+            <h2>Python環境の設定</h2>
+
+            <h3>pipを使用してパッケージをインストール</h3>
+
+            <p>pipはPythonのパッケージ管理ツールで、サードパーティライブラリをインストールするために使用されます。pipが使用可能か確認してみましょう：</p>
+
+            <div class="code-block">pip --version
+# または
+pip3 --version</div>
+
+            <p>pipのバージョン番号が表示されれば、pipは正しくインストールされています。</p>
+
+            <h3>pipのアップグレード（推奨）</h3>
+
+            <div class="code-block">python -m pip install --upgrade pip</div>
+
+            <h3>国内ミラーソースの設定（オプション）</h3>
+
+            <p>ダウンロード速度が遅い場合、国内のミラーソースを設定できます：</p>
+
+            <div class="code-block"># 清華大学ソース
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+# アリババソース
+pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</div>
+
+            <h2>コードエディタの選択</h2>
+
+            <p>Pythonに付属するIDLEでもコードを書くことはできますが、より専門的なエディタの使用をお勧めします：</p>
+
+            <div class="features">
+                <h3>🔧 推奨エディタ：</h3>
+                <ul>
+                    <li><strong>Visual Studio Code：</strong>無料、高機能、豊富な拡張機能（強く推奨）</li>
+                    <li><strong>PyCharm Community：</strong>プロフェッショナルなPython IDE、無料版でも十分な機能</li>
+                    <li><strong>Sublime Text：</strong>軽量、起動が高速</li>
+                    <li><strong>Jupyter Notebook：</strong>データ分析と学習に最適</li>
+                </ul>
+            </div>
+
+            <h3>Visual Studio Codeのインストール</h3>
+
+            <ol>
+                <li><a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a>にアクセス</li>
+                <li>対応するOSのインストーラーをダウンロード</li>
+                <li>インストール後、VS Codeを開く</li>
+                <li>左側の拡張機能アイコンをクリックし、「Python」を検索</li>
+                <li>Microsoft公式のPython拡張機能をインストール</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>✅ おめでとうございます！</strong> Python開発環境のインストールが完了しました。次は、最初のPythonプログラムを書いてみましょう！
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="../index.html" class="btn btn-secondary">← 前の章</a>
+                <a href="first-step.html" class="btn">次の章：最初のPythonプログラム →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Pythonチュートリアル | プログラミング学習をシンプルで楽しく</p>
+    </footer>
+</body>
+</html>

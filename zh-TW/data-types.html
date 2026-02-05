@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資料類型詳解 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; transition: opacity 0.3s; }
+        .nav-links a:hover { opacity: 0.8; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">首頁</a>
+                <a href="install.html">安裝Python</a>
+                <a href="basics.html">基礎語法</a>
+                <a href="advanced.html">進階</a>
+                <a href="practice.html">練習</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一個Python程式</a></li>
+                <li><a href="basics.html">基礎語法</a></li>
+                <li><a href="data-types.html" class="active">資料類型</a></li>
+                <li><a href="strings.html">字串</a></li>
+                <li><a href="lists.html">列表</a></li>
+                <li><a href="functions.html">函數</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>資料類型詳解</h1>
+
+            <p>Python有多种内置資料類型。了解这些資料類型对于编写高效、正确的Python程式至关重要。</p>
+
+            <h2>数值類型</h2>
+
+            <h3>整数（int）</h3>
+            <p>整数可以是正数、负数或零，没有大小限制。</p>
+
+            <div class="code-block"><span class="comment"># 整数示例</span>
+a = <span class="number">10</span>
+b = <span class="number">-5</span>
+c = <span class="number">0</span>
+big_number = <span class="number">999999999999999999999999999</span>
+
+<span class="comment"># 进制表示</span>
+binary = <span class="number">0b1010</span>   <span class="comment"># 二进制 10</span>
+octal = <span class="number">0o12</span>      <span class="comment"># 八进制 10</span>
+hexadecimal = <span class="number">0xA</span>  <span class="comment"># 十六进制 10</span>
+
+<span class="function">print</span>(binary, octal, hexadecimal)  <span class="comment"># 10 10 10</span></div>
+
+            <h3>浮点数（float）</h3>
+            <p>浮点数就是带小数点的數字。</p>
+
+            <div class="code-block"><span class="comment"># 浮点数示例</span>
+a = <span class="number">3.14</span>
+b = <span class="number">-0.001</span>
+c = <span class="number">1.23e5</span>    <span class="comment"># 科学计数法：123000.0</span>
+d = <span class="number">1.23e-2</span>   <span class="comment"># 科学计数法：0.0123</span>
+
+<span class="function">print</span>(a, b, c, d)</div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 浮点数計算可能存在精度問題：
+            </div>
+
+            <div class="code-block"><span class="function">print</span>(<span class="number">0.1</span> + <span class="number">0.2</span>)  <span class="comment"># 輸出: 0.30000000000000004</span></div>
+
+            <h3>复数（complex）</h3>
+            <p>Python也支援复数運算。</p>
+
+            <div class="code-block">z = <span class="number">3</span> + <span class="number">4j</span>  <span class="comment"># j表示虚数单位</span>
+<span class="function">print</span>(z.real)  <span class="comment"># 实部: 3.0</span>
+<span class="function">print</span>(z.imag)  <span class="comment"># 虚部: 4.0</span></div>
+
+            <h2>布尔類型</h2>
+            <p>布尔類型只有两個值：True和False。</p>
+
+            <div class="code-block">is_sunny = <span class="keyword">True</span>
+is_raining = <span class="keyword">False</span>
+
+<span class="comment"># 布尔運算</span>
+<span class="function">print</span>(is_sunny <span class="keyword">and</span> is_raining)  <span class="comment"># False</span>
+<span class="function">print</span>(is_sunny <span class="keyword">or</span> is_raining)   <span class="comment"># True</span>
+<span class="function">print</span>(<span class="keyword">not</span> is_sunny)            <span class="comment"># False</span></div>
+
+            <div class="info-box">
+                <strong>💡 真值測試：</strong> 在Python中，以下值被認為是"假"（False）：
+                <ul>
+                    <li>False</li>
+                    <li>None</li>
+                    <li>數字0（0, 0.0, 0j）</li>
+                    <li>空序列（'', (), []）</li>
+                    <li>空映射（{}）</li>
+                </ul>
+                其他所有值都被認為是"真"（True）。
+            </div>
+
+            <h2>字串（str）</h2>
+            <p>字串是用单引号、双引号或三引号括起来的文字。</p>
+
+            <div class="code-block"><span class="comment"># 单引号和双引号</span>
+s1 = <span class="string">'Hello'</span>
+s2 = <span class="string">"World"</span>
+
+<span class="comment"># 三引号可以跨越多行</span>
+s3 = <span class="string">'''
+这是一個
+多行字串
+'''</span>
+
+<span class="comment"># 字串拼接</span>
+greeting = s1 + <span class="string">" "</span> + s2
+<span class="function">print</span>(greeting)  <span class="comment"># Hello World</span>
+
+<span class="comment"># 字串重复</span>
+laugh = <span class="string">"哈"</span> * <span class="number">3</span>
+<span class="function">print</span>(laugh)  <span class="comment"># 哈哈哈</span></div>
+
+            <h3>字串索引和切片</h3>
+
+            <div class="code-block">s = <span class="string">"Python"</span>
+
+<span class="comment"># 索引（從0開始）</span>
+<span class="function">print</span>(s[<span class="number">0</span>])   <span class="comment"># P</span>
+<span class="function">print</span>(s[<span class="number">-1</span>])  <span class="comment"># n（倒数第一個）</span>
+
+<span class="comment"># 切片 [開始:結束:步长]</span>
+<span class="function">print</span>(s[<span class="number">0</span>:<span class="number">2</span>])   <span class="comment"># Py</span>
+<span class="function">print</span>(s[<span class="number">2</span>:<span class="number">5</span>])   <span class="comment"># tho</span>
+<span class="function">print</span>(s[:<span class="number">3</span>])    <span class="comment"># Pyt（從開始到索引3）</span>
+<span class="function">print</span>(s[<span class="number">3</span>:])    <span class="comment"># hon（從索引3到結束）</span>
+<span class="function">print</span>(s[::<span class="number">2</span>])   <span class="comment"># Pto（每隔一個字元）</span>
+<span class="function">print</span>(s[::<span class="number">-1</span>])  <span class="comment"># nohtyP（反转字串）</span></div>
+
+            <h3>字串方法</h3>
+
+            <div class="code-block">s = <span class="string">"  Hello World  "</span>
+
+<span class="comment"># 大小写转换</span>
+<span class="function">print</span>(s.<span class="function">upper</span>())    <span class="comment"># "  HELLO WORLD  "</span>
+<span class="function">print</span>(s.<span class="function">lower</span>())    <span class="comment"># "  hello world  "</span>
+<span class="function">print</span>(s.<span class="function">strip</span>())    <span class="comment"># "Hello World"（去除首尾空格）</span>
+
+<span class="comment"># 尋找</span>
+<span class="function">print</span>(s.<span class="function">find</span>(<span class="string">"World"</span>))  <span class="comment"># 8（找不到返回-1）</span>
+<span class="function">print</span>(<span class="string">"World"</span> <span class="keyword">in</span> s)      <span class="comment"># True</span>
+
+<span class="comment"># 取代</span>
+<span class="function">print</span>(s.<span class="function">replace</span>(<span class="string">"World"</span>, <span class="string">"Python"</span>))  <span class="comment"># "  Hello Python  "</span>
+
+<span class="comment"># 分割</span>
+<span class="function">print</span>(s.<span class="function">split</span>())  <span class="comment"># ["Hello", "World"]</span></div>
+
+            <h2>列表（list）</h2>
+            <p>列表是可变的有序集合。</p>
+
+            <div class="code-block"><span class="comment"># 建立列表</span>
+fruits = [<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+mixed = [<span class="string">"文字"</span>, <span class="number">42</span>, <span class="keyword">True</span>, <span class="number">3.14</span>]
+
+<span class="comment"># 訪問元素</span>
+<span class="function">print</span>(fruits[<span class="number">0</span>])   <span class="comment"># "苹果"</span>
+<span class="function">print</span>(fruits[<span class="number">-1</span>])  <span class="comment"># "橙子"</span>
+
+<span class="comment"># 修改元素</span>
+fruits[<span class="number">1</span>] = <span class="string">"葡萄"</span>
+<span class="function">print</span>(fruits)  <span class="comment"># ["苹果", "葡萄", "橙子"]</span>
+
+<span class="comment"># 添加元素</span>
+fruits.<span class="function">append</span>(<span class="string">"西瓜"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ["苹果", "葡萄", "橙子", "西瓜"]</span>
+
+<span class="comment"># 刪除元素</span>
+fruits.<span class="function">remove</span>(<span class="string">"橙子"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ["苹果", "葡萄", "西瓜"]</span>
+
+<span class="comment"># 获取長度</span>
+<span class="function">print</span>(<span class="function">len</span>(fruits))  <span class="comment"># 3</span></div>
+
+            <h3>列表切片</h3>
+
+            <div class="code-block">nums = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="function">print</span>(nums[<span class="number">1</span>:<span class="number">4</span>])   <span class="comment"># [1, 2, 3]</span>
+<span class="function">print</span>(nums[:<span class="number">3</span>])    <span class="comment"># [0, 1, 2]</span>
+<span class="function">print</span>(nums[<span class="number">3</span>:])    <span class="comment"># [3, 4, 5]</span>
+<span class="function">print</span>(nums[::<span class="number">2</span>])   <span class="comment"># [0, 2, 4]</span></div>
+
+            <h2>元组（tuple）</h2>
+            <p>元组是不可变的有序集合，用圆括号表示。</p>
+
+            <div class="code-block"><span class="comment"># 建立元组</span>
+point = (<span class="number">3</span>, <span class="number">4</span>)
+colors = (<span class="string">"红"</span>, <span class="string">"绿"</span>, <span class="string">"蓝"</span>)
+
+<span class="comment"># 訪問元素（和列表一样）</span>
+<span class="function">print</span>(point[<span class="number">0</span>])  <span class="comment"># 3</span>
+
+<span class="comment"># 元组不可修改</span>
+<span class="comment"># point[0] = 5  # 这会报错！</span>
+
+<span class="comment"># 单元素元组需要加逗号</span>
+single = (<span class="number">42</span>,)  <span class="comment"># 注意逗号</span></div>
+
+            <div class="info-box">
+                <strong>💡 什么時候用元组？</strong>
+                <ul>
+                    <li>資料不應該被修改时</li>
+                    <li>作为字典的鍵时</li>
+                    <li>從函數返回多個值时</li>
+                </ul>
+            </div>
+
+            <h2>字典（dict）</h2>
+            <p>字典是鍵值对的集合。</p>
+
+            <div class="code-block"><span class="comment"># 建立字典</span>
+person = {
+    <span class="string">"name"</span>: <span class="string">"张三"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>,
+    <span class="string">"city"</span>: <span class="string">"北京"</span>
+}
+
+<span class="comment"># 訪問值</span>
+<span class="function">print</span>(person[<span class="string">"name"</span>])      <span class="comment"># "张三"</span>
+<span class="function">print</span>(person.<span class="function">get</span>(<span class="string">"age"</span>))   <span class="comment"># 25</span>
+
+<span class="comment"># 添加/修改鍵值对</span>
+person[<span class="string">"email"</span>] = <span class="string">"test@example.com"</span>
+person[<span class="string">"age"</span>] = <span class="number">26</span>
+
+<span class="comment"># 刪除鍵值对</span>
+<span class="keyword">del</span> person[<span class="string">"city"</span>]
+
+<span class="comment"># 遍歷字典</span>
+<span class="keyword">for</span> key, value <span class="keyword">in</span> person.<span class="function">items</span>():
+    <span class="function">print</span>(<span class="string">f"{key}: {value}"</span>)</div>
+
+            <h2>集合（set）</h2>
+            <p>集合是无序不重复元素的集合。</p>
+
+            <div class="code-block"><span class="comment"># 建立集合</span>
+s1 = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>}
+s2 = {<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>}
+
+<span class="comment"># 集合運算</span>
+<span class="function">print</span>(s1 | s2)  <span class="comment"># 并集: {1, 2, 3, 4, 5, 6}</span>
+<span class="function">print</span>(s1 & s2)  <span class="comment"># 交集: {3, 4}</span>
+<span class="function">print</span>(s1 - s2)  <span class="comment"># 差集: {1, 2}</span>
+
+<span class="comment"># 添加/刪除元素</span>
+s1.<span class="function">add</span>(<span class="number">5</span>)
+s1.<span class="function">remove</span>(<span class="number">2</span>)</div>
+
+            <h2>None類型</h2>
+            <p>None表示"没有值"或"空值"。</p>
+
+            <div class="code-block">result = <span class="keyword">None</span>
+
+<span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">None</span>:
+    <span class="function">print</span>(<span class="string">"結果为空"</span>)</div>
+
+            <h2>類型检查和转换</h2>
+
+            <div class="code-block"><span class="comment"># 類型检查</span>
+x = <span class="string">"Hello"</span>
+<span class="function">print</span>(<span class="function">type</span>(x))          <span class="comment"># <class 'str'></span>
+<span class="function">print</span>(<span class="function">isinstance</span>(x, str))  <span class="comment"># True</span>
+
+<span class="comment"># 類型转换</span>
+<span class="function">print</span>(<span class="function">int</span>(<span class="string">"123"</span>))    <span class="comment"># 123</span>
+<span class="function">print</span>(<span class="function">float</span>(<span class="string">"3.14"</span>)) <span class="comment"># 3.14</span>
+<span class="function">print</span>(<span class="function">str</span>(<span class="number">123</span>))     <span class="comment"># "123"</span>
+<span class="function">print</span>(<span class="function">bool</span>(<span class="number">1</span>))      <span class="comment"># True</span>
+<span class="function">print</span>(<span class="function">list</span>(<span class="string">"abc"</span>))   <span class="comment"># ["a", "b", "c"]</span>
+<span class="function">print</span>(<span class="function">tuple</span>([<span class="number">1</span>, <span class="number">2</span>]))   <span class="comment"># (1, 2)</span></div>
+
+            <div class="success-box">
+                <strong>✅ 小结</strong>
+                <ul>
+                    <li>整数(int)、浮点数(float)、复数(complex)是数值類型</li>
+                    <li>字串(str)用于文字處理</li>
+                    <li>列表(list)可变，元组(tuple)不可变</li>
+                    <li>字典(dict)存储鍵值对</li>
+                    <li>集合(set)存储不重复元素</li>
+                    <li>None表示空值</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="basics.html" class="btn btn-secondary">← 上一章</a>
+                <a href="strings.html" class="btn">下一章：字串詳解 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 让编程學習变得简单有趣</p>
+    </footer>
+</body>
+</html>

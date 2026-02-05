@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 250px; background: white; padding: 20px; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="install.html">Installing Python</a>
+                <a href="basics.html">Basics</a>
+                <a href="advanced.html">Advanced</a>
+                <a href="practice.html">Practice</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Tutorial Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Installing Python</a></li>
+                <li><a href="first-step.html">Your First Python Program</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="conditions.html">Conditional Statements</a></li>
+                <li><a href="loops.html" class="active">Loops</a></li>
+                <li><a href="functions.html">Functions</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Loops</h1>
+
+            <p>Loops allow programs to repeatedly execute a block of code. Python has two main loop structures: for loops and while loops.</p>
+
+            <h2>for Loops</h2>
+
+            <p>for loops are used to iterate over sequences (like lists, strings, tuples) or other iterable objects.</p>
+
+            <h3>Iterating Over Lists</h3>
+
+            <div class="code-block">fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"orange"</span>]
+
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(fruit)</div>
+
+            <div class="output">apple
+banana
+orange</div>
+
+            <h3>Iterating Over Strings</h3>
+
+            <div class="code-block"><span class="keyword">for</span> char <span class="keyword">in</span> <span class="string">"Python"</span>:
+    <span class="function">print</span>(char)</div>
+
+            <h3>Using the range() Function</h3>
+
+            <p>The range() function generates a sequence of integers:</p>
+
+            <div class="code-block"><span class="comment"># range(stop): 0 to stop-1</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i)  <span class="comment"># Output: 0, 1, 2, 3, 4</span>
+
+<span class="comment"># range(start, stop): start to stop-1</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(i)  <span class="comment"># Output: 1, 2, 3, 4, 5</span>
+
+<span class="comment"># range(start, stop, step): specify step size</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">0</span>, <span class="number">10</span>, <span class="number">2</span>):
+    <span class="function">print</span>(i)  <span class="comment"># Output: 0, 2, 4, 6, 8</span></div>
+
+            <h3>Iterating Over Dictionaries</h3>
+
+            <div class="code-block">person = {
+    <span class="string">"name"</span>: <span class="string">"John Smith"</span>,
+    <span class="string">"age"</span>: <span class="number">25</span>,
+    <span class="string">"city"</span>: <span class="string">"Beijing"</span>
+}
+
+<span class="comment"># Iterate over keys</span>
+<span class="keyword">for</span> key <span class="keyword">in</span> person:
+    <span class="function">print</span>(key)
+
+<span class="comment"># Iterate over key-value pairs</span>
+<span class="keyword">for</span> key, value <span class="keyword">in</span> person.<span class="function">items</span>():
+    <span class="function">print</span>(<span class="string">f"{key}: {value}"</span>)</div>
+
+            <h2>while Loops</h2>
+
+            <p>while loops repeatedly execute a block of code while the condition is True:</p>
+
+            <div class="code-block">count = <span class="number">0</span>
+
+<span class="keyword">while</span> count < <span class="number">5</span>:
+    <span class="function">print</span>(count)
+    count += <span class="number">1</span></div>
+
+            <div class="output">0
+1
+2
+3
+4</div>
+
+            <div class="warning-box">
+                <strong>⚠️ Note:</strong> When using while loops, make sure the loop condition will eventually become False, otherwise you'll create an infinite loop!
+            </div>
+
+            <h2>Loop Control Statements</h2>
+
+            <h3>break: Exit the Loop</h3>
+
+            <div class="code-block"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    <span class="keyword">if</span> i == <span class="number">5</span>:
+        <span class="keyword">break</span>  <span class="comment"># Exit loop when i equals 5</span>
+    <span class="function">print</span>(i)  <span class="comment"># Output: 0, 1, 2, 3, 4</span></div>
+
+            <h3>continue: Skip This Iteration</h3>
+
+            <div class="code-block"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="keyword">if</span> i == <span class="number">2</span>:
+        <span class="keyword">continue</span>  <span class="comment"># Skip this iteration when i equals 2</span>
+    <span class="function">print</span>(i)  <span class="comment"># Output: 0, 1, 3, 4</span></div>
+
+            <h2>else Clause</h2>
+
+            <p>Loops can have an else clause that executes when the loop finishes normally (not interrupted by break):</p>
+
+            <div class="code-block"><span class="comment"># Normal completion, execute else</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Loop completed normally"</span>)
+
+<span class="comment"># Interrupted by break, don't execute else</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">5</span>):
+    <span class="keyword">if</span> i == <span class="number">3</span>:
+        <span class="keyword">break</span>
+    <span class="function">print</span>(i)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"This won't be executed"</span>)</div>
+
+            <h2>Nested Loops</h2>
+
+            <div class="code-block"><span class="comment"># Print multiplication table</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">10</span>):
+    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, i + <span class="number">1</span>):
+        <span class="function">print</span>(<span class="string">f"{j}x{i}={i*j}"</span>, end=<span class="string">"\t"</span>)
+    <span class="function">print</span>()  <span class="comment"># New line</span></div>
+
+            <h2>Common Use Cases</h2>
+
+            <h3>1. Calculate Sum</h3>
+
+            <div class="code-block">total = <span class="number">0</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">101</span>):
+    total += i
+<span class="function">print</span>(<span class="string">f"The sum of 1 to 100 is: {total}"</span>)</div>
+
+            <h3>2. Find Maximum Value in List</h3>
+
+            <div class="code-block">numbers = [<span class="number">23</span>, <span class="number">45</span>, <span class="number">12</span>, <span class="number">67</span>, <span class="number">34</span>, <span class="number">89</span>]
+max_num = numbers[<span class="number">0</span>]
+
+<span class="keyword">for</span> num <span class="keyword">in</span> numbers:
+    <span class="keyword">if</span> num > max_num:
+        max_num = num
+
+<span class="function">print</span>(<span class="string">f"The maximum value is: {max_num}"</span>)</div>
+
+            <h3>3. Number Guessing Game</h3>
+
+            <div class="code-block"><span class="keyword">import</span> random
+
+secret = random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">100</span>)
+attempts = <span class="number">0</span>
+
+<span class="keyword">while</span> <span class="keyword">True</span>:
+    guess = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Guess a number between 1 and 100: "</span>))
+    attempts += <span class="number">1</span>
+
+    <span class="keyword">if</span> guess == secret:
+        <span class="function">print</span>(<span class="string">f"Congratulations! You guessed it in {attempts} attempts."</span>)
+        <span class="keyword">break</span>
+    <span class="keyword">elif</span> guess < secret:
+        <span class="function">print</span>(<span class="string">"Too small!"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"Too large!"</span>)</div>
+
+            <h3>4. Print Patterns</h3>
+
+            <div class="code-block"><span class="comment"># Print right triangle</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1</span>, <span class="number">6</span>):
+    <span class="function">print</span>(<span class="string">"*"</span> * i)</div>
+
+            <div class="output">*
+**
+***
+****
+*****</div>
+
+            <h2>List Comprehensions</h2>
+
+            <p>List comprehensions provide a concise way to create lists:</p>
+
+            <div class="code-block"><span class="comment"># Traditional way</span>
+squares = []
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    squares.<span class="function">append</span>(i ** <span class="number">2</span>)
+
+<span class="comment"># List comprehension</span>
+squares = [i ** <span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>)]
+
+<span class="comment"># List comprehension with condition</span>
+even_squares = [i ** <span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>) <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span>]
+
+<span class="function">print</span>(squares)      <span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+<span class="function">print</span>(even_squares)  <span class="comment"># [0, 4, 16, 36, 64]</span></div>
+
+            <h2>Exercises</h2>
+
+            <div class="info-box">
+                <strong>Exercise 1:</strong> Write a program to calculate the sum of all even numbers from 1 to 100
+                <br><br>
+                <strong>Exercise 2:</strong> Write a program to print the 9x9 multiplication table
+                <br><br>
+                <strong>Exercise 3:</strong> Write a program to find the second largest number in a list
+                <br><br>
+                <strong>Exercise 4:</strong> Write a program to check if a number is prime
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Summary</strong>
+                <ul>
+                    <li>for loops are used to iterate over sequences</li>
+                    <li>while loops repeat while a condition is True</li>
+                    <li>break is used to exit a loop</li>
+                    <li>continue is used to skip the current iteration</li>
+                    <li>else clause executes when the loop completes normally</li>
+                    <li>List comprehensions are a concise way to create lists</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="conditions.html" class="btn btn-secondary">← Previous Chapter</a>
+                <a href="functions.html" class="btn">Next Chapter: Functions →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+</body>
+</html>

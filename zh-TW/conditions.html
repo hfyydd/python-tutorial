@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>條件判斷 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; transition: opacity 0.3s; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; }
+        .sidebar { width: 250px; background: white; padding: 20px; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">首頁</a>
+                <a href="install.html">安裝Python</a>
+                <a href="basics.html">基礎語法</a>
+                <a href="advanced.html">進階</a>
+                <a href="practice.html">練習</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一個Python程式</a></li>
+                <li><a href="basics.html">基礎語法</a></li>
+                <li><a href="conditions.html" class="active">條件判斷</a></li>
+                <li><a href="loops.html">迴圈</a></li>
+                <li><a href="functions.html">函數</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>條件判斷</h1>
+
+            <p>條件判斷让程式能夠根据不同情况執行不同的程式碼。这是编程中最基礎也是最重要的控制结构之一。</p>
+
+            <h2>if敘述</h2>
+
+            <p>最简单的條件判斷是if敘述：</p>
+
+            <div class="code-block">age = <span class="number">18</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"你已经成年了"</span>)</div>
+
+            <div class="output">你已经成年了</div>
+
+            <h2>if-else敘述</h2>
+
+            <p>如果需要在條件不成立时執行另一段程式碼，使用else：</p>
+
+            <div class="code-block">age = <span class="number">16</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="function">print</span>(<span class="string">"你已经成年了"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"你还未成年"</span>)</div>
+
+            <div class="output">你还未成年</div>
+
+            <h2>if-elif-else敘述</h2>
+
+            <p>当有多個條件需要判斷时，使用elif（else if的缩写）：</p>
+
+            <div class="code-block">score = <span class="number">85</span>
+
+<span class="keyword">if</span> score >= <span class="number">90</span>:
+    grade = <span class="string">"A"</span>
+<span class="keyword">elif</span> score >= <span class="number">80</span>:
+    grade = <span class="string">"B"</span>
+<span class="keyword">elif</span> score >= <span class="number">70</span>:
+    grade = <span class="string">"C"</span>
+<span class="keyword">elif</span> score >= <span class="number">60</span>:
+    grade = <span class="string">"D"</span>
+<span class="keyword">else</span>:
+    grade = <span class="string">"F"</span>
+
+<span class="function">print</span>(<span class="string">f"你的成绩等级是: {grade}"</span>)</div>
+
+            <div class="output">你的成绩等级是: B</div>
+
+            <div class="info-box">
+                <strong>💡 注意：</strong> elif可以有多個，else只能有一個（也可以省略）。Python会從上到下依次检查條件，一旦某個條件为True，就執行对应的程式碼块，然後跳过剩余的條件判斷。
+            </div>
+
+            <h2>比较運算子</h2>
+
+            <p>在條件判斷中常用的比较運算子：</p>
+
+            <div class="code-block">a = <span class="number">10</span>
+b = <span class="number">5</span>
+
+<span class="function">print</span>(a == b)  <span class="comment"># 等於</span>
+<span class="function">print</span>(a != b)  <span class="comment"># 不等於</span>
+<span class="function">print</span>(a > b)   <span class="comment"># 大於</span>
+<span class="function">print</span>(a < b)   <span class="comment"># 小於</span>
+<span class="function">print</span>(a >= b)  <span class="comment"># 大於等於</span>
+<span class="function">print</span>(a <= b)  <span class="comment"># 小於等於</span></div>
+
+            <h2>逻辑運算子</h2>
+
+            <p>使用逻辑運算子可以组合多個條件：</p>
+
+            <div class="code-block">age = <span class="number">25</span>
+has_ticket = <span class="keyword">True</span>
+
+<span class="comment"># and：两個條件都为True时才为True</span>
+<span class="keyword">if</span> age >= <span class="number">18</span> <span class="keyword">and</span> has_ticket:
+    <span class="function">print</span>(<span class="string">"你可以进入电影院"</span>)
+
+<span class="comment"># or：任意一個條件为True时即为True</span>
+is_weekend = <span class="keyword">False</span>
+<span class="keyword">if</span> is_weekend <span class="keyword">or</span> age < <span class="number">12</span>:
+    <span class="function">print</span>(<span class="string">"可以享受优惠"</span>)
+
+<span class="comment"># not：取反</span>
+<span class="keyword">if</span> <span class="keyword">not</span> has_ticket:
+    <span class="function">print</span>(<span class="string">"你需要先买票"</span>)</div>
+
+            <h2>成员運算子</h2>
+
+            <div class="code-block">fruits = [<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+
+<span class="comment"># in：检查是否包含</span>
+<span class="keyword">if</span> <span class="string">"苹果"</span> <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(<span class="string">"有苹果"</span>)
+
+<span class="comment"># not in：检查是否不包含</span>
+<span class="keyword">if</span> <span class="string">"西瓜"</span> <span class="keyword">not in</span> fruits:
+    <span class="function">print</span>(<span class="string">"没有西瓜"</span>)</div>
+
+            <h2>身份運算子</h2>
+
+            <div class="code-block">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+b = a
+c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="comment"># is：检查是否是同一個物件</span>
+<span class="function">print</span>(a <span class="keyword">is</span> b)   <span class="comment"># True（b和a指向同一個物件）</span>
+<span class="function">print</span>(a <span class="keyword">is</span> c)   <span class="comment"># False（c是不同的物件）</span>
+<span class="function">print</span>(a == c)   <span class="comment"># True（值相等）</span></div>
+
+            <h2>嵌套條件</h2>
+
+            <p>條件敘述可以嵌套使用：</p>
+
+            <div class="code-block">age = <span class="number">20</span>
+has_license = <span class="keyword">True</span>
+
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    <span class="keyword">if</span> has_license:
+        <span class="function">print</span>(<span class="string">"你可以开车"</span>)
+    <span class="keyword">else</span>:
+        <span class="function">print</span>(<span class="string">"你需要先考取驾照"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"你还未达到法定年龄"</span>)</div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 嵌套层级过多会降低程式碼可读性。建议使用逻辑運算子来简化。
+            </div>
+
+            <h2>三元運算子</h2>
+
+            <p>Python有一個简洁的三元運算子（條件運算式）：</p>
+
+            <div class="code-block">age = <span class="number">20</span>
+
+<span class="comment"># 传统写法</span>
+<span class="keyword">if</span> age >= <span class="number">18</span>:
+    status = <span class="string">"成年"</span>
+<span class="keyword">else</span>:
+    status = <span class="keyword">False</span>
+
+<span class="comment"># 三元運算子写法</span>
+status = <span class="string">"成年"</span> <span class="keyword">if</span> age >= <span class="number">18</span> <span class="keyword">else</span> <span class="string">"未成年"</span>
+
+<span class="function">print</span>(status)</div>
+
+            <h2>常见套用场景</h2>
+
+            <h3>1. 使用者輸入验证</h3>
+
+            <div class="code-block">password = <span class="function">input</span>(<span class="string">"請輸入密碼："</span>)
+
+<span class="keyword">if</span> <span class="function">len</span>(password) < <span class="number">6</span>:
+    <span class="function">print</span>(<span class="string">"密碼太短了！"</span>)
+<span class="keyword">elif</span> <span class="function">len</span>(password) > <span class="number">20</span>:
+    <span class="function">print</span>(<span class="string">"密碼太长了！"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"密碼長度合适"</span>)</div>
+
+            <h3>2. 數字範圍判斷</h3>
+
+            <div class="code-block">temperature = <span class="number">25</span>
+
+<span class="keyword">if</span> temperature < <span class="number">0</span>:
+    <span class="function">print</span>(<span class="string">"非常冷"</span>)
+<span class="keyword">elif</span> temperature < <span class="number">15</span>:
+    <span class="function">print</span>(<span class="string">"有点冷"</span>)
+<span class="keyword">elif</span> temperature < <span class="number">25</span>:
+    <span class="function">print</span>(<span class="string">"温度适宜"</span>)
+<span class="keyword">elif</span> temperature < <span class="number">35</span>:
+    <span class="function">print</span>(<span class="string">"有点热"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"非常热"</span>)</div>
+
+            <h3>3. 奇偶数判斷</h3>
+
+            <div class="code-block">num = <span class="number">7</span>
+
+<span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:
+    <span class="function">print</span>(<span class="string">f"{num}是偶数"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">f"{num}是奇数"</span>)</div>
+
+            <h2>練習题</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 编写程式，判斷一個年份是否为闰年
+                <br>（闰年规则：能被4整除但不能被100整除，或者能被400整除）
+                <br><br>
+                <strong>練習2：</strong> 编写一個简单的計算器程式，使用者輸入两個數字和運算子，輸出結果
+                <br><br>
+                <strong>練習3：</strong> 编写程式，根据使用者輸入的年龄輸出对应的票价
+                <br>（3岁以下免费，3-12岁半价，12-65岁全价，65岁以上半价）
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小结</strong>
+                <ul>
+                    <li>if敘述用于條件判斷</li>
+                    <li>elif可以處理多個條件</li>
+                    <li>else處理所有條件都不满足的情况</li>
+                    <li>and、or、not用于组合條件</li>
+                    <li>in用于检查成员关系</li>
+                    <li>三元運算子可以简化简单的if-else</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="basics.html" class="btn btn-secondary">← 上一章</a>
+                <a href="loops.html" class="btn">下一章：迴圈 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 让编程學習变得简单有趣</p>
+    </footer>
+</body>
+</html>

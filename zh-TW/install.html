@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安裝Python - Python教學</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 0 0;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #e8f4f8;
+            color: #2c3e50;
+        }
+
+        .sidebar .sub-item {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-left: 0;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .main-content h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #34495e;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .main-content ol, .main-content ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        .main-content li {
+            margin-bottom: 10px;
+        }
+
+        .step-box {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #3498db;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .warning-box {
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .image-placeholder {
+            background: #e8f4f8;
+            border: 2px dashed #3498db;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #3498db;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">首頁</a>
+                <a href="install.html">安裝Python</a>
+                <a href="basics.html">基礎語法</a>
+                <a href="advanced.html">進階</a>
+                <a href="practice.html">練習</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html" class="active">安裝Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基礎語法</a>
+                    <ul>
+                        <li><a href="data-types.html" class="sub-item">資料類型</a></li>
+                        <li><a href="strings.html" class="sub-item">字串</a></li>
+                        <li><a href="lists.html" class="sub-item">列表</a></li>
+                        <li><a href="conditions.html" class="sub-item">條件判斷</a></li>
+                        <li><a href="loops.html" class="sub-item">迴圈</a></li>
+                    </ul>
+                </li>
+                <li><a href="functions.html">函數</a></li>
+                <li><a href="oop.html">面向物件</a></li>
+                <li><a href="modules.html">模組</a></li>
+                <li><a href="advanced.html">進階</a></li>
+                <li><a href="practice.html">實戰練習</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>安裝Python</h1>
+
+            <p>在開始學習Python之前，你需要在电脑上安裝Python環境。别担心，这個过程非常简单！</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 重要提示：</strong> 請确保安裝Python 3.x版本（推薦3.10或更高版本）。Python 2.x已经停止维护，不建议使用。
+            </div>
+
+            <h2>检查是否已安裝Python</h2>
+
+            <p>首先，我们检查一下你的电脑是否已经安裝了Python：</p>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>開啟終端機（Mac/Linux）或指令提示符（Windows）</p>
+                <p><span class="step-number">2</span>輸入以下指令：</p>
+                <div class="code-block">python --version</div>
+                <p><span class="step-number">3</span>或者尝试：</p>
+                <div class="code-block">python3 --version</div>
+            </div>
+
+            <p>如果看到類別似 <code>Python 3.10.6</code> 的輸出，恭喜你，Python已经安裝好了！你可以直接跳到下一章。</p>
+
+            <p>如果看到"指令不存在"或類別似提示，那就繼續下面的安裝步驟吧。</p>
+
+            <h2>Windows系統安裝</h2>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>訪問Python官网下載頁面：<a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></p>
+
+                <p><span class="step-number">2</span>點擊"Download Python"按鈕下載最新版本</p>
+
+                <p><span class="step-number">3</span>執行下載的安裝程式</p>
+
+                <div class="image-placeholder">
+                    📷 安裝介面截圖<br>
+                    （勾选"Add Python to PATH"選項）
+                </div>
+
+                <p><span class="step-number">4</span><strong>重要：</strong>安裝介面中务必勾选"Add Python to PATH"</p>
+
+                <p><span class="step-number">5</span>點擊"Install Now"開始安裝</p>
+
+                <p><span class="step-number">6</span>等待安裝完成，點擊"Close"</p>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 验证安裝：</strong>開啟指令提示符，輸入<code>python --version</code>，看到版本号即安裝成功。
+            </div>
+
+            <h2>Mac系統安裝</h2>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>Mac系統通常自带Python，但版本可能较旧</p>
+
+                <p><span class="step-number">2</span>推薦使用Homebrew安裝最新版Python：</p>
+                <div class="code-block"># 如果没有安裝Homebrew，先安裝它
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 使用Homebrew安裝Python
+brew install python</div>
+
+                <p><span class="step-number">3</span>或者從官网下載安裝包：<a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></p>
+
+                <p><span class="step-number">4</span>下載macOS安裝包，双击執行安裝</p>
+            </div>
+
+            <h2>Linux系統安裝</h2>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>大多数Linux发行版自带Python</p>
+
+                <p><span class="step-number">2</span>Ubuntu/Debian系統：</p>
+                <div class="code-block">sudo apt update
+sudo apt install python3 python3-pip</div>
+
+                <p><span class="step-number">3</span>Fedora系統：</p>
+                <div class="code-block">sudo dnf install python3 python3-pip</div>
+
+                <p><span class="step-number">4</span>Arch Linux：</p>
+                <div class="code-block">sudo pacman -S python python-pip</div>
+            </div>
+
+            <h2>验证安裝</h2>
+
+            <p>安裝完成后，让我们验证一下Python是否正确安裝：</p>
+
+            <div class="step-box">
+                <p><span class="step-number">1</span>開啟終端機或指令提示符</p>
+
+                <p><span class="step-number">2</span>輸入以下指令进入Python交互環境：</p>
+                <div class="code-block">python</div>
+                <p>或</p>
+                <div class="code-block">python3</div>
+
+                <p><span class="step-number">3</span>如果看到類別似以下提示，說明安裝成功：</p>
+                <div class="code-block">Python 3.10.6 (main, Nov 14 2022) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>></div>
+
+                <p><span class="step-number">4</span>輸入 <code>exit()</code> 或按 <code>Ctrl+D</code> 登出Python環境</p>
+            </div>
+
+            <h2>配置Python環境</h2>
+
+            <h3>使用pip安裝包</h3>
+
+            <p>pip是Python的包管理工具，用于安裝第三方库。让我们验证pip是否可用：</p>
+
+            <div class="code-block">pip --version
+# 或
+pip3 --version</div>
+
+            <p>如果顯示了pip版本号，說明pip已正确安裝。</p>
+
+            <h3>升級pip（推薦）</h3>
+
+            <div class="code-block">python -m pip install --upgrade pip</div>
+
+            <h3>配置国内镜像源（可选）</h3>
+
+            <p>如果下載速度较慢，可以配置国内镜像源：</p>
+
+            <div class="code-block"># 清华源
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+# 阿里源
+pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</div>
+
+            <h2>選擇一個程式碼編輯器</h2>
+
+            <p>雖然Python自带的IDLE可以写程式碼，但推薦使用更专业的編輯器：</p>
+
+            <div class="features">
+                <h3>🔧 推薦的編輯器：</h3>
+                <ul>
+                    <li><strong>Visual Studio Code：</strong>免费、强大、插件丰富（强烈推薦）</li>
+                    <li><strong>PyCharm Community：</strong>专业的Python IDE，免费版功能已足够</li>
+                    <li><strong>Sublime Text：</strong>轻量级、啟動快</li>
+                    <li><strong>Jupyter Notebook：</strong>适合資料分析和學習</li>
+                </ul>
+            </div>
+
+            <h3>安裝Visual Studio Code</h3>
+
+            <ol>
+                <li>訪問 <a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a></li>
+                <li>下載对应系統的安裝包</li>
+                <li>安裝后開啟VS Code</li>
+                <li>點擊左侧扩展圖标，搜尋"Python"</li>
+                <li>安裝Microsoft官方的Python扩展</li>
+            </ol>
+
+            <div class="success-box">
+                <strong>✅ 恭喜！</strong> 你已经成功安裝了Python開發環境。接下来，让我们编写第一個Python程式吧！
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="../index.html" class="btn btn-secondary">← 上一章</a>
+                <a href="first-step.html" class="btn">下一章：第一個Python程式 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 让编程學習变得简单有趣</p>
+    </footer>
+</body>
+</html>
