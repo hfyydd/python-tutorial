@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一个Python程序 - Python教程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 0 0;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #e8f4f8;
+            color: #2c3e50;
+        }
+
+        .main-content {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-left: 0;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .main-content h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #34495e;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #155724;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+        }
+
+        .output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教程</span>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">首页</a>
+                <a href="install.html">安装Python</a>
+                <a href="basics.html">基础语法</a>
+                <a href="advanced.html">进阶</a>
+                <a href="practice.html">练习</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教程目录</h3>
+            <ul>
+                <li><a href="../index.html">简介</a></li>
+                <li><a href="install.html">安装Python</a></li>
+                <li><a href="first-step.html" class="active">第一个Python程序</a></li>
+                <li><a href="basics.html">基础语法</a></li>
+                <li><a href="functions.html">函数</a></li>
+                <li><a href="oop.html">面向对象</a></li>
+                <li><a href="practice.html">实战练习</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>第一个Python程序</h1>
+
+            <p>恭喜你来到这里！根据编程界的传统，我们要编写的第一个程序是"Hello, World!"——向世界问好。</p>
+
+            <div class="highlight-box">
+                <h3>🎯 本章目标</h3>
+                <ul>
+                    <li>学习使用Python交互式环境</li>
+                    <li>编写你的第一个Python程序</li>
+                    <li>了解Python的基本输出方式</li>
+                </ul>
+            </div>
+
+            <h2>使用Python交互式环境</h2>
+
+            <p>Python自带一个交互式环境（REPL），非常适合快速测试代码和学习：</p>
+
+            <div class="step-box">
+                <p><strong>步骤1：</strong>打开终端或命令提示符</p>
+                <p><strong>步骤2：</strong>输入以下命令：</p>
+                <div class="code-block">python</div>
+                <p>或</p>
+                <div class="code-block">python3</div>
+                <p><strong>步骤3：</strong>你会看到类似以下的提示符：</p>
+                <div class="code-block">Python 3.10.6 (main, Jan 1 2024) [GCC] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> </div>
+            </div>
+
+            <p>这个 <code>>>> </code> 就是Python的提示符，表示Python正在等待你的输入。</p>
+
+            <h2>你的第一行代码</h2>
+
+            <p>现在，让我们输入第一行Python代码：</p>
+
+            <div class="code-block">print("Hello, World!")</div>
+
+            <p>按下回车键，你会看到：</p>
+
+            <div class="output">Hello, World!</div>
+
+            <div class="success-box">
+                <strong>🎉 恭喜！</strong> 你刚刚编写了你的第一个Python程序！
+            </div>
+
+            <h2>这行代码是什么意思？</h2>
+
+            <p>让我们来分析一下这行代码：</p>
+
+            <div class="info-box">
+                <ul>
+                    <li><code>print()</code> 是一个函数，用于输出内容到屏幕</li>
+                    <li><code>"Hello, World!"</code> 是一个字符串，用双引号括起来</li>
+                    <li>整行代码的意思是：调用print函数，输出"Hello, World!"这个字符串</li>
+                </ul>
+            </div>
+
+            <h2>继续尝试</h2>
+
+            <p>在交互式环境中，继续尝试更多命令：</p>
+
+            <div class="code-block">>>> print("Python真简单！")
+Python真简单！
+
+>>> print(1 + 1)
+2
+
+>>> print("1 + 1 =", 1 + 1)
+1 + 1 = 2
+
+>>> name = "小明"
+>>> print("你好，" + name)
+你好，小明</div>
+
+            <p>你可以在交互式环境中一直练习下去。输入 <code>exit()</code> 或按 <code>Ctrl+D</code> 可以退出。</p>
+
+            <h2>创建Python文件</h2>
+
+            <p>除了交互式环境，我们通常把代码写在文件里。让我们创建一个Python文件：</p>
+
+            <div class="step-box">
+                <p><strong>步骤1：</strong>打开你的代码编辑器（如VS Code）</p>
+                <p><strong>步骤2：</strong>创建新文件，保存为 <code>hello.py</code></p>
+                <p><strong>步骤3：</strong>输入以下代码：</p>
+                <div class="code-block"># 我的第一个Python程序
+print("Hello, World!")
+print("欢迎来到Python的世界！")
+
+# 简单的数学计算
+print("1 + 1 =", 1 + 1)
+print("10 - 3 =", 10 - 3)
+
+# 字符串拼接
+name = "Python学习者"
+print("你好，" + name)</div>
+
+                <p><strong>步骤4：</strong>保存文件</p>
+                <p><strong>步骤5：</strong>在终端中，进入文件所在目录，运行：</p>
+                <div class="code-block">python hello.py</div>
+                <p>或</p>
+                <div class="code-block">python3 hello.py</div>
+            </div>
+
+            <p>你应该会看到以下输出：</p>
+
+            <div class="output">Hello, World!
+欢迎来到Python的世界！
+1 + 1 = 2
+10 - 3 = 7
+你好，Python学习者</div>
+
+            <div class="success-box">
+                <strong>✅ 成功！</strong> 你已经创建了第一个Python脚本文件！
+            </div>
+
+            <h2>关于注释</h2>
+
+            <p>你可能注意到代码中有一些以 <code>#</code> 开头的行，这些是<strong>注释</strong>：</p>
+
+            <div class="code-block"># 这是一行注释
+# 注释不会被Python执行
+# 它们是用来解释代码的
+
+print("这行会被执行")  # 注释也可以写在代码后面</div>
+
+            <p>注释是给程序员看的，Python会忽略它们。写好注释是一个好习惯！</p>
+
+            <h2>print()函数详解</h2>
+
+            <p><code>print()</code> 是Python最常用的函数之一，让我们深入了解它：</p>
+
+            <h3>打印多个内容</h3>
+
+            <div class="code-block">print("Hello", "World", "!")</div>
+
+            <div class="output">Hello World !</div>
+
+            <p>默认情况下，print会用空格分隔多个参数。</p>
+
+            <h3>使用sep参数自定义分隔符</h3>
+
+            <div class="code-block">print("Hello", "World", "!", sep="-")</div>
+
+            <div class="output">Hello-World-!</div>
+
+            <h3>使用end参数控制结尾</h3>
+
+            <div class="code-block">print("Hello", end=" ")
+print("World")</div>
+
+            <div class="output">Hello World</div>
+
+            <p>默认情况下，print会在输出后添加换行符。使用 <code>end</code> 参数可以改变这个行为。</p>
+
+            <h2>尝试练习</h2>
+
+            <p>现在，试试编写以下程序：</p>
+
+            <div class="info-box">
+                <strong>练习：</strong>
+                <ol>
+                    <li>打印你的名字和年龄</li>
+                    <li>打印一个简单的算式和结果</li>
+                    <li>打印一个用星号组成的图形（如三角形）</li>
+                </ol>
+            </div>
+
+            <p>参考答案：</p>
+
+            <div class="code-block"># 打印个人信息
+print("姓名：张三")
+print("年龄：25")
+
+# 打印算式
+print("5 * 6 =", 5 * 6)
+
+# 打印星号三角形
+print("   *   ")
+print("  ***  ")
+print(" ***** ")
+print("*******")</div>
+
+            <h2>常见错误</h2>
+
+            <p>初学者常犯的一些错误：</p>
+
+            <div class="warning-box">
+                <strong>错误1：忘记引号</strong>
+                <div class="code-block">print(Hello)  # 错误！Hello会被当作变量名</div>
+
+                <strong>错误2：括号不匹配</strong>
+                <div class="code-block">print("Hello"  # 错误！缺少右括号</div>
+
+                <strong>错误3：使用了中文标点</strong>
+                <div class="code-block">print("Hello")；  # 错误！应该用英文分号或不用分号</div>
+            </div>
+
+            <h2>总结</h2>
+
+            <p>恭喜你完成了第一个Python程序！本章我们学习了：</p>
+
+            <ul>
+                <li>如何使用Python交互式环境</li>
+                <li>如何创建和运行Python文件</li>
+                <li>print()函数的基本用法</li>
+                <li>如何在代码中添加注释</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>🚀 下一步</h3>
+                <p>你已经踏出了学习Python的第一步！接下来，让我们学习Python的基础语法。</p>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="install.html" class="btn btn-secondary">← 上一章</a>
+                <a href="basics.html" class="btn">下一章：Python基础语法 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教程 | 让编程学习变得简单有趣</p>
+    </footer>
+</body>
+</html>

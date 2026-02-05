@@ -1,0 +1,9 @@
+{
+  "name": "python-tutorial",
+  "version": "1.0.0",
+  "description": "Python学习教程 - 从入门到精通",
+  "scripts": {
+    "dev": "python -m http.server 3000",
+    "build": "echo 'Static site - no build needed'"
+  }
+}

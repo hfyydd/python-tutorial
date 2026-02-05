@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Python学习教程 - 从入门到精通的Python编程教程">
+    <meta name="keywords" content="Python, 教程, 编程, 入门, 基础">
+    <title>Python教程 - 从入门到精通</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: #2c3e50;
+            color: white;
+            padding: 0 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #306998, #FFD43B);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* 主容器 */
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: calc(100vh - 120px);
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 250px;
+            background: white;
+            padding: 20px;
+            height: 100%;
+            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 8px;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #e8f4f8;
+            color: #2c3e50;
+        }
+
+        .sidebar .sub-item {
+            padding-left: 24px;
+            font-size: 13px;
+        }
+
+        /* 主内容区 */
+        .main-content {
+            flex: 1;
+            background: white;
+            margin: 20px;
+            margin-left: 0;
+            padding: 40px 50px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+        }
+
+        .author-info h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .author-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin: 30px 0 15px;
+            color: #2c3e50;
+        }
+
+        .main-content h3 {
+            font-size: 20px;
+            margin: 25px 0 12px;
+            color: #34495e;
+        }
+
+        .main-content p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .features {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .features ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .features li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+        }
+
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .highlight-box h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background: #fef9e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer p {
+            color: #95a5a6;
+            font-size: 14px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .main-content {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* Python代码高亮 */
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教程</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="chapters/install.html">安装Python</a>
+                <a href="chapters/basics.html">基础语法</a>
+                <a href="chapters/advanced.html">进阶</a>
+                <a href="chapters/practice.html">练习</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <h3>📚 教程目录</h3>
+            <ul>
+                <li><a href="index.html" class="active">简介</a></li>
+                <li><a href="chapters/install.html">安装Python</a></li>
+                <li><a href="chapters/first-step.html">第一步</a></li>
+                <li><a href="chapters/basics.html">基础语法</a>
+                    <ul>
+                        <li><a href="chapters/data-types.html" class="sub-item">数据类型</a></li>
+                        <li><a href="chapters/strings.html" class="sub-item">字符串</a></li>
+                        <li><a href="chapters/lists.html" class="sub-item">列表</a></li>
+                        <li><a href="chapters/conditions.html" class="sub-item">条件判断</a></li>
+                        <li><a href="chapters/loops.html" class="sub-item">循环</a></li>
+                    </ul>
+                </li>
+                <li><a href="chapters/functions.html">函数</a></li>
+                <li><a href="chapters/oop.html">面向对象</a></li>
+                <li><a href="chapters/modules.html">模块</a></li>
+                <li><a href="chapters/advanced.html">进阶</a></li>
+                <li><a href="chapters/practice.html">实战练习</a></li>
+            </ul>
+        </aside>
+
+        <!-- 主内容 -->
+        <main class="main-content">
+            <div class="content-header">
+                <div class="author-avatar">Py</div>
+                <div class="author-info">
+                    <h1>Python 教程</h1>
+                    <p>从零开始学Python，适合编程新手的完整教程</p>
+                </div>
+            </div>
+
+            <h2>欢迎来到Python的世界！</h2>
+
+            <p>这是一个专为编程小白设计的Python新手教程。无论你是学生、职场新人，还是对编程感兴趣的爱好者，这里都适合你开始你的编程之旅。</p>
+
+            <div class="highlight-box">
+                <h3>🎯 为什么选择Python？</h3>
+                <p>Python是目前世界上最受欢迎的编程语言之一，代码简洁优雅，上手容易，功能强大。</p>
+                <a href="chapters/install.html" class="btn">开始学习 →</a>
+            </div>
+
+            <h2>什么是Python？</h2>
+
+            <p>Python是一种计算机程序设计语言。你可能已经听说过很多种流行的编程语言：</p>
+            <ul>
+                <li>非常难学的C语言</li>
+                <li>非常流行的Java语言</li>
+                <li>适合初学者的Basic语言</li>
+                <li>适合网页编程的JavaScript语言</li>
+            </ul>
+
+            <p>那Python是一种什么语言？</p>
+
+            <p>首先，我们普及一下编程语言的基础知识。用任何编程语言来开发程序，都是为了让计算机干活，比如下载一个MP3，编写一个文档等等。而计算机干活的CPU只认识机器指令，所以，尽管不同的编程语言差异极大，最后都得"翻译"成CPU可以执行的机器指令。</p>
+
+            <p>而不同的编程语言，干同一个活，编写的代码量，差距也很大。</p>
+
+            <div class="info-box">
+                <strong>💡 代码量对比：</strong> 完成同一个任务，C语言要写1000行代码，Java只需要写100行，而Python可能只要20行。
+            </div>
+
+            <p>所以Python是一种相当高级的语言。你也许会问，代码少还不好？</p>
+
+            <p>代码少的代价是运行速度慢，C程序运行1秒钟，Java程序可能需要2秒，而Python程序可能就需要10秒。</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 但是对于初学者和完成普通任务，Python语言是非常简单易用的。连Google都在大规模使用Python，你就不用担心学了会没用！
+            </div>
+
+            <h2>用Python可以做什么？</h2>
+
+            <div class="features">
+                <ul>
+                    <li><strong>日常任务自动化：</strong> 自动备份文件、批量处理图片、发送邮件等</li>
+                    <li><strong>网站开发：</strong> YouTube、Instagram、豆瓣等知名网站都用Python开发</li>
+                    <li><strong>数据分析：</strong> Python是数据科学的首选语言</li>
+                    <li><strong>人工智能：</strong> 机器学习、深度学习的主流语言</li>
+                    <li><strong>网络爬虫：</strong> 轻松获取互联网数据</li>
+                    <li><strong>游戏开发：</strong> 很多游戏的后台逻辑用Python实现</li>
+                </ul>
+            </div>
+
+            <h2>这个教程适合谁？</h2>
+
+            <p>如果你是编程小白，满足以下条件：</p>
+
+            <div class="features">
+                <ul>
+                    <li>会使用电脑，但从来没写过程序</li>
+                    <li>还记得初中数学学的方程式和一点点代数知识</li>
+                    <li>想从编程小白变成专业的软件开发工程师</li>
+                    <li>每天能抽出半个小时学习</li>
+                </ul>
+            </div>
+
+            <p>那么不要再犹豫了，这个教程就是为你准备的！</p>
+
+            <h2>准备好了吗？</h2>
+
+            <div class="highlight-box">
+                <h3>🚀 开始你的Python之旅</h3>
+                <p>编程是一项可以改变你人生的技能。让我们一起开始吧！</p>
+                <a href="chapters/install.html" class="btn">立即开始 →</a>
+            </div>
+
+            <h3>先睹为快：Python代码长什么样？</h3>
+
+            <p>这是你即将编写的第一段Python代码：</p>
+
+            <div class="code-block"><span class="comment"># 打印欢迎信息</span>
+<span class="function">print</span>(<span class="string">"Hello, Python!"</span>)
+
+<span class="comment"># 简单的数学计算</span>
+<span class="keyword">print</span>(<span class="string">"1 + 1 ="</span>, <span class="number">1</span> + <span class="number">1</span>)
+
+<span class="comment"># 创建一个列表</span>
+fruits = [<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(<span class="string">"我喜欢吃"</span> + fruit)</div>
+
+            <p>怎么样？是不是很简单？代码就像读英语一样自然！</p>
+
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>© 2024 Python教程 | 让编程学习变得简单有趣</p>
+        <p>本教程仅供学习交流使用</p>
+    </footer>
+</body>
+</html>
