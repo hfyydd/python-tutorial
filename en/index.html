@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Python学习教程 - 从入门到精通的Python编程教程">
-    <meta name="keywords" content="Python, 教程, 编程, 入门, 基础">
-    <title>Python教程 - 从入门到精通</title>
+    <meta name="description" content="Python Tutorial - From Beginner to Master">
+    <meta name="keywords" content="Python, tutorial, programming, beginner, guide">
+    <title>Python Tutorial - From Beginner to Master</title>
+    <link rel="stylesheet" href="../css/i18n.css">
     <style>
         * {
             margin: 0;
@@ -20,7 +21,6 @@
             background: #f5f5f5;
         }
 
-        /* 导航栏 */
         .navbar {
             background: #2c3e50;
             color: white;
@@ -35,6 +35,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 20px;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -71,7 +72,6 @@
             opacity: 0.8;
         }
 
-        /* 主容器 */
         .container {
             display: flex;
             max-width: 1200px;
@@ -79,7 +79,6 @@
             min-height: calc(100vh - 120px);
         }
 
-        /* 侧边栏 */
         .sidebar {
             width: 250px;
             background: white;
@@ -125,7 +124,6 @@
             font-size: 13px;
         }
 
-        /* 主内容区 */
         .main-content {
             flex: 1;
             background: white;
@@ -269,7 +267,6 @@
             border-radius: 4px;
         }
 
-        /* 页脚 */
         .footer {
             background: #2c3e50;
             color: white;
@@ -283,7 +280,6 @@
             font-size: 14px;
         }
 
-        /* 响应式 */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -303,212 +299,161 @@
             }
         }
 
-        /* Python代码高亮 */
         .keyword { color: #ff79c6; }
         .string { color: #f1fa8c; }
         .function { color: #50fa7b; }
         .comment { color: #6272a4; }
         .number { color: #bd93f9; }
-
-        /* 语言切换器 */
-        .language-switcher {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            margin-left: 20px;
-        }
-
-        .lang-btn {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            color: white;
-            cursor: pointer;
-            font-size: 13px;
-            transition: all 0.3s;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .lang-btn.active {
-            background: rgba(52, 152, 219, 0.8);
-            border-color: #3498db;
-        }
-
-        .lang-flag { font-size: 14px; }
-        .lang-name { font-weight: 500; }
-
-        @media (max-width: 768px) {
-            .language-switcher {
-                margin-left: 0;
-                margin-top: 10px;
-            }
-            .lang-name { display: none; }
-            .lang-btn .lang-flag { font-size: 16px; }
-        }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="navbar-content">
             <div class="logo">
                 <div class="logo-icon">🐍</div>
-                <span>Python教程</span>
+                <span>Python Tutorial</span>
             </div>
             <div class="nav-links">
-                <a href="index.html">首页</a>
-                <a href="chapters/install.html">安装Python</a>
-                <a href="chapters/basics.html">基础语法</a>
-                <a href="chapters/advanced.html">进阶</a>
-                <a href="chapters/practice.html">练习</a>
+                <a href="../index.html">简体中文</a>
+                <a href="index.html" style="color: #3498db;">Home</a>
+                <a href="install.html">Install</a>
+                <a href="basics.html">Basics</a>
+                <a href="advanced.html">Advanced</a>
+                <a href="practice.html">Practice</a>
             </div>
         </div>
     </nav>
 
-    <!-- 主容器 -->
     <div class="container">
-        <!-- 侧边栏 -->
         <aside class="sidebar">
-            <h3>📚 教程目录</h3>
+            <h3>📚 Table of Contents</h3>
             <ul>
-                <li><a href="index.html" class="active">简介</a></li>
-                <li><a href="chapters/install.html">安装Python</a></li>
-                <li><a href="chapters/first-step.html">第一步</a></li>
-                <li><a href="chapters/basics.html">基础语法</a>
+                <li><a href="index.html" class="active">Introduction</a></li>
+                <li><a href="install.html">Install Python</a></li>
+                <li><a href="first-step.html">First Steps</a></li>
+                <li><a href="basics.html">Basic Syntax</a>
                     <ul>
-                        <li><a href="chapters/data-types.html" class="sub-item">数据类型</a></li>
-                        <li><a href="chapters/strings.html" class="sub-item">字符串</a></li>
-                        <li><a href="chapters/lists.html" class="sub-item">列表</a></li>
-                        <li><a href="chapters/conditions.html" class="sub-item">条件判断</a></li>
-                        <li><a href="chapters/loops.html" class="sub-item">循环</a></li>
+                        <li><a href="data-types.html" class="sub-item">Data Types</a></li>
+                        <li><a href="strings.html" class="sub-item">Strings</a></li>
+                        <li><a href="lists.html" class="sub-item">Lists</a></li>
+                        <li><a href="conditions.html" class="sub-item">Conditions</a></li>
+                        <li><a href="loops.html" class="sub-item">Loops</a></li>
                     </ul>
                 </li>
-                <li><a href="chapters/functions.html">函数</a></li>
-                <li><a href="chapters/oop.html">面向对象</a></li>
-                <li><a href="chapters/modules.html">模块</a></li>
-                <li><a href="chapters/advanced.html">进阶</a></li>
-                <li><a href="chapters/practice.html">实战练习</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="oop.html">OOP</a></li>
+                <li><a href="modules.html">Modules</a></li>
+                <li><a href="advanced.html">Advanced</a></li>
+                <li><a href="practice.html">Practice</a></li>
             </ul>
         </aside>
 
-        <!-- 主内容 -->
         <main class="main-content">
             <div class="content-header">
                 <div class="author-avatar">Py</div>
                 <div class="author-info">
-                    <h1>Python 教程</h1>
-                    <p>从零开始学Python，适合编程新手的完整教程</p>
+                    <h1>Python Tutorial</h1>
+                    <p>From zero to hero - Complete Python programming guide for beginners</p>
                 </div>
             </div>
 
-            <h2>欢迎来到Python的世界！</h2>
+            <h2>Welcome to the World of Python!</h2>
 
-            <p>这是一个专为编程小白设计的Python新手教程。无论你是学生、职场新人，还是对编程感兴趣的爱好者，这里都适合你开始你的编程之旅。</p>
+            <p>This is a Python beginner tutorial designed specifically for programming newcomers. Whether you're a student, workplace professional, or just interested in programming, this is the perfect place to start your coding journey.</p>
 
             <div class="highlight-box">
-                <h3>🎯 为什么选择Python？</h3>
-                <p>Python是目前世界上最受欢迎的编程语言之一，代码简洁优雅，上手容易，功能强大。</p>
-                <a href="chapters/install.html" class="btn">开始学习 →</a>
+                <h3>🎯 Why Choose Python?</h3>
+                <p>Python is one of the most popular programming languages in the world. It's concise, elegant, easy to learn, and powerful.</p>
+                <a href="install.html" class="btn">Start Learning →</a>
             </div>
 
-            <h2>什么是Python？</h2>
+            <h2>What is Python?</h2>
 
-            <p>Python是一种计算机程序设计语言。你可能已经听说过很多种流行的编程语言：</p>
+            <p>Python is a computer programming language. You may have heard of many popular programming languages:</p>
             <ul>
-                <li>非常难学的C语言</li>
-                <li>非常流行的Java语言</li>
-                <li>适合初学者的Basic语言</li>
-                <li>适合网页编程的JavaScript语言</li>
+                <li>C - very difficult to learn</li>
+                <li>Java - very popular</li>
+                <li>Basic - suitable for beginners</li>
+                <li>JavaScript - suitable for web programming</li>
             </ul>
 
-            <p>那Python是一种什么语言？</p>
+            <p>So what kind of language is Python?</p>
 
-            <p>首先，我们普及一下编程语言的基础知识。用任何编程语言来开发程序，都是为了让计算机干活，比如下载一个MP3，编写一个文档等等。而计算机干活的CPU只认识机器指令，所以，尽管不同的编程语言差异极大，最后都得"翻译"成CPU可以执行的机器指令。</p>
-
-            <p>而不同的编程语言，干同一个活，编写的代码量，差距也很大。</p>
+            <p>First, let's cover some basics of programming languages. Using any programming language to develop programs is about getting the computer to do work, like downloading an MP3, writing a document, etc. The CPU that does the work only understands machine instructions, so despite the vast differences between programming languages, they all must be "translated" into machine instructions that the CPU can execute.</p>
 
             <div class="info-box">
-                <strong>💡 代码量对比：</strong> 完成同一个任务，C语言要写1000行代码，Java只需要写100行，而Python可能只要20行。
+                <strong>💡 Code Comparison:</strong> To complete the same task, C might require 1000 lines of code, Java 100 lines, while Python might only need 20 lines.
             </div>
 
-            <p>所以Python是一种相当高级的语言。你也许会问，代码少还不好？</p>
+            <p>So Python is a very high-level language. You might ask, is less code bad?</p>
 
-            <p>代码少的代价是运行速度慢，C程序运行1秒钟，Java程序可能需要2秒，而Python程序可能就需要10秒。</p>
+            <p>The cost of less code is slower execution speed. A C program might run in 1 second, Java in 2 seconds, while Python might take 10 seconds.</p>
 
             <div class="warning-box">
-                <strong>⚠️ 注意：</strong> 但是对于初学者和完成普通任务，Python语言是非常简单易用的。连Google都在大规模使用Python，你就不用担心学了会没用！
+                <strong>⚠️ Note:</strong> However, for beginners and everyday tasks, Python is very simple and easy to use. Even Google uses Python extensively, so you don't need to worry about learning it without practical application!
             </div>
 
-            <h2>用Python可以做什么？</h2>
+            <h2>What Can You Do with Python?</h2>
 
             <div class="features">
                 <ul>
-                    <li><strong>日常任务自动化：</strong> 自动备份文件、批量处理图片、发送邮件等</li>
-                    <li><strong>网站开发：</strong> YouTube、Instagram、豆瓣等知名网站都用Python开发</li>
-                    <li><strong>数据分析：</strong> Python是数据科学的首选语言</li>
-                    <li><strong>人工智能：</strong> 机器学习、深度学习的主流语言</li>
-                    <li><strong>网络爬虫：</strong> 轻松获取互联网数据</li>
-                    <li><strong>游戏开发：</strong> 很多游戏的后台逻辑用Python实现</li>
+                    <li><strong>Automate Daily Tasks:</strong> Automatically back up files, batch process images, send emails</li>
+                    <li><strong>Web Development:</strong> YouTube, Instagram, and many famous websites use Python</li>
+                    <li><strong>Data Analysis:</strong> Python is the preferred language for data science</li>
+                    <li><strong>Artificial Intelligence:</strong> Mainstream language for machine learning and deep learning</li>
+                    <li><strong>Web Scraping:</strong> Easily fetch data from the internet</li>
+                    <li><strong>Game Development:</strong> Many games use Python for backend logic</li>
                 </ul>
             </div>
 
-            <h2>这个教程适合谁？</h2>
+            <h2>Who Is This Tutorial For?</h2>
 
-            <p>如果你是编程小白，满足以下条件：</p>
+            <p>If you're a programming beginner and meet the following conditions:</p>
 
             <div class="features">
                 <ul>
-                    <li>会使用电脑，但从来没写过程序</li>
-                    <li>还记得初中数学学的方程式和一点点代数知识</li>
-                    <li>想从编程小白变成专业的软件开发工程师</li>
-                    <li>每天能抽出半个小时学习</li>
+                    <li>Can use a computer but never wrote a program</li>
+                    <li>Remember basic math equations and algebra from middle school</li>
+                    <li>Want to go from programming beginner to professional software developer</li>
+                    <li>Can spare half an hour daily for learning</li>
                 </ul>
             </div>
 
-            <p>那么不要再犹豫了，这个教程就是为你准备的！</p>
+            <p>Then don't hesitate - this tutorial is prepared for you!</p>
 
-            <h2>准备好了吗？</h2>
+            <h2>Ready to Start?</h2>
 
             <div class="highlight-box">
-                <h3>🚀 开始你的Python之旅</h3>
-                <p>编程是一项可以改变你人生的技能。让我们一起开始吧！</p>
-                <a href="chapters/install.html" class="btn">立即开始 →</a>
+                <h3>🚀 Begin Your Python Journey</h3>
+                <p>Programming is a skill that can change your life. Let's get started!</p>
+                <a href="install.html" class="btn">Start Now →</a>
             </div>
 
-            <h3>先睹为快：Python代码长什么样？</h3>
+            <h3>First Look: What Does Python Code Look Like?</h3>
 
-            <p>这是你即将编写的第一段Python代码：</p>
+            <p>This is the first Python program you're about to write:</p>
 
-            <div class="code-block"><span class="comment"># 打印欢迎信息</span>
+            <div class="code-block"><span class="comment"># Print welcome message</span>
 <span class="function">print</span>(<span class="string">"Hello, Python!"</span>)
 
-<span class="comment"># 简单的数学计算</span>
-<span class="keyword">print</span>(<span class="string">"1 + 1 ="</span>, <span class="number">1</span> + <span class="number">1</span>)
+<span class="comment"># Simple math calculation</span>
+<span class="function">print</span>(<span class="string">"1 + 1 ="</span>, <span class="number">1</span> + <span class="number">1</span>)
 
-<span class="comment"># 创建一个列表</span>
-fruits = [<span class="string">"苹果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="comment"># Create a list</span>
+fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>]
 <span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
-    <span class="function">print</span>(<span class="string">"我喜欢吃"</span> + fruit)</div>
+    <span class="function">print</span>(<span class="string">"I like"</span>, fruit)</div>
 
-            <p>怎么样？是不是很简单？代码就像读英语一样自然！</p>
+            <p>See? It's that simple! The code reads as naturally as English!</p>
 
         </main>
     </div>
 
-    <!-- 页脚 -->
     <footer class="footer">
-        <p>© 2024 Python教程 | 让编程学习变得简单有趣</p>
-        <p>本教程仅供学习交流使用</p>
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+        <p>This tutorial is for learning purposes only</p>
     </footer>
 
-    <script src="js/i18n.js"></script>
+    <script src="../js/i18n.js"></script>
 </body>
 </html>

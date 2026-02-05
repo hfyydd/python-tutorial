@@ -1,0 +1,60 @@
+/* 语言切换器样式 */
+.language-switcher {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+}
+
+.lang-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.lang-btn.active {
+    background: rgba(52, 152, 219, 0.8);
+    border-color: #3498db;
+}
+
+.lang-flag {
+    font-size: 14px;
+}
+
+.lang-name {
+    font-weight: 500;
+}
+
+/* 移动端语言切换器 */
+@media (max-width: 768px) {
+    .language-switcher {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .lang-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .lang-name {
+        display: none;
+    }
+
+    .lang-btn .lang-flag {
+        font-size: 16px;
+    }
+}
