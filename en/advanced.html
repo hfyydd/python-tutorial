@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Advanced Topics - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Install Python</a></li>
+                <li><a href="first-step.html">First Steps</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="oop.html">OOP</a></li>
+                <li><a href="modules.html">Modules</a></li>
+                <li><a href="advanced.html" class="active">Advanced</a></li>
+                <li><a href="practice.html">Practice</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python Advanced Topics</h1>
+
+            <p>Congratulations on completing the basic chapters! Now let's explore some more advanced Python topics.</p>
+
+            <h2>File Operations</h2>
+
+            <div class="code-block"><span class="comment"># Write to file</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"hello.txt"</span>, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> f:
+    f.<span class="function">write</span>(<span class="string">"Hello, World!\n"</span>)
+
+<span class="comment"># Read file</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"hello.txt"</span>, <span class="string">"r"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> f:
+    content = f.<span class="function">read</span>()
+    <span class="function">print</span>(content)
+
+<span class="comment"># Read line by line</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"hello.txt"</span>, <span class="string">"r"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> f:
+    <span class="keyword">for</span> line <span class="keyword">in</span> f:
+        <span class="function">print</span>(line.<span class="function">strip</span>())</div>
+
+            <div class="info-box">
+                <strong>📝 File Modes:</strong><br>
+                "r" - Read (default)<br>
+                "w" - Write (overwrites existing file)<br>
+                "a" - Append (adds to end of file)<br>
+                "r+" - Read and write<br>
+                The <code>with</code> statement automatically closes the file, even if an error occurs.
+            </div>
+
+            <h2>Exception Handling</h2>
+
+            <p>Errors are inevitable in programming. Python provides exception handling to gracefully deal with errors.</p>
+
+            <div class="code-block"><span class="keyword">try</span>:
+    result = <span class="number">10</span> / <span class="number">0</span>
+<span class="keyword">except</span> <span class="function">ZeroDivisionError</span>:
+    <span class="function">print</span>(<span class="string">"Cannot divide by zero!"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"Result is:"</span>, result)
+<span class="keyword">finally</span>:
+    <span class="function">print</span>(<span class="string">"This always executes"</span>)</div>
+
+            <div class="code-block"><span class="comment"># Handling multiple exceptions</span>
+<span class="keyword">try</span>:
+    number = <span class="function">int</span>(<span class="function">input</span>(<span class="string">"Enter a number: "</span>))
+    result = <span class="number">100</span> / number
+<span class="keyword">except</span> <span class="function">ValueError</span>:
+    <span class="function">print</span>(<span class="string">"Please enter a valid number"</span>)
+<span class="keyword">except</span> <span class="function">ZeroDivisionError</span>:
+    <span class="function">print</span>(<span class="string">"Cannot divide by zero"</span>)
+<span class="keyword">except</span> <span class="function">Exception</span> <span class="keyword">as</span> e:
+    <span class="function">print</span>(<span class="string">f"An error occurred: {e}"</span>)</div>
+
+            <h2>List Comprehensions</h2>
+
+            <p>List comprehensions provide a concise way to create lists.</p>
+
+            <div class="code-block"><span class="comment"># Create squares list</span>
+squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>)]
+<span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="comment"># List comprehension with condition</span>
+evens = [x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">20</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]
+<span class="comment"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</span>
+
+<span class="comment"># Nested list comprehension</span>
+matrix = [[i*j <span class="keyword">for</span> j <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">range</span>(<span class="number">3</span>)]
+<span class="comment"># [0, 0, 0, 0, 1, 2, 0, 2, 4]</span></div>
+
+            <h2>Decorators</h2>
+
+            <p>Decorators are a powerful way to modify or extend the behavior of functions without changing their code.</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">timer</span>(<span class="keyword">func</span>):
+    <span class="keyword">def</span> <span class="function">wrapper</span>(*args, **kwargs):
+        <span class="keyword">import</span> time
+        start = time.<span class="function">time</span>()
+        result = <span class="function">func</span>(*args, **kwargs)
+        end = time.<span class="function">time</span>()
+        <span class="function">print</span>(<span class="string">f"{func.__name__} took {end-start:.4f} seconds"</span>)
+        <span class="keyword">return</span> result
+    <span class="keyword">return</span> wrapper
+
+<span class="keyword">@timer</span>
+<span class="keyword">def</span> <span class="function">slow_function</span>():
+    <span class="keyword">import</span> time
+    time.<span class="function">sleep</span>(<span class="number">0.1</span>)
+    <span class="keyword">return</span> <span class="string">"Done"</span>
+
+<span class="function">slow_function</span>()  <span class="comment"># Prints execution time</span></div>
+
+            <h2>Generators</h2>
+
+            <p>Generators are a simple way to create iterators using functions and the <code>yield</code> keyword.</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">countdown</span>(n):
+    <span class="keyword">while</span> n > <span class="number">0</span>:
+        <span class="keyword">yield</span> n
+        n -= <span class="number">1</span>
+
+<span class="comment"># Using generator</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">countdown</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i)
+<span class="comment"># 5, 4, 3, 2, 1</span>
+
+<span class="comment"># Generator expression</span>
+squares_gen = (x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">1000000</span>))
+<span class="comment"># Memory efficient - doesn't create full list in memory</span></div>
+
+            <h2>Context Managers</h2>
+
+            <p>You can create your own context managers using the <code>contextlib</code> module or classes with <code>__enter__</code> and <code>__exit__</code> methods.</p>
+
+            <div class="code-block"><span class="keyword">from</span> contextlib <span class="keyword">import</span> contextmanager
+
+<span class="keyword">@contextmanager</span>
+<span class="keyword">def</span> <span class="function">timer_context</span>():
+    <span class="keyword">import</span> time
+    start = time.<span class="function">time</span>()
+    <span class="keyword">yield</span>
+    end = time.<span class="function">time</span>()
+    <span class="function">print</span>(<span class="string">f"Elapsed: {end-start:.4f}s"</span>)
+
+<span class="keyword">with</span> <span class="function">timer_context</span>():
+    <span class="comment"># Do some work</span>
+    <span class="keyword">import</span> time
+    time.<span class="function">sleep</span>(<span class="number">0.1</span>)</div>
+
+            <h2>Lambda Functions</h2>
+
+            <p>Lambda functions are small, anonymous functions.</p>
+
+            <div class="code-block"><span class="comment"># Lambda function syntax</span>
+square = <span class="keyword">lambda</span> x: x**<span class="number">2</span>
+<span class="function">print</span>(<span class="function">square</span>(<span class="number">5</span>))  <span class="comment"># 25</span>
+
+<span class="comment"># Common with map, filter, sorted</span>
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+doubled = <span class="function">list</span>(<span class="function">map</span>(<span class="keyword">lambda</span> x: x*<span class="number">2</span>, numbers))
+<span class="comment"># [2, 4, 6, 8, 10]</span>
+
+evens = <span class="function">list</span>(<span class="function">filter</span>(<span class="keyword">lambda</span> x: x % <span class="number">2</span> == <span class="number">0</span>, numbers))
+<span class="comment"># [2, 4]</span></div>
+
+            <h2>What's Next?</h2>
+
+            <p>You've mastered the fundamentals of Python! Here are some paths to continue your journey:</p>
+
+            <div class="info-box">
+                <strong>🚀 Continue Learning:</strong>
+                <ul>
+                    <li><strong>Practice Projects:</strong> Build small projects to reinforce knowledge</li>
+                    <li><strong>Read Source Code:</strong> Learn from excellent open-source projects</li>
+                    <li><strong>Deep Dive:</strong> Explore web development, data analysis, or other areas</li>
+                    <li><strong>Join Community:</strong> Participate in Python community discussions</li>
+                    <li><strong>Advanced Topics:</strong> Async programming, metaclasses, design patterns</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <strong>🎉 Congratulations!</strong><br>
+                You've completed the Python tutorial series. Keep coding, keep learning, and enjoy your programming journey!
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="modules.html" class="btn btn-secondary">← Previous</a>
+                <a href="practice.html" class="btn">Practice Projects →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

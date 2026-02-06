@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python函数 - Python教程</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教程</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教程目录</h3>
+            <ul>
+                <li><a href="../index.html">简介</a></li>
+                <li><a href="install.html">安装Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基础语法</a></li>
+                <li><a href="functions.html" class="active">函数</a></li>
+                <li><a href="oop.html">面向对象</a></li>
+                <li><a href="modules.html">模块</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python函数详解</h1>
+
+            <p>函数是组织代码的基本方式。它将一段代码块封装起来，可以重复使用，让代码更加清晰和易于维护。</p>
+
+            <h2>什么是函数？</h2>
+
+            <p>函数是一段可以重复使用的代码块，它接收输入（参数），进行处理，然后返回输出（返回值）。</p>
+
+            <div class="info-box">
+                <strong>💡 为什么要使用函数？</strong>
+                <ul>
+                    <li><strong>代码复用：</strong> 避免重复编写相同的代码</li>
+                    <li><strong>提高可读性：</strong> 将复杂问题分解为小问题</li>
+                    <li><strong>便于维护：</strong> 修改函数只需改一处</li>
+                    <li><strong>模块化：</strong> 让代码结构更清晰</li>
+                </ul>
+            </div>
+
+            <h2>定义函数</h2>
+
+            <p>在Python中，使用 <code>def</code> 关键字定义函数：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>():
+    <span class="string">"""这是一个简单的问候函数"""</span>
+    <span class="function">print</span>(<span class="string">"Hello, Python!"</span>)
+
+<span class="comment"># 调用函数</span>
+<span class="function">greet</span>()</div>
+
+            <div class="output">Hello, Python!</div>
+
+            <h2>函数参数</h2>
+
+            <h3>位置参数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet_user</span>(name):
+    <span class="function">print</span>(<span class="string">f"Hello, {name}!"</span>)
+
+<span class="function">greet_user</span>(<span class="string">"小明"</span>)
+<span class="function">greet_user</span>(<span class="string">"小红"</span>)</div>
+
+            <div class="output">Hello, 小明!
+Hello, 小红!</div>
+
+            <h3>多个参数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"小明"</span>, <span class="string">"你好"</span>)
+<span class="function">greet</span>(<span class="string">"小红"</span>, <span class="string">"早上好"</span>)</div>
+
+            <h3>默认参数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting=<span class="string">"你好"</span>):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"小明"</span>)  <span class="comment"># 使用默认问候语</span>
+<span class="function">greet</span>(<span class="string">"小红"</span>, <span class="string">"早上好"</span>)  <span class="comment"># 自定义问候语</span></div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 默认参数必须放在非默认参数之后！
+            </div>
+
+            <h3>关键字参数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">describe_pet</span>(animal, name):
+    <span class="function">print</span>(<span class="string">f"我有一只{animal}，名字叫{name}"</span>)
+
+<span class="comment"># 使用关键字参数，顺序可以改变</span>
+<span class="function">describe_pet</span>(animal=<span class="string">"猫"</span>, name=<span class="string">"咪咪"</span>)
+<span class="function">describe_pet</span>(name=<span class="string">"旺财"</span>, animal=<span class="string">"狗"</span>)</div>
+
+            <h2>返回值</h2>
+
+            <p>函数可以使用 <code>return</code> 语句返回值：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="keyword">return</span> a + b
+
+result = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)
+<span class="function">print</span>(result)  <span class="comment"># 8</span>
+
+<span class="comment"># 也可以直接在表达式中使用</span>
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">10</span>, <span class="number">20</span>))  <span class="comment"># 30</span></div>
+
+            <h3>返回多个值</h3>
+
+            <p>Python函数可以返回多个值（实际上是返回一个元组）：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">get_name</span>():
+    <span class="keyword">return</span> <span class="string">"李"</span>, <span class="string">"明"</span>
+
+first, last = <span class="function">get_name</span>()
+<span class="function">print</span>(first)  <span class="comment"># 李</span>
+<span class="function">print</span>(last)   <span class="comment"># 明</span>
+
+<span class="comment"># 也可以作为元组接收</span>
+name = <span class="function">get_name</span>()
+<span class="function">print</span>(name)  <span class="comment"># ('李', '明')</span></div>
+
+            <h2>函数文档字符串</h2>
+
+            <p>使用三引号字符串为函数添加文档：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">calculate_area</span>(radius):
+    <span class="string">"""
+    计算圆的面积
+
+    参数:
+        radius (float): 圆的半径
+
+    返回:
+        float: 圆的面积
+    """</span>
+    <span class="keyword">import</span> math
+    <span class="keyword">return</span> math.pi * radius ** <span class="number">2</span>
+
+<span class="comment"># 查看函数文档</span>
+<span class="function">print</span>(calculate_area.__doc__)</div>
+
+            <h2>变量的作用域</h2>
+
+            <h3>局部变量</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">my_function</span>():
+    local_var = <span class="string">"我是局部变量"</span>
+    <span class="function">print</span>(local_var)
+
+<span class="function">my_function</span>()  <span class="comment"># 输出: 我是局部变量</span>
+<span class="comment"># print(local_var)  # 错误！外部无法访问局部变量</span></div>
+
+            <h3>全局变量</h3>
+
+            <div class="code-block">global_var = <span class="string">"我是全局变量"</span>
+
+<span class="keyword">def</span> <span class="function">my_function</span>():
+    <span class="function">print</span>(global_var)  <span class="comment"># 可以访问全局变量</span>
+
+<span class="function">my_function</span>()  <span class="comment"># 输出: 我是全局变量</span>
+<span class="function">print</span>(global_var)  <span class="comment"># 输出: 我是全局变量</span></div>
+
+            <h3>修改全局变量</h3>
+
+            <div class="code-block">counter = <span class="number">0</span>
+
+<span class="keyword">def</span> <span class="function">increment</span>():
+    <span class="keyword">global</span> counter  <span class="comment"># 声明使用全局变量</span>
+    counter += <span class="number">1</span>
+    <span class="function">print</span>(counter)
+
+<span class="function">increment</span>()  <span class="comment"># 1</span>
+<span class="function">increment</span>()  <span class="comment"># 2</span>
+<span class="function">print</span>(counter)  <span class="comment"># 2</span></div>
+
+            <h2>常用内置函数</h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">函数</th>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">描述</th>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">print()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">输出信息</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">len()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">返回长度</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">input()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">获取用户输入</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">int(), float(), str()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">类型转换</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">max(), min()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">最大值和最小值</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">sum()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">求和</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">range()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">生成数字序列</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">type()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">返回类型</td>
+                </tr>
+            </table>
+
+            <h2>Lambda函数</h2>
+
+            <p>Lambda函数是匿名的小函数，使用 <code>lambda</code> 关键字创建：</p>
+
+            <div class="code-block"><span class="comment"># 普通函数</span>
+<span class="keyword">def</span> <span class="function">add</span>(x, y):
+    <span class="keyword">return</span> x + y
+
+<span class="comment"># 等价的lambda函数</span>
+add_lambda = <span class="keyword">lambda</span> x, y: x + y
+
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">3</span>, <span class="number">5</span>))        <span class="comment"># 8</span>
+<span class="function">print</span>(<span class="function">add_lambda</span>(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment"># 8</span>
+
+<span class="comment"># 常用于短函数</span>
+numbers = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">2</span>]
+sorted_numbers = <span class="function">sorted</span>(numbers, key=<span class="keyword">lambda</span> x: -x)
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [9, 5, 3, 2, 1]</span></div>
+
+            <h2>递归函数</h2>
+
+            <p>递归函数是调用自身的函数。下面是计算阶乘的例子：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">factorial</span>(n):
+    <span class="string">"""计算n的阶乘"""</span>
+    <span class="keyword">if</span> n <= <span class="number">1</span>:  <span class="comment"># 基本情况</span>
+        <span class="keyword">return</span> <span class="number">1</span>
+    <span class="keyword">return</span> n * <span class="function">factorial</span>(n - <span class="number">1</span>)  <span class="comment"># 递归调用</span>
+
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">5</span>))  <span class="comment"># 120</span>
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">10</span>))  <span class="comment"># 3628800</span></div>
+
+            <h2>练习题</h2>
+
+            <div class="info-box">
+                <strong>练习1：</strong> 编写一个函数，判断一个数字是否为偶数<br><br>
+                <strong>练习2：</strong> 编写一个函数，计算列表中所有数字的平均值<br><br>
+                <strong>练习3：</strong> 编写一个递归函数，计算斐波那契数列的第n项
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小结</strong>
+                <ul>
+                    <li>函数使用 def 关键字定义</li>
+                    <li>参数可以有默认值</li>
+                    <li>使用 return 语句返回值</li>
+                    <li>变量有局部作用域和全局作用域</li>
+                    <li>Lambda函数是简短的匿名函数</li>
+                    <li>递归函数可以调用自身解决问题</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="loops.html" class="btn btn-secondary">← 上一章</a>
+                <a href="oop.html" class="btn">下一章：面向对象 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教程 | 让编程学习变得简单有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

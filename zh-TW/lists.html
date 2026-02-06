@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python列表 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        .method-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .method-table th { background: #3498db; color: white; padding: 12px; text-align: left; }
+        .method-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        .method-table tr:hover { background: #f8f9fa; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基礎語法</a>
+                    <ul>
+                        <li><a href="data-types.html" class="sub-item">資料類型</a></li>
+                        <li><a href="strings.html" class="sub-item">字串</a></li>
+                        <li><a href="lists.html" class="sub-item active">列表</a></li>
+                        <li><a href="conditions.html" class="sub-item">條件判斷</a></li>
+                        <li><a href="loops.html" class="sub-item">迴圈</a></li>
+                    </ul>
+                </li>
+                <li><a href="functions.html">函數</a></li>
+                <li><a href="oop.html">物件導向</a></li>
+                <li><a href="modules.html">模組</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python列表詳解</h1>
+
+            <p>列表是Python中最常用的資料結構之一。它可以儲存多個專案，而且這些專案可以是不同的類型。</p>
+
+            <h2>建立列表</h2>
+
+            <p>列表使用方括號 <code>[]</code> 建立，專案之間用逗號分隔：</p>
+
+            <div class="code-block"><span class="comment"># 建立空列表</span>
+empty_list = []
+
+<span class="comment"># 建立包含數字的列表</span>
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="comment"># 建立包含字串的列表</span>
+fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+
+<span class="comment"># 混合類型列表</span>
+mixed = [<span class="number">1</span>, <span class="string">"Hello"</span>, <span class="keyword">True</span>, <span class="number">3.14</span>]
+
+<span class="comment"># 巢狀列表</span>
+nested = [[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]]</div>
+
+            <h2>存取列表元素</h2>
+
+            <p>使用索引來存取列表中的元素。索引從0開始：</p>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>, <span class="string">"葡萄"</span>]
+
+<span class="function">print</span>(fruits[<span class="number">0</span>])   <span class="comment"># 蘋果（第一個元素）</span>
+<span class="function">print</span>(fruits[<span class="number">1</span>])   <span class="comment"># 香蕉</span>
+<span class="function">print</span>(fruits[-<span class="number">1</span>])  <span class="comment"># 葡萄（最後一個元素）</span>
+<span class="function">print</span>(fruits[-<span class="number">2</span>])  <span class="comment"># 橙子</span></div>
+
+            <h2>列表切片</h2>
+
+            <p>使用切片可以取得列表的一部分：</p>
+
+            <div class="code-block">numbers = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+
+<span class="function">print</span>(numbers[<span class="number">2</span>:<span class="number">5</span>])   <span class="comment"># [2, 3, 4]</span>
+<span class="function">print</span>(numbers[:<span class="number">5</span>])    <span class="comment"># [0, 1, 2, 3, 4]</span>
+<span class="function">print</span>(numbers[<span class="number">5</span>:])    <span class="comment"># [5, 6, 7, 8, 9]</span>
+<span class="function">print</span>(numbers[::<span class="number">2</span>])   <span class="comment"># [0, 2, 4, 6, 8]（每隔一個）</span>
+<span class="function">print</span>(numbers[::-<span class="number">1</span>])  <span class="comment"># [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]（反轉）</span></div>
+
+            <h2>修改列表元素</h2>
+
+            <p>列表是可變的，可以透過索引修改元素：</p>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+fruits[<span class="number">1</span>] = <span class="string">"草莓"</span>
+<span class="function">print</span>(fruits)  <span class="comment"># ['蘋果', '草莓', '橙子']</span></div>
+
+            <h2>新增元素</h2>
+
+            <h3>append() - 新增到末尾</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>]
+fruits.<span class="function">append</span>(<span class="string">"橙子"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['蘋果', '香蕉', '橙子']</span></div>
+
+            <h3>insert() - 在指定位置插入</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>]
+fruits.<span class="function">insert</span>(<span class="number">1</span>, <span class="string">"橙子"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['蘋果', '橙子', '香蕉']</span></div>
+
+            <h3>extend() - 擴展列表</h3>
+
+            <div class="code-block">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+list2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+list1.<span class="function">extend</span>(list2)
+<span class="function">print</span>(list1)  <span class="comment"># [1, 2, 3, 4, 5, 6]</span></div>
+
+            <h2>刪除元素</h2>
+
+            <h3>remove() - 刪除指定值</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+fruits.<span class="function">remove</span>(<span class="string">"香蕉"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['蘋果', '橙子']</span></div>
+
+            <h3>pop() - 刪除並返回元素</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="comment"># 刪除最後一個元素</span>
+last = fruits.<span class="function">pop</span>()
+<span class="function">print</span>(last)    <span class="comment"># 橙子</span>
+<span class="function">print</span>(fruits)  <span class="comment"># ['蘋果', '香蕉']</span>
+
+<span class="comment"># 刪除指定位置的元素</span>
+fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+second = fruits.<span class="function">pop</span>(<span class="number">1</span>)
+<span class="function">print</span>(second)   <span class="comment"># 香蕉</span>
+<span class="function">print</span>(fruits)   <span class="comment"># ['蘋果', '橙子']</span></div>
+
+            <h3>del - 刪除指定位置</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="keyword">del</span> fruits[<span class="number">1</span>]
+<span class="function">print</span>(fruits)  <span class="comment"># ['蘋果', '橙子']</span>
+
+<span class="comment"># 刪除整個列表</span>
+<span class="keyword">del</span> fruits</div>
+
+            <h3>clear() - 清空列表</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+fruits.<span class="function">clear</span>()
+<span class="function">print</span>(fruits)  <span class="comment"># []</span></div>
+
+            <h2>列表操作</h2>
+
+            <h3>列表長度</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="function">print</span>(<span class="function">len</span>(fruits))  <span class="comment"># 3</span></div>
+
+            <h3>列表串接</h3>
+
+            <div class="code-block">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+list2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+combined = list1 + list2
+<span class="function">print</span>(combined)  <span class="comment"># [1, 2, 3, 4, 5, 6]</span></div>
+
+            <h3>列表重複</h3>
+
+            <div class="code-block">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+repeated = list1 * <span class="number">3</span>
+<span class="function">print</span>(repeated)  <span class="comment"># [1, 2, 3, 1, 2, 3, 1, 2, 3]</span></div>
+
+            <h3>檢查元素是否存在</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="function">print</span>(<span class="string">"香蕉"</span> <span class="keyword">in</span> fruits)   <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"葡萄"</span> <span class="keyword">in</span> fruits)   <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"葡萄"</span> <span class="keyword">not in</span> fruits)  <span class="comment"># True</span></div>
+
+            <h2>列表排序</h2>
+
+            <h3>sort() - 原地排序</h3>
+
+            <div class="code-block">numbers = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">6</span>]
+numbers.<span class="function">sort</span>()
+<span class="function">print</span>(numbers)  <span class="comment"># [1, 1, 2, 3, 4, 5, 6, 9]</span>
+
+<span class="comment"># 降序排序</span>
+numbers.<span class="function">sort</span>(reverse=<span class="keyword">True</span>)
+<span class="function">print</span>(numbers)  <span class="comment"># [9, 6, 5, 4, 3, 2, 1, 1]</span>
+
+<span class="comment"># 字串排序</span>
+fruits = [<span class="string">"banana"</span>, <span class="string">"apple"</span>, <span class="string">"cherry"</span>]
+fruits.<span class="function">sort</span>()
+<span class="function">print</span>(fruits)  <span class="comment"># ['apple', 'banana', 'cherry']</span></div>
+
+            <h3>sorted() - 返回新排序列表</h3>
+
+            <div class="code-block">numbers = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>]
+sorted_numbers = <span class="function">sorted</span>(numbers)
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [1, 1, 3, 4, 5]</span>
+<span class="function">print</span>(numbers)        <span class="comment"># [3, 1, 4, 1, 5]（原列表不變）</span></div>
+
+            <h2>列表反轉</h2>
+
+            <h3>reverse() - 原地反轉</h3>
+
+            <div class="code-block">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+numbers.<span class="function">reverse</span>()
+<span class="function">print</span>(numbers)  <span class="comment"># [5, 4, 3, 2, 1]</span></div>
+
+            <h3>使用切片反轉</h3>
+
+            <div class="code-block">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+reversed_numbers = numbers[::-<span class="number">1</span>]
+<span class="function">print</span>(reversed_numbers)  <span class="comment"># [5, 4, 3, 2, 1]</span></div>
+
+            <h2>列表複製</h2>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 直接使用 = 指定只是建立參考，不會複製列表。
+            </div>
+
+            <div class="code-block">original = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="comment"># 錯誤方式：只是建立參考</span>
+copy1 = original
+copy1[<span class="number">0</span>] = <span class="number">99</span>
+<span class="function">print</span>(original)  <span class="comment"># [99, 2, 3]（原列表也被修改了！）</span>
+
+<span class="comment"># 正確方式1：使用copy()</span>
+original = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+copy2 = original.<span class="function">copy</span>()
+copy2[<span class="number">0</span>] = <span class="number">99</span>
+<span class="function">print</span>(original)  <span class="comment"># [1, 2, 3]（原列表不變）</span>
+
+<span class="comment"># 正確方式2：使用list()</span>
+copy3 = <span class="function">list</span>(original)
+
+<span class="comment"># 正確方式3：使用切片</span>
+copy4 = original[:]</div>
+
+            <h2>列表推導式</h2>
+
+            <p>列表推導式是建立列表的簡潔方式：</p>
+
+            <div class="code-block"><span class="comment"># 傳統方式</span>
+squares = []
+<span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    squares.<span class="function">append</span>(x ** <span class="number">2</span>)
+
+<span class="comment"># 使用列表推導式</span>
+squares = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>)]
+<span class="function">print</span>(squares)  <span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="comment"># 帶條件的列表推導式</span>
+even_squares = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]
+<span class="function">print</span>(even_squares)  <span class="comment"># [0, 4, 16, 36, 64]</span>
+
+<span class="comment"># 處理字串</span>
+words = [<span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"python"</span>]
+uppercase = [word.<span class="function">upper</span>() <span class="keyword">for</span> word <span class="keyword">in</span> words]
+<span class="function">print</span>(uppercase)  <span class="comment"># ['HELLO', 'WORLD', 'PYTHON']</span></div>
+
+            <h2>列表常用方法總結</h2>
+
+            <table class="method-table">
+                <tr>
+                    <th>方法</th>
+                    <th>描述</th>
+                </tr>
+                <tr>
+                    <td>len(list)</td>
+                    <td>返回列表長度</td>
+                </tr>
+                <tr>
+                    <td>list.append(item)</td>
+                    <td>在末尾新增元素</td>
+                </tr>
+                <tr>
+                    <td>list.insert(index, item)</td>
+                    <td>在指定位置插入元素</td>
+                </tr>
+                <tr>
+                    <td>list.remove(item)</td>
+                    <td>刪除指定值的元素</td>
+                </tr>
+                <tr>
+                    <td>list.pop([index])</td>
+                    <td>刪除並返回元素</td>
+                </tr>
+                <tr>
+                    <td>list.clear()</td>
+                    <td>清空列表</td>
+                </tr>
+                <tr>
+                    <td>list.index(item)</td>
+                    <td>返回元素索引</td>
+                </tr>
+                <tr>
+                    <td>list.count(item)</td>
+                    <td>統計元素出現次數</td>
+                </tr>
+                <tr>
+                    <td>list.sort()</td>
+                    <td>原地排序列表</td>
+                </tr>
+                <tr>
+                    <td>list.reverse()</td>
+                    <td>原地反轉列表</td>
+                </tr>
+                <tr>
+                    <td>list.copy()</td>
+                    <td>複製列表</td>
+                </tr>
+            </table>
+
+            <h2>遍歷列表</h2>
+
+            <h3>使用for迴圈</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(fruit)</div>
+
+            <h3>使用enumerate()獲取索引</h3>
+
+            <div class="code-block">fruits = [<span class="string">"蘋果"</span>, <span class="string">"香蕉"</span>, <span class="string">"橙子"</span>]
+<span class="keyword">for</span> index, fruit <span class="keyword">in</span> <span class="function">enumerate</span>(fruits):
+    <span class="function">print</span>(<span class="string">f"{index}: {fruit}"</span>)</div>
+
+            <div class="output">0: 蘋果
+1: 香蕉
+2: 橙子</div>
+
+            <h2>練習題</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 編寫程式，找出列表中的最大值和最小值（不使用內建函數）<br><br>
+                <strong>練習2：</strong> 編寫程式，刪除列表中的所有重複元素<br><br>
+                <strong>練習3：</strong> 編寫程式，將兩個列表合併並排序
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小結</strong>
+                <ul>
+                    <li>列表是可變的序列類型，可以儲存不同類型的元素</li>
+                    <li>使用索引存取和修改元素</li>
+                    <li>append()、insert()、extend()用於新增元素</li>
+                    <li>remove()、pop()、del用於刪除元素</li>
+                    <li>列表推導式是建立列表的簡潔方式</li>
+                    <li>sort()和sorted()用於排序，reverse()用於反轉</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="strings.html" class="btn btn-secondary">← 上一章</a>
+                <a href="conditions.html" class="btn">下一章：條件判斷 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 讓程式設計學習變得簡單有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

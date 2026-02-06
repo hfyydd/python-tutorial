@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python函數 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基礎語法</a></li>
+                <li><a href="functions.html" class="active">函數</a></li>
+                <li><a href="oop.html">物件導向</a></li>
+                <li><a href="modules.html">模組</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python函數詳解</h1>
+
+            <p>函數是組織程式碼的基本方式。它將一段程式碼區塊封裝起來，可以重複使用，讓程式碼更加清晰和易於維護。</p>
+
+            <h2>什麼是函數？</h2>
+
+            <p>函數是一段可以重複使用的程式碼區塊，它接收輸入（參數），進行處理，然後返回輸出（返回值）。</p>
+
+            <div class="info-box">
+                <strong>💡 為什麼要使用函數？</strong>
+                <ul>
+                    <li><strong>程式碼複用：</strong> 避免重複編寫相同的程式碼</li>
+                    <li><strong>提高可讀性：</strong> 將複雜問題分解為小問題</li>
+                    <li><strong>便於維護：</strong> 修改函數只需改一處</li>
+                    <li><strong>模組化：</strong> 讓程式碼結構更清晰</li>
+                </ul>
+            </div>
+
+            <h2>定義函數</h2>
+
+            <p>在Python中，使用 <code>def</code> 關鍵字定義函數：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>():
+    <span class="string">"""這是一個簡單的問候函數"""</span>
+    <span class="function">print</span>(<span class="string">"Hello, Python!"</span>)
+
+<span class="comment"># 呼叫函數</span>
+<span class="function">greet</span>()</div>
+
+            <div class="output">Hello, Python!</div>
+
+            <h2>函數參數</h2>
+
+            <h3>位置參數</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet_user</span>(name):
+    <span class="function">print</span>(<span class="string">f"Hello, {name}!"</span>)
+
+<span class="function">greet_user</span>(<span class="string">"小明"</span>)
+<span class="function">greet_user</span>(<span class="string">"小紅"</span>)</div>
+
+            <div class="output">Hello, 小明!
+Hello, 小紅!</div>
+
+            <h3>多個參數</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"小明"</span>, <span class="string">"你好"</span>)
+<span class="function">greet</span>(<span class="string">"小紅"</span>, <span class="string">"早上好"</span>)</div>
+
+            <h3>預設參數</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting=<span class="string">"你好"</span>):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"小明"</span>)  <span class="comment"># 使用預設問候語</span>
+<span class="function">greet</span>(<span class="string">"小紅"</span>, <span class="string">"早上好"</span>)  <span class="comment"># 自訂問候語</span></div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> 預設參數必須放在非預設參數之後！
+            </div>
+
+            <h3>關鍵字參數</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">describe_pet</span>(animal, name):
+    <span class="function">print</span>(<span class="string">f"我有一隻{animal}，名字叫{name}"</span>)
+
+<span class="comment"># 使用關鍵字參數，順序可以改變</span>
+<span class="function">describe_pet</span>(animal=<span class="string">"貓"</span>, name=<span class="string">"咪咪"</span>)
+<span class="function">describe_pet</span>(name=<span class="string">"旺財"</span>, animal=<span class="string">"狗"</span>)</div>
+
+            <h2>返回值</h2>
+
+            <p>函數可以使用 <code>return</code> 語句返回值：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="keyword">return</span> a + b
+
+result = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)
+<span class="function">print</span>(result)  <span class="comment"># 8</span>
+
+<span class="comment"># 也可以直接在表達式中使用</span>
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">10</span>, <span class="number">20</span>))  <span class="comment"># 30</span></div>
+
+            <h3>返回多個值</h3>
+
+            <p>Python函數可以返回多個值（實際上是返回一個元組）：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">get_name</span>():
+    <span class="keyword">return</span> <span class="string">"李"</span>, <span class="string">"明"</span>
+
+first, last = <span class="function">get_name</span>()
+<span class="function">print</span>(first)  <span class="comment"># 李</span>
+<span class="function">print</span>(last)   <span class="comment"># 明</span>
+
+<span class="comment"># 也可以作為元組接收</span>
+name = <span class="function">get_name</span>()
+<span class="function">print</span>(name)  <span class="comment"># ('李', '明')</span></div>
+
+            <h2>函數文件字串</h2>
+
+            <p>使用三引號字串為函數添加文件：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">calculate_area</span>(radius):
+    <span class="string">"""
+    計算圓的面積
+
+    參數:
+        radius (float): 圓的半徑
+
+    返回:
+        float: 圓的面積
+    """</span>
+    <span class="keyword">import</span> math
+    <span class="keyword">return</span> math.pi * radius ** <span class="number">2</span>
+
+<span class="comment"># 查看函數文件</span>
+<span class="function">print</span>(calculate_area.__doc__)</div>
+
+            <h2>變數的作用域</h2>
+
+            <h3>局部變數</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">my_function</span>():
+    local_var = <span class="string">"我是局部變數"</span>
+    <span class="function">print</span>(local_var)
+
+<span class="function">my_function</span>()  <span class="comment"># 輸出: 我是局部變數</span>
+<span class="comment"># print(local_var)  # 錯誤！外部無法存取局部變數</span></div>
+
+            <h3>全域變數</h3>
+
+            <div class="code-block">global_var = <span class="string">"我是全域變數"</span>
+
+<span class="keyword">def</span> <span class="function">my_function</span>():
+    <span class="function">print</span>(global_var)  <span class="comment"># 可以存取全域變數</span>
+
+<span class="function">my_function</span>()  <span class="comment"># 輸出: 我是全域變數</span>
+<span class="function">print</span>(global_var)  <span class="comment"># 輸出: 我是全域變數</span></div>
+
+            <h3>修改全域變數</h3>
+
+            <div class="code-block">counter = <span class="number">0</span>
+
+<span class="keyword">def</span> <span class="function">increment</span>():
+    <span class="keyword">global</span> counter  <span class="comment"># 宣告使用全域變數</span>
+    counter += <span class="number">1</span>
+    <span class="function">print</span>(counter)
+
+<span class="function">increment</span>()  <span class="comment"># 1</span>
+<span class="function">increment</span>()  <span class="comment"># 2</span>
+<span class="function">print</span>(counter)  <span class="comment"># 2</span></div>
+
+            <h2>常用內建函數</h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">函數</th>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">描述</th>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">print()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">輸出資訊</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">len()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">返回長度</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">input()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">獲取使用者輸入</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">int(), float(), str()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">類型轉換</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">max(), min()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">最大值和最小值</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">sum()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">求和</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">range()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">產生數字序列</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">type()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">返回類型</td>
+                </tr>
+            </table>
+
+            <h2>Lambda函數</h2>
+
+            <p>Lambda函數是匿名的小函數，使用 <code>lambda</code> 關鍵字建立：</p>
+
+            <div class="code-block"><span class="comment"># 普通函數</span>
+<span class="keyword">def</span> <span class="function">add</span>(x, y):
+    <span class="keyword">return</span> x + y
+
+<span class="comment"># 等價的lambda函數</span>
+add_lambda = <span class="keyword">lambda</span> x, y: x + y
+
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">3</span>, <span class="number">5</span>))        <span class="comment"># 8</span>
+<span class="function">print</span>(<span class="function">add_lambda</span>(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment"># 8</span>
+
+<span class="comment"># 常用於短函數</span>
+numbers = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">2</span>]
+sorted_numbers = <span class="function">sorted</span>(numbers, key=<span class="keyword">lambda</span> x: -x)
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [9, 5, 3, 2, 1]</span></div>
+
+            <h2>遞迴函數</h2>
+
+            <p>遞迴函數是呼叫自身的函數。下面是計算階乘的例子：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">factorial</span>(n):
+    <span class="string">"""計算n的階乘"""</span>
+    <span class="keyword">if</span> n <= <span class="number">1</span>:  <span class="comment"># 基本情況</span>
+        <span class="keyword">return</span> <span class="number">1</span>
+    <span class="keyword">return</span> n * <span class="function">factorial</span>(n - <span class="number">1</span>)  <span class="comment"># 遞迴呼叫</span>
+
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">5</span>))  <span class="comment"># 120</span>
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">10</span>))  <span class="comment"># 3628800</span></div>
+
+            <h2>練習題</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 編寫一個函數，判斷一個數字是否為偶數<br><br>
+                <strong>練習2：</strong> 編寫一個函數，計算列表中所有數字的平均值<br><br>
+                <strong>練習3：</strong> 編寫一個遞迴函數，計算費波那契數列的第n項
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小結</strong>
+                <ul>
+                    <li>函數使用 def 關鍵字定義</li>
+                    <li>參數可以有預設值</li>
+                    <li>使用 return 語句返回值</li>
+                    <li>變數有局部作用域和全域作用域</li>
+                    <li>Lambda函數是簡短的匿名函數</li>
+                    <li>遞迴函數可以呼叫自身解決問題</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="loops.html" class="btn btn-secondary">← 上一章</a>
+                <a href="oop.html" class="btn">下一章：物件導向 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 讓程式設計學習變得簡單有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

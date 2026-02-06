@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Practice Projects - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        .project-box { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .project-box h3 { color: #2c3e50; margin-bottom: 10px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Install Python</a></li>
+                <li><a href="first-step.html">First Steps</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="oop.html">OOP</a></li>
+                <li><a href="modules.html">Modules</a></li>
+                <li><a href="advanced.html">Advanced</a></li>
+                <li><a href="practice.html" class="active">Practice</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python Practice Projects</h1>
+
+            <p>Theory is important, but practice is key to mastering programming! Here are some practice projects to help you consolidate what you've learned.</p>
+
+            <h2>Beginner Projects</h2>
+
+            <div class="project-box">
+                <h3>1. Number Guessing Game</h3>
+                <p>Practice: Loops, conditionals, random numbers</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Generate a random number between 1-100</li>
+                    <li>Let the user guess</li>
+                    <li>Give hints "too high" or "too low"</li>
+                    <li>Track number of attempts</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>2. Unit Converter</h3>
+                <p>Practice: Functions, dictionaries, user input</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Temperature conversion (Celsius/Fahrenheit/Kelvin)</li>
+                    <li>Length conversion (m/kilometers/miles/feet)</li>
+                    <li>Weight conversion (kg/pounds/ounces)</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>3. Todo List</h3>
+                <p>Practice: Lists, file operations</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Add tasks</li>
+                    <li>Mark tasks as complete</li>
+                    <li>Delete tasks</li>
+                    <li>Save to file</li>
+                </ul>
+            </div>
+
+            <h2>Intermediate Projects</h2>
+
+            <div class="project-box">
+                <h3>1. Expense Tracker</h3>
+                <p>Practice: Classes, files, exception handling</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Record income and expenses</li>
+                    <li>Category management</li>
+                    <li>Statistics reports</li>
+                    <li>Data persistence</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>2. Simple Calculator</h3>
+                <p>Practice: GUI, expression evaluation</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Basic operations</li>
+                    <li>Clear function</li>
+                    <li>History log</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>3. Password Generator</h3>
+                <p>Practice: String manipulation, random module</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Customizable length</li>
+                    <li>Include/exclude special characters</li>
+                    <li>Generate multiple passwords</li>
+                </ul>
+            </div>
+
+            <h2>Advanced Projects</h2>
+
+            <div class="project-box">
+                <h3>1. Web Scraper</h3>
+                <p>Practice: requests, BeautifulSoup, data processing</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Fetch web pages</li>
+                    <li>Extract data</li>
+                    <li>Save to CSV or database</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>2. Data Analysis Starter</h3>
+                <p>Practice: pandas, matplotlib, data visualization</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Load datasets</li>
+                    <li>Clean and process data</li>
+                    <li>Create charts and graphs</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>3. Simple Web Application</h3>
+                <p>Practice: Flask/Django, web frameworks</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>Create REST API</li>
+                    <li>Build user interface</li>
+                    <li>Database integration</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <strong>💡 Learning Tips:</strong>
+                <ul>
+                    <li>Start with simple projects and gradually increase difficulty</li>
+                    <li>Search for solutions when you encounter problems</li>
+                    <li>Read others' code to learn good programming habits</li>
+                    <li>Code every day to maintain your skills</li>
+                    <li>Join online communities and ask questions</li>
+                </ul>
+            </div>
+
+            <h2>Practice Resources</h2>
+
+            <ul style="margin: 20px 0 20px 30px;">
+                <li><a href="https://leetcode.com/" target="_blank">LeetCode</a> - Algorithm practice</li>
+                <li><a href="https://www.codewars.com/" target="_blank">Codewars</a> - Programming challenges</li>
+                <li><a href="https://github.com/" target="_blank">GitHub</a> - Open source projects</li>
+                <li><a href="https://www.hackerrank.com/" target="_blank">HackerRank</a> - Coding problems</li>
+                <li><a href="https://projecteuler.net/" target="_blank">Project Euler</a> - Math challenges</li>
+            </ul>
+
+            <h2>Recommended Learning Path</h2>
+
+            <div class="project-box">
+                <strong>Week 1-2:</strong> Complete all beginner projects<br>
+                <strong>Week 3-4:</strong> Work on intermediate projects<br>
+                <strong>Week 5-6:</strong> Explore advanced topics<br>
+                <strong>Week 7-8:</strong> Build your own unique project
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="advanced.html" class="btn btn-secondary">← Previous</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

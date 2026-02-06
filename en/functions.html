@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Functions - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Install Python</a></li>
+                <li><a href="first-step.html">First Steps</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="functions.html" class="active">Functions</a></li>
+                <li><a href="oop.html">OOP</a></li>
+                <li><a href="modules.html">Modules</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python Functions in Depth</h1>
+
+            <p>Functions are the basic way to organize code. They encapsulate code blocks for reuse, making code clearer and easier to maintain.</p>
+
+            <h2>What is a Function?</h2>
+
+            <p>A function is a reusable block of code that takes input (parameters), processes it, and returns output (return value).</p>
+
+            <div class="info-box">
+                <strong>💡 Why Use Functions?</strong>
+                <ul>
+                    <li><strong>Code Reuse:</strong> Avoid writing the same code repeatedly</li>
+                    <li><strong>Improve Readability:</strong> Break complex problems into smaller ones</li>
+                    <li><strong>Easier Maintenance:</strong> Changes only need to be made in one place</li>
+                    <li><strong>Modularity:</strong> Make code structure clearer</li>
+                </ul>
+            </div>
+
+            <h2>Defining Functions</h2>
+
+            <p>In Python, use the <code>def</code> keyword to define a function:</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>():
+    <span class="string">"""This is a simple greeting function"""</span>
+    <span class="function">print</span>(<span class="string">"Hello, Python!"</span>)
+
+<span class="comment"># Call the function</span>
+<span class="function">greet</span>()</div>
+
+            <div class="output">Hello, Python!</div>
+
+            <h2>Function Parameters</h2>
+
+            <h3>Positional Parameters</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet_user</span>(name):
+    <span class="function">print</span>(<span class="string">f"Hello, {name}!"</span>)
+
+<span class="function">greet_user</span>(<span class="string">"Alice"</span>)
+<span class="function">greet_user</span>(<span class="string">"Bob"</span>)</div>
+
+            <div class="output">Hello, Alice!
+Hello, Bob!</div>
+
+            <h3>Multiple Parameters</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"Alice"</span>, <span class="string">"Hello"</span>)
+<span class="function">greet</span>(<span class="string">"Bob"</span>, <span class="string">"Good morning"</span>)</div>
+
+            <h3>Default Parameters</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting=<span class="string">"Hello"</span>):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"Alice"</span>)  <span class="comment"># Use default greeting</span>
+<span class="function">greet</span>(<span class="string">"Bob"</span>, <span class="string">"Good morning"</span>)  <span class="comment"># Custom greeting</span></div>
+
+            <div class="warning-box">
+                <strong>⚠️ Note:</strong> Default parameters must come after non-default parameters!
+            </div>
+
+            <h3>Keyword Arguments</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">describe_pet</span>(animal, name):
+    <span class="function">print</span>(<span class="string">f"I have a {animal} named {name}"</span>)
+
+<span class="comment"># Use keyword arguments, order can be changed</span>
+<span class="function">describe_pet</span>(animal=<span class="string">"cat"</span>, name=<span class="string">"Whiskers"</span>)
+<span class="function">describe_pet</span>(name=<span class="string">"Fido"</span>, animal=<span class="string">"dog"</span>)</div>
+
+            <h2>Return Values</h2>
+
+            <p>Functions can use the <code>return</code> statement to return values:</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="keyword">return</span> a + b
+
+result = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)
+<span class="function">print</span>(result)  <span class="comment"># 8</span>
+
+<span class="comment"># Can also be used directly in expressions</span>
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">10</span>, <span class="number">20</span>))  <span class="comment"># 30</span></div>
+
+            <h3>Returning Multiple Values</h3>
+
+            <p>Python functions can return multiple values (actually returns a tuple):</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">get_name</span>():
+    <span class="keyword">return</span> <span class="string">"Lee"</span>, <span class="string">"Ming"</span>
+
+first, last = <span class="function">get_name</span>()
+<span class="function">print</span>(first)  <span class="comment"># Lee</span>
+<span class="function">print</span>(last)   <span class="comment"># Ming</span>
+
+<span class="comment"># Can also receive as a tuple</span>
+name = <span class="function">get_name</span>()
+<span class="function">print</span>(name)  <span class="comment"># ('Lee', 'Ming')</span></div>
+
+            <h2>Function Docstrings</h2>
+
+            <p>Use triple-quoted strings to add documentation to functions:</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">calculate_area</span>(radius):
+    <span class="string">"""
+    Calculate the area of a circle
+
+    Args:
+        radius (float): The radius of the circle
+
+    Returns:
+        float: The area of the circle
+    """</span>
+    <span class="keyword">import</span> math
+    <span class="keyword">return</span> math.pi * radius ** <span class="number">2</span>
+
+<span class="comment"># View function documentation</span>
+<span class="function">print</span>(calculate_area.__doc__)</div>
+
+            <h2>Variable Scope</h2>
+
+            <h3>Local Variables</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">my_function</span>():
+    local_var = <span class="string">"I am a local variable"</span>
+    <span class="function">print</span>(local_var)
+
+<span class="function">my_function</span>()  <span class="comment"># Output: I am a local variable</span>
+<span class="comment"># print(local_var)  # Error! Cannot access local variable from outside</span></div>
+
+            <h3>Global Variables</h3>
+
+            <div class="code-block">global_var = <span class="string">"I am a global variable"</span>
+
+<span class="keyword">def</span> <span class="function">my_function</span>():
+    <span class="function">print</span>(global_var)  <span class="comment"># Can access global variable</span>
+
+<span class="function">my_function</span>()  <span class="comment"># Output: I am a global variable</span>
+<span class="function">print</span>(global_var)  <span class="comment"># Output: I am a global variable</span></div>
+
+            <h3>Modifying Global Variables</h3>
+
+            <div class="code-block">counter = <span class="number">0</span>
+
+<span class="keyword">def</span> <span class="function">increment</span>():
+    <span class="keyword">global</span> counter  <span class="comment"># Declare using global variable</span>
+    counter += <span class="number">1</span>
+    <span class="function">print</span>(counter)
+
+<span class="function">increment</span>()  <span class="comment"># 1</span>
+<span class="function">increment</span>()  <span class="comment"># 2</span>
+<span class="function">print</span>(counter)  <span class="comment"># 2</span></div>
+
+            <h2>Common Built-in Functions</h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">Function</th>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">Description</th>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">print()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Output information</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">len()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Return length</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">input()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Get user input</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">int(), float(), str()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Type conversion</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">max(), min()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Maximum and minimum</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">sum()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Summation</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">range()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Generate number sequence</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">type()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">Return type</td>
+                </tr>
+            </table>
+
+            <h2>Lambda Functions</h2>
+
+            <p>Lambda functions are anonymous small functions created with the <code>lambda</code> keyword:</p>
+
+            <div class="code-block"><span class="comment"># Regular function</span>
+<span class="keyword">def</span> <span class="function">add</span>(x, y):
+    <span class="keyword">return</span> x + y
+
+<span class="comment"># Equivalent lambda function</span>
+add_lambda = <span class="keyword">lambda</span> x, y: x + y
+
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">3</span>, <span class="number">5</span>))        <span class="comment"># 8</span>
+<span class="function">print</span>(<span class="function">add_lambda</span>(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment"># 8</span>
+
+<span class="comment"># Commonly used for short functions</span>
+numbers = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">2</span>]
+sorted_numbers = <span class="function">sorted</span>(numbers, key=<span class="keyword">lambda</span> x: -x)
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [9, 5, 3, 2, 1]</span></div>
+
+            <h2>Recursive Functions</h2>
+
+            <p>Recursive functions call themselves. Here's an example of calculating factorial:</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">factorial</span>(n):
+    <span class="string">"""Calculate factorial of n"""</span>
+    <span class="keyword">if</span> n <= <span class="number">1</span>:  <span class="comment"># Base case</span>
+        <span class="keyword">return</span> <span class="number">1</span>
+    <span class="keyword">return</span> n * <span class="function">factorial</span>(n - <span class="number">1</span>)  <span class="comment"># Recursive call</span>
+
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">5</span>))   <span class="comment"># 120</span>
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">10</span>))  <span class="comment"># 3628800</span></div>
+
+            <h2>Exercises</h2>
+
+            <div class="info-box">
+                <strong>Exercise 1:</strong> Write a function to check if a number is even<br><br>
+                <strong>Exercise 2:</strong> Write a function to calculate the average of all numbers in a list<br><br>
+                <strong>Exercise 3:</strong> Write a recursive function to calculate the nth Fibonacci number
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Summary</strong>
+                <ul>
+                    <li>Functions are defined using the def keyword</li>
+                    <li>Parameters can have default values</li>
+                    <li>Use the return statement to return values</li>
+                    <li>Variables have local and global scope</li>
+                    <li>Lambda functions are short anonymous functions</li>
+                    <li>Recursive functions can call themselves to solve problems</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="loops.html" class="btn btn-secondary">← Previous</a>
+                <a href="oop.html" class="btn">Next: OOP →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python関数 - Pythonチュートリアル</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', 'Osaka-Mono', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', 'Osaka-Mono', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Pythonチュートリアル</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 目次</h3>
+            <ul>
+                <li><a href="../index.html">はじめに</a></li>
+                <li><a href="install.html">Pythonのインストール</a></li>
+                <li><a href="first-step.html">最初のステップ</a></li>
+                <li><a href="basics.html">基本構文</a></li>
+                <li><a href="functions.html" class="active">関数</a></li>
+                <li><a href="oop.html">オブジェクト指向</a></li>
+                <li><a href="modules.html">モジュール</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python関数詳解</h1>
+
+            <p>関数はコードを組織する基本的な方法です。コードブロックをカプセル化して再利用できるようにし、コードをより明確で保守しやすくします。</p>
+
+            <h2>関数とは？</h2>
+
+            <p>関数は再利用可能なコードブロックで、入力（パラメータ）を受け取り、処理を行い、出力（戻り値）を返します。</p>
+
+            <div class="info-box">
+                <strong>💡 なぜ関数を使うのか？</strong>
+                <ul>
+                    <li><strong>コードの再利用：</strong> 同じコードを何度も書くのを避ける</li>
+                    <li><strong>可読性の向上：</strong> 複雑な問題を小さな問題に分解する</li>
+                    <li><strong>保守性の向上：</strong> 変更は1箇所だけで済む</li>
+                    <li><strong>モジュール化：</strong> コード構造を明確にする</li>
+                </ul>
+            </div>
+
+            <h2>関数の定義</h2>
+
+            <p>Pythonでは、<code>def</code>キーワードを使って関数を定義します：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>():
+    <span class="string">"""これはシンプルな挨拶関数です"""</span>
+    <span class="function">print</span>(<span class="string">"Hello, Python!"</span>)
+
+<span class="comment"># 関数を呼び出す</span>
+<span class="function">greet</span>()</div>
+
+            <div class="output">Hello, Python!</div>
+
+            <h2>関数のパラメータ</h2>
+
+            <h3>位置引数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet_user</span>(name):
+    <span class="function">print</span>(<span class="string">f"Hello, {name}!"</span>)
+
+<span class="function">greet_user</span>(<span class="string">"太郎"</span>)
+<span class="function">greet_user</span>(<span class="string">"花子"</span>)</div>
+
+            <div class="output">Hello, 太郎!
+Hello, 花子!</div>
+
+            <h3>複数のパラメータ</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"太郎"</span>, <span class="string">"こんにちは"</span>)
+<span class="function">greet</span>(<span class="string">"花子"</span>, <span class="string">"おはよう"</span>)</div>
+
+            <h3>デフォルトパラメータ</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">greet</span>(name, greeting=<span class="string">"こんにちは"</span>):
+    <span class="function">print</span>(<span class="string">f"{greeting}, {name}!"</span>)
+
+<span class="function">greet</span>(<span class="string">"太郎"</span>)  <span class="comment"># デフォルトの挨拶を使用</span>
+<span class="function">greet</span>(<span class="string">"花子"</span>, <span class="string">"おはよう"</span>)  <span class="comment"># カスタム挨拶</span></div>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> デフォルトパラメータは非デフォルトパラメータの後になければなりません！
+            </div>
+
+            <h3>キーワード引数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">describe_pet</span>(animal, name):
+    <span class="function">print</span>(<span class="string">f"{animal}を飼っていて、名前は{name}です"</span>)
+
+<span class="comment"># キーワード引数を使用、順序を変更可能</span>
+<span class="function">describe_pet</span>(animal=<span class="string">"猫"</span>, name=<span class="string">"タマ"</span>)
+<span class="function">describe_pet</span>(name=<span class="string">"ポチ"</span>, animal=<span class="string">"犬"</span>)</div>
+
+            <h2>戻り値</h2>
+
+            <p>関数は<code>return</code>文を使って値を返すことができます：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">add</span>(a, b):
+    <span class="keyword">return</span> a + b
+
+result = <span class="function">add</span>(<span class="number">5</span>, <span class="number">3</span>)
+<span class="function">print</span>(result)  <span class="comment"># 8</span>
+
+<span class="comment"># 式の中で直接使用することも可能</span>
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">10</span>, <span class="number">20</span>))  <span class="comment"># 30</span></div>
+
+            <h3>複数の値を返す</h3>
+
+            <p>Python関数は複数の値を返すことができます（実際はタプルを返します）：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">get_name</span>():
+    <span class="keyword">return</span> <span class="string">"田中"</span>, <span class="string">"太郎"</span>
+
+first, last = <span class="function">get_name</span>()
+<span class="function">print</span>(first)  <span class="comment"># 田中</span>
+<span class="function">print</span>(last)   <span class="comment"># 太郎</span>
+
+<span class="comment"># タプルとして受け取ることも可能</span>
+name = <span class="function">get_name</span>()
+<span class="function">print</span>(name)  <span class="comment"># ('田中', '太郎')</span></div>
+
+            <h2>関数のドキュメント文字列</h2>
+
+            <p>三重引用符文字列を使って関数にドキュメントを追加できます：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">calculate_area</span>(radius):
+    <span class="string">"""
+    円の面積を計算する
+
+    引数:
+        radius (float): 円の半径
+
+    戻り値:
+        float: 円の面積
+    """</span>
+    <span class="keyword">import</span> math
+    <span class="keyword">return</span> math.pi * radius ** <span class="number">2</span>
+
+<span class="comment"># 関数ドキュメントを表示</span>
+<span class="function">print</span>(calculate_area.__doc__)</div>
+
+            <h2>変数のスコープ</h2>
+
+            <h3>ローカル変数</h3>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">my_function</span>():
+    local_var = <span class="string">"私はローカル変数です"</span>
+    <span class="function">print</span>(local_var)
+
+<span class="function">my_function</span>()  <span class="comment"># 出力: 私はローカル変数です</span>
+<span class="comment"># print(local_var)  # エラー！外部からローカル変数にはアクセスできません</span></div>
+
+            <h3>グローバル変数</h3>
+
+            <div class="code-block">global_var = <span class="string">"私はグローバル変数です"</span>
+
+<span class="keyword">def</span> <span class="function">my_function</span>():
+    <span class="function">print</span>(global_var)  <span class="comment"># グローバル変数にアクセス可能</span>
+
+<span class="function">my_function</span>()  <span class="comment"># 出力: 私はグローバル変数です</span>
+<span class="function">print</span>(global_var)  <span class="comment"># 出力: 私はグローバル変数です</span></div>
+
+            <h3>グローバル変数の変更</h3>
+
+            <div class="code-block">counter = <span class="number">0</span>
+
+<span class="keyword">def</span> <span class="function">increment</span>():
+    <span class="keyword">global</span> counter  <span class="comment"># グローバル変数を使用することを宣言</span>
+    counter += <span class="number">1</span>
+    <span class="function">print</span>(counter)
+
+<span class="function">increment</span>()  <span class="comment"># 1</span>
+<span class="function">increment</span>()  <span class="comment"># 2</span>
+<span class="function">print</span>(counter)  <span class="comment"># 2</span></div>
+
+            <h2>一般的な組み込み関数</h2>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">関数</th>
+                    <th style="background: #3498db; color: white; padding: 12px; text-align: left;">説明</th>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">print()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">情報を出力</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">len()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">長さを返す</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">input()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">ユーザー入力を取得</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">int(), float(), str()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">型変換</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">max(), min()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">最大値と最小値</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">sum()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">合計</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">range()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">数値シーケンスを生成</td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">type()</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #eee;">型を返す</td>
+                </tr>
+            </table>
+
+            <h2>Lambda関数</h2>
+
+            <p>Lambda関数は<code>lambda</code>キーワードで作成される匿名の小さな関数です：</p>
+
+            <div class="code-block"><span class="comment"># 通常の関数</span>
+<span class="keyword">def</span> <span class="function">add</span>(x, y):
+    <span class="keyword">return</span> x + y
+
+<span class="comment"># 等価なlambda関数</span>
+add_lambda = <span class="keyword">lambda</span> x, y: x + y
+
+<span class="function">print</span>(<span class="function">add</span>(<span class="number">3</span>, <span class="number">5</span>))        <span class="comment"># 8</span>
+<span class="function">print</span>(<span class="function">add_lambda</span>(<span class="number">3</span>, <span class="number">5</span>))  <span class="comment"># 8</span>
+
+<span class="comment"># 短い関数によく使われる</span>
+numbers = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">9</span>, <span class="number">2</span>]
+sorted_numbers = <span class="function">sorted</span>(numbers, key=<span class="keyword">lambda</span> x: -x)
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [9, 5, 3, 2, 1]</span></div>
+
+            <h2>再帰関数</h2>
+
+            <p>再帰関数は自分自身を呼び出す関数です。以下は階乗を計算する例です：</p>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">factorial</span>(n):
+    <span class="string">"""nの階乗を計算"""</span>
+    <span class="keyword">if</span> n <= <span class="number">1</span>:  <span class="comment"># ベースケース</span>
+        <span class="keyword">return</span> <span class="number">1</span>
+    <span class="keyword">return</span> n * <span class="function">factorial</span>(n - <span class="number">1</span>)  <span class="comment"># 再帰呼び出し</span>
+
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">5</span>))   <span class="comment"># 120</span>
+<span class="function">print</span>(<span class="function">factorial</span>(<span class="number">10</span>))  <span class="comment"># 3628800</span></div>
+
+            <h2>練習問題</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 数値が偶数かどうかをチェックする関数を書いてください<br><br>
+                <strong>練習2：</strong> リスト内のすべての数値の平均を計算する関数を書いてください<br><br>
+                <strong>練習3：</strong> フィボナッチ数列の第n項を計算する再帰関数を書いてください
+            </div>
+
+            <div class="success-box">
+                <strong>✅ まとめ</strong>
+                <ul>
+                    <li>関数はdefキーワードで定義されます</li>
+                    <li>パラメータはデフォルト値を持つことができます</li>
+                    <li>return文を使って値を返します</li>
+                    <li>変数にはローカルスコープとグローバルスコープがあります</li>
+                    <li>Lambda関数は短い匿名関数です</li>
+                    <li>再帰関数は自分自身を呼び出して問題を解決できます</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="loops.html" class="btn btn-secondary">← 前の章</a>
+                <a href="oop.html" class="btn">次の章：オブジェクト指向 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Pythonチュートリアル | プログラミング学習をシンプルに楽しく</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

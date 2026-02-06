@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python模块 - Python教程</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教程</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教程目录</h3>
+            <ul>
+                <li><a href="../index.html">简介</a></li>
+                <li><a href="install.html">安装Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基础语法</a></li>
+                <li><a href="functions.html">函数</a></li>
+                <li><a href="oop.html">面向对象</a></li>
+                <li><a href="modules.html" class="active">模块</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python模块详解</h1>
+
+            <p>模块是包含Python定义和语句的文件。使用模块可以组织代码，使代码更易于维护和重用。</p>
+
+            <h2>什么是模块？</h2>
+
+            <p>在Python中，模块就是一个包含所有你定义的函数和变量的文件，其后缀名是.py。</p>
+
+            <div class="info-box">
+                <strong>💡 为什么要使用模块？</strong>
+                <ul>
+                    <li><strong>代码组织：</strong> 将相关功能组织在一起</li>
+                    <li><strong>代码重用：</strong> 在多个程序中使用相同代码</li>
+                    <li><strong>命名空间：</strong> 避免变量名冲突</li>
+                    <li><strong>可维护性：</strong> 更容易定位和修复问题</li>
+                </ul>
+            </div>
+
+            <h2>导入模块</h2>
+
+            <h3>导入整个模块</h3>
+
+            <div class="code-block"><span class="comment"># 导入整个模块</span>
+<span class="keyword">import</span> math
+
+<span class="comment"># 使用模块名作为前缀</span>
+<span class="function">print</span>(math.pi)       <span class="comment"># 3.141592653589793</span>
+<span class="function">print</span>(math.<span class="function">sqrt</span>(<span class="number">16</span>))  <span class="comment"># 4.0</span>
+<span class="function">print</span>(math.<span class="function">pow</span>(<span class="number">2</span>, <span class="number">3</span>))   <span class="comment"># 8.0</span></div>
+
+            <h3>导入模块并使用别名</h3>
+
+            <div class="code-block"><span class="keyword">import</span> math <span class="keyword">as</span> m
+
+<span class="function">print</span>(m.pi)       <span class="comment"># 3.141592653589793</span>
+<span class="function">print</span>(m.<span class="function">sqrt</span>(<span class="number">16</span>))  <span class="comment"># 4.0</span></div>
+
+            <h3>导入模块中的特定内容</h3>
+
+            <div class="code-block"><span class="keyword">from</span> math <span class="keyword">import</span> pi, sqrt
+
+<span class="function">print</span>(pi)         <span class="comment"># 3.141592653589793（不需要前缀）</span>
+<span class="function">print</span>(<span class="function">sqrt</span>(<span class="number">25</span>))  <span class="comment"># 5.0</span></div>
+
+            <h3>导入模块中的所有内容</h3>
+
+            <div class="code-block"><span class="keyword">from</span> math <span class="keyword">import</span> *
+
+<span class="function">print</span>(pi)    <span class="comment"># 3.141592653589793</span>
+<span class="function">print</span>(<span class="function">sqrt</span>(<span class="number">36</span>))  <span class="comment"># 6.0</span></div>
+
+            <div class="info-box">
+                <strong>💡 注意：</strong> 不推荐使用 <code>from module import *</code>，因为它会导入所有内容，可能导致命名冲突。
+            </div>
+
+            <h2>常用内置模块</h2>
+
+            <h3>random - 随机数</h3>
+
+            <div class="code-block"><span class="keyword">import</span> random
+
+<span class="function">print</span>(random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">10</span>))    <span class="comment"># 1-10之间的随机整数</span>
+<span class="function">print</span>(random.<span class="function">random</span>())          <span class="comment"># 0-1之间的随机浮点数</span>
+<span class="function">print</span>(random.<span class="function">choice</span>([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]))   <span class="comment"># 随机选择一个元素</span>
+
+<span class="comment"># 洗牌列表</span>
+cards = [<span class="string">"A"</span>, <span class="string">"K"</span>, <span class="string">"Q"</span>, <span class="string">"J"</span>]
+random.<span class="function">shuffle</span>(cards)
+<span class="function">print</span>(cards)  <span class="comment"># 打乱顺序</span></div>
+
+            <h3>datetime - 日期和时间</h3>
+
+            <div class="code-block"><span class="keyword">from</span> datetime <span class="keyword">import</span> date, datetime, timedelta
+
+<span class="comment"># 当前日期</span>
+today = date.<span class="function">today</span>()
+<span class="function">print</span>(today)  <span class="comment"># 2024-XX-XX</span>
+
+<span class="comment"># 当前时间</span>
+now = datetime.<span class="function">now</span>()
+<span class="function">print</span>(now)  <span class="comment"># 2024-XX-XX XX:XX:XX.XXXXXX</span>
+
+<span class="comment"># 格式化日期</span>
+<span class="function">print</span>(now.<span class="function">strftime</span>(<span class="string">"%Y-%m-%d %H:%M:%S"</span>))
+
+<span class="comment"># 日期计算</span>
+tomorrow = today + timedelta(<span class="function">days</span>=<span class="number">1</span>)
+<span class="function">print</span>(tomorrow)  <span class="comment"># 明天的日期</span></div>
+
+            <h3>os - 操作系统接口</h3>
+
+            <div class="code-block"><span class="keyword">import</span> os
+
+<span class="comment"># 获取当前工作目录</span>
+<span class="function">print</span>(os.<span class="function">getcwd</span>())
+
+<span class="comment"># 列出目录内容</span>
+<span class="function">print</span>(os.<span class="function">listdir</span>(<span class="string">"."</span>))
+
+<span class="comment"># 创建目录</span>
+<span class="comment"># os.mkdir("new_folder")</span>
+
+<span class="comment"># 路径操作</span>
+<span class="function">print</span>(os.path.<span class="function">join</span>(<span class="string">"folder"</span>, <span class="string">"file.txt"</span>))  <span class="comment"># folder/file.txt</span></div>
+
+            <h3>json - JSON数据处理</h3>
+
+            <div class="code-block"><span class="keyword">import</span> json
+
+<span class="comment"># Python对象转JSON字符串</span>
+data = {<span class="string">"name"</span>: <span class="string">"小明"</span>, <span class="string">"age"</span>: <span class="number">25</span>}
+json_str = json.<span class="function">dumps</span>(data)
+<span class="function">print</span>(json_str)  <span class="comment"># {"name": "小明", "age": 25}</span>
+
+<span class="comment"># JSON字符串转Python对象</span>
+parsed = json.<span class="function">loads</span>(json_str)
+<span class="function">print</span>(parsed[<span class="string">"name"</span>])  <span class="comment"># 小明</span></div>
+
+            <h2>创建自定义模块</h2>
+
+            <p>你可以创建自己的模块。只需将代码保存为.py文件：</p>
+
+            <div class="code-block"><span class="comment"># mymodule.py</span>
+<span class="keyword">def</span> <span class="function">greet</span>(name):
+    <span class="keyword">return</span> <span class="string">f"Hello, {name}!"</span>
+
+PI = <span class="number">3.14159</span>
+
+<span class="comment"># 在另一个文件中使用</span>
+<span class="keyword">import</span> mymodule
+
+<span class="function">print</span>(mymodule.<span class="function">greet</span>(<span class="string">"Python"</span>))  <span class="comment"># Hello, Python!</span>
+<span class="function">print</span>(mymodule.PI)                   <span class="comment"># 3.14159</span></div>
+
+            <h2>dir()函数</h2>
+
+            <p>使用dir()函数可以查看模块中所有可用的属性和方法：</p>
+
+            <div class="code-block"><span class="keyword">import</span> math
+
+<span class="comment"># 查看math模块的所有属性和方法</span>
+<span class="function">print</span>(<span class="function">dir</span>(math))</div>
+
+            <div class="output">['__doc__', '__loader__', '__name__', '__package__', '__spec__', 'acos', 'acosh', 'asin', 'asinh', 'atan', 'atan2', 'atanh', 'ceil', 'copysign', 'cos', 'cosh', 'degrees', 'e', 'erf', 'erfc', 'exp', 'expm1', 'fabs', 'factorial', 'floor', 'fmod', 'frexp', 'fsum', 'gamma', 'gcd', 'hypot', 'inf', 'isclose', 'isfinite', 'isinf', 'isnan', 'ldexp', 'lgamma', 'log', 'log10', 'log1p', 'log2', 'modf', 'nan', 'perm', 'pi', 'pow', 'prod', 'radians', 'remainder', 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'trunc', 'tau']</div>
+
+            <h2>练习题</h2>
+
+            <div class="info-box">
+                <strong>练习1：</strong> 编写程序生成一个包含10个随机数的列表，并找出最大值<br><br>
+                <strong>练习2：</strong> 编写程序计算从现在起100天后的日期<br><br>
+                <strong>练习3：</strong> 创建一个包含工具函数的自定义模块
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小结</strong>
+                <ul>
+                    <li>模块是包含Python定义和语句的文件</li>
+                    <li>使用import语句导入模块</li>
+                    <li>Python提供了丰富的内置模块</li>
+                    <li>可以创建自定义模块来组织代码</li>
+                    <li>使用dir()函数查看模块内容</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="oop.html" class="btn btn-secondary">← 上一章</a>
+            <a href="advanced.html" class="btn">下一章：进阶 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教程 | 让编程学习变得简单有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

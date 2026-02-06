@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python OOP - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Install Python</a></li>
+                <li><a href="first-step.html">First Steps</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="oop.html" class="active">OOP</a></li>
+                <li><a href="modules.html">Modules</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python Object-Oriented Programming</h1>
+
+            <p>Object-Oriented Programming (OOP) is a programming paradigm that uses "objects" to design software. Python is an object-oriented language.</p>
+
+            <h2>Basic OOP Concepts</h2>
+
+            <div class="info-box">
+                <strong>💡 Core OOP Concepts:</strong>
+                <ul>
+                    <li><strong>Class:</strong> A blueprint or template for creating objects</li>
+                    <li><strong>Object:</strong> An instance of a class</li>
+                    <li><strong>Attribute:</strong> Data associated with an object</li>
+                    <li><strong>Method:</strong> Behavior associated with an object</li>
+                </ul>
+            </div>
+
+            <h2>Defining Classes</h2>
+
+            <p>Use the <code>class</code> keyword to define a class:</p>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">Dog</span>:
+    <span class="string">"""A class representing a dog"""</span>
+
+    <span class="comment"># Class attribute</span>
+    species = <span class="string">"Mammal"</span>
+
+    <span class="comment"># Initialization method (constructor)</span>
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, name, age):
+        self.name = name  <span class="comment"># Instance attribute</span>
+        self.age = age
+
+    <span class="comment"># Instance method</span>
+    <span class="keyword">def</span> <span class="function">bark</span>(self):
+        <span class="function">print</span>(<span class="string">f"{self.name} says Woof!"</span>)
+
+    <span class="keyword">def</span> <span class="function">describe</span>(self):
+        <span class="function">print</span>(<span class="string">f"{self.name} is {self.age} years old"</span>)</div>
+
+            <h2>Creating Objects</h2>
+
+            <div class="code-block"><span class="comment"># Create objects (instantiation)</span>
+dog1 = <span class="function">Dog</span>(<span class="string">"Buddy"</span>, <span class="number">3</span>)
+dog2 = <span class="function">Dog</span>(<span class="string">"Max"</span>, <span class="number">2</span>)
+
+<span class="comment"># Call methods</span>
+dog1.<span class="function">bark</span>()      <span class="comment"># Buddy says Woof!</span>
+dog1.<span class="function">describe</span>()  <span class="comment"># Buddy is 3 years old</span>
+
+<span class="comment"># Access attributes</span>
+<span class="function">print</span>(dog2.name)  <span class="comment"># Max</span>
+<span class="function">print</span>(dog2.species)  <span class="comment"># Mammal</span></div>
+
+            <h2>The self Parameter</h2>
+
+            <p><code>self</code> represents the object itself. It must be the first parameter of class methods:</p>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">Person</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, name):
+        self.name = name
+
+    <span class="keyword">def</span> <span class="function">say_hello</span>(self):
+        <span class="function">print</span>(<span class="string">f"Hello, I'm {self.name}"</span>)
+
+person = <span class="function">Person</span>(<span class="string">"Alice"</span>)
+person.<span class="function">say_hello</span>()  <span class="comment"># Hello, I'm Alice</span></div>
+
+            <h2>Class Methods and Static Methods</h2>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">MathUtils</span>:
+    <span class="comment"># Class method</span>
+    <span class="keyword">@classmethod</span>
+    <span class="keyword">def</span> <span class="function">get_pi</span>(cls):
+        <span class="keyword">return</span> <span class="number">3.14159</span>
+
+    <span class="comment"># Static method</span>
+    <span class="keyword">@staticmethod</span>
+    <span class="keyword">def</span> <span class="function">add</span>(a, b):
+        <span class="keyword">return</span> a + b
+
+<span class="comment"># Call class method</span>
+<span class="function">print</span>(<span class="function">MathUtils.get_pi</span>())  <span class="comment"># 3.14159</span>
+
+<span class="comment"># Call static method</span>
+<span class="function">print</span>(<span class="function">MathUtils.add</span>(<span class="number">5</span>, <span class="number">3</span>))  <span class="comment"># 8</span></div>
+
+            <h2>Inheritance</h2>
+
+            <p>Inheritance allows us to create a new class that inherits attributes and methods from an existing class:</p>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">Animal</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, name):
+        self.name = name
+
+    <span class="keyword">def</span> <span class="function">eat</span>(self):
+        <span class="function">print</span>(<span class="string">f"{self.name} is eating"</span>)
+
+<span class="comment"># Dog class inherits from Animal</span>
+<span class="keyword">class</span> <span class="function">Dog</span>(<span class="function">Animal</span>):
+    <span class="keyword">def</span> <span class="function">bark</span>(self):
+        <span class="function">print</span>(<span class="string">f"{self.name} says Woof!"</span>)
+
+<span class="comment"># Create Dog object</span>
+dog = <span class="function">Dog</span>(<span class="string">"Buddy"</span>)
+dog.<span class="function">eat</span>()   <span class="comment"># Inherited method: Buddy is eating</span>
+dog.<span class="function">bark</span>()  <span class="comment"># Own method: Buddy says Woof!</span></div>
+
+            <h2>Method Overriding</h2>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">Animal</span>:
+    <span class="keyword">def</span> <span class="function">speak</span>(self):
+        <span class="function">print</span>(<span class="string">"Animal makes a sound"</span>)
+
+<span class="keyword">class</span> <span class="function">Cat</span>(<span class="function">Animal</span>):
+    <span class="comment"># Override parent method</span>
+    <span class="keyword">def</span> <span class="function">speak</span>(self):
+        <span class="function">print</span>(<span class="string">"Meow"</span>)
+
+cat = <span class="function">Cat</span>()
+cat.<span class="function">speak</span>()  <span class="comment"># Meow</span></div>
+
+            <h2>Encapsulation</h2>
+
+            <p>Use underscores to indicate private attributes and methods:</p>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">BankAccount</span>:
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, balance):
+        self.__balance = balance  <span class="comment"># Private attribute</span>
+
+    <span class="comment"># Provide methods to access private attributes</span>
+    <span class="keyword">def</span> <span class="function">get_balance</span>(self):
+        <span class="keyword">return</span> self.__balance
+
+    <span class="keyword">def</span> <span class="function">deposit</span>(self, amount):
+        <span class="keyword">if</span> amount > <span class="number">0</span>:
+            self.__balance += amount
+
+account = <span class="function">BankAccount</span>(<span class="number">1000</span>)
+<span class="function">print</span>(account.<span class="function">get_balance</span>())  <span class="comment"># 1000</span>
+account.<span class="function">deposit</span>(<span class="number">500</span>)
+<span class="function">print</span>(account.<span class="function">get_balance</span>())  <span class="comment"># 1500</span></div>
+
+            <h2>Polymorphism</h2>
+
+            <div class="code-block"><span class="keyword">class</span> <span class="function">Shape</span>:
+    <span class="keyword">def</span> <span class="function">area</span>(self):
+        <span class="keyword">pass</span>
+
+<span class="keyword">class</span> <span class="function">Rectangle</span>(<span class="function">Shape</span>):
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, width, height):
+        self.width = width
+        self.height = height
+
+    <span class="keyword">def</span> <span class="function">area</span>(self):
+        <span class="keyword">return</span> self.width * self.height
+
+<span class="keyword">class</span> <span class="function">Circle</span>(<span class="function">Shape</span>):
+    <span class="keyword">def</span> <span class="function">__init__</span>(self, radius):
+        self.radius = radius
+
+    <span class="keyword">def</span> <span class="function">area</span>(self):
+        <span class="keyword">return</span> <span class="number">3.14159</span> * self.radius ** <span class="number">2</span>
+
+<span class="comment"># Polymorphism: different objects call same method</span>
+shapes = [<span class="function">Rectangle</span>(<span class="number">5</span>, <span class="number">3</span>), <span class="function">Circle</span>(<span class="number">2</span>)]
+<span class="keyword">for</span> shape <span class="keyword">in</span> shapes:
+    <span class="function">print</span>(shape.<span class="function">area</span>())</div>
+
+            <div class="output">15
+12.56636</div>
+
+            <h2>Exercises</h2>
+
+            <div class="info-box">
+                <strong>Exercise 1:</strong> Create a Car class with brand, color, speed attributes, and accelerate/brake methods<br><br>
+                <strong>Exercise 2:</strong> Create a Student class that inherits from Person, adding a grade attribute<br><br>
+                <strong>Exercise 3:</strong> Use inheritance to create a shape hierarchy class
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Summary</strong>
+                <ul>
+                    <li>Classes are blueprints for creating objects</li>
+                    <li>Objects are instances of classes</li>
+                    <li>The self parameter refers to the object itself</li>
+                    <li>Inheritance allows child classes to acquire parent class attributes and methods</li>
+                    <li>Encapsulation uses underscores to protect attributes</li>
+                    <li>Polymorphism allows different objects to respond differently to the same method</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="functions.html" class="btn btn-secondary">← Previous</a>
+                <a href="modules.html" class="btn">Next: Modules →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

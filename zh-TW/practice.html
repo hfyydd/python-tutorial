@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python實戰練習 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        .project-box { background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .project-box h3 { color: #2c3e50; margin-bottom: 10px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基礎語法</a></li>
+                <li><a href="functions.html">函數</a></li>
+                <li><a href="oop.html">物件導向</a></li>
+                <li><a href="modules.html">模組</a></li>
+                <li><a href="advanced.html">進階</a></li>
+                <li><a href="practice.html" class="active">實戰練習</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python實戰練習</h1>
+
+            <p>理論學習很重要，但實踐才是掌握編程的關鍵！這裡有一些練習專案幫助你鞏固所學知識。</p>
+
+            <h2>初級專案</h2>
+
+            <div class="project-box">
+                <h3>1. 猜數字遊戲</h3>
+                <p>練習：循環、條件判斷、隨機數</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>生成1-100的隨機數</li>
+                    <li>讓用戶猜測</li>
+                    <li>提示"大了"或"小了"</li>
+                    <li>記錄猜測次數</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>2. 單位轉換器</h3>
+                <p>練習：函數、字典、用戶輸入</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>溫度轉換（攝氏度/華氏度/開爾文）</li>
+                    <li>長度轉換（米/千米/英里/英尺）</li>
+                    <li>重量轉換（千克/磅/盎司）</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>3. 待辦事項列表</h3>
+                <p>練習：列表、檔案操作</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>添加任務</li>
+                    <li>標記完成</li>
+                    <li>刪除任務</li>
+                    <li>保存到檔案</li>
+                </ul>
+            </div>
+
+            <h2>中級專案</h2>
+
+            <div class="project-box">
+                <h3>1. 記帳本程式</h3>
+                <p>練習：類、檔案、異常處理</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>記錄收入和支出</li>
+                    <li>分類管理</li>
+                    <li>統計報表</li>
+                    <li>數據持久化</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>2. 簡單計算器</h3>
+                <p>練習：GUI、表達式求值</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li>基本運算</li>
+                    <li>清除功能</li>
+                    <li>歷史記錄</li>
+                </ul>
+            </div>
+
+            <h2>高級專案</h2>
+
+            <div class="project-box">
+                <h3>1. 網頁爬蟲</h3>
+                <p>練習：requests、BeautifulSoup、數據處理</p>
+            </div>
+
+            <div class="project-box">
+                <h3>2. 數據分析入門</h3>
+                <p>練習：pandas、matplotlib、數據可視化</p>
+            </div>
+
+            <div class="success-box">
+                <strong>💡 學習建議：</strong>
+                <ul>
+                    <li>從簡單專案開始，逐步增加難度</li>
+                    <li>遇到問題多查文檔、搜索解決方案</li>
+                    <li>閱讀別人的程式碼，學習好的編程習慣</li>
+                    <li>堅持每天寫程式碼，保持手感</li>
+                </ul>
+            </div>
+
+            <h2>練習資源</h2>
+
+            <ul style="margin: 20px 0 20px 30px;">
+                <li><a href="https://leetcode.com/" target="_blank">LeetCode</a> - 算法練習</li>
+                <li><a href="https://www.codewars.com/" target="_blank">Codewars</a> - 編程挑戰</li>
+                <li><a href="https://github.com/" target="_blank">GitHub</a> - 開源專案</li>
+            </ul>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="advanced.html" class="btn btn-secondary">← 上一章</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 讓程式設計學習變得簡單有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

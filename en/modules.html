@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Modules - Python Tutorial</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python Tutorial</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 Table of Contents</h3>
+            <ul>
+                <li><a href="../index.html">Introduction</a></li>
+                <li><a href="install.html">Install Python</a></li>
+                <li><a href="first-step.html">First Steps</a></li>
+                <li><a href="basics.html">Basic Syntax</a></li>
+                <li><a href="functions.html">Functions</a></li>
+                <li><a href="oop.html">OOP</a></li>
+                <li><a href="modules.html" class="active">Modules</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python Modules in Depth</h1>
+
+            <p>Modules are files containing Python definitions and statements. Using modules helps organize code, making it more maintainable and reusable.</p>
+
+            <h2>What is a Module?</h2>
+
+            <p>In Python, a module is a file containing all your defined functions and variables, with a .py extension.</p>
+
+            <div class="info-box">
+                <strong>💡 Why Use Modules?</strong>
+                <ul>
+                    <li><strong>Code Organization:</strong> Group related functionality together</li>
+                    <li><strong>Code Reuse:</strong> Use the same code in multiple programs</li>
+                    <li><strong>Namespaces:</strong> Avoid variable name conflicts</li>
+                    <li><strong>Maintainability:</strong> Easier to locate and fix issues</li>
+                </ul>
+            </div>
+
+            <h2>Importing Modules</h2>
+
+            <h3>Import Entire Module</h3>
+
+            <div class="code-block"><span class="keyword">import</span> math
+
+<span class="comment"># Use module name as prefix</span>
+<span class="function">print</span>(math.pi)       <span class="comment"># 3.141592653589793</span>
+<span class="function">print</span>(math.<span class="function">sqrt</span>(<span class="number">16</span>))  <span class="comment"># 4.0</span>
+<span class="function">print</span>(math.<span class="function">pow</span>(<span class="number">2</span>, <span class="number">3</span>))   <span class="comment"># 8.0</span></div>
+
+            <h3>Import Module with Alias</h3>
+
+            <div class="code-block"><span class="keyword">import</span> math <span class="keyword">as</span> m
+
+<span class="function">print</span>(m.pi)       <span class="comment"># 3.141592653589793</span>
+<span class="function">print</span>(m.<span class="function">sqrt</span>(<span class="number">16</span>))  <span class="comment"># 4.0</span></div>
+
+            <h3>Import Specific Content</h3>
+
+            <div class="code-block"><span class="keyword">from</span> math <span class="keyword">import</span> pi, sqrt
+
+<span class="function">print</span>(pi)         <span class="comment"># 3.141592653589793 (no prefix needed)</span>
+<span class="function">print</span>(<span class="function">sqrt</span>(<span class="number">25</span>))  <span class="comment"># 5.0</span></div>
+
+            <h2>Common Built-in Modules</h2>
+
+            <h3>random - Random Numbers</h3>
+
+            <div class="code-block"><span class="keyword">import</span> random
+
+<span class="function">print</span>(random.<span class="function">randint</span>(<span class="number">1</span>, <span class="number">10</span>))    <span class="comment"># Random integer 1-10</span>
+<span class="function">print</span>(random.<span class="function">random</span>())          <span class="comment"># Random float 0-1</span>
+<span class="function">print</span>(random.<span class="function">choice</span>([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>]))   <span class="comment"># Random element</span>
+
+<span class="comment"># Shuffle list</span>
+cards = [<span class="string">"A"</span>, <span class="string">"K"</span>, <span class="string">"Q"</span>, <span class="string">"J"</span>]
+random.<span class="function">shuffle</span>(cards)
+<span class="function">print</span>(cards)  <span class="comment"># Shuffled order</span></div>
+
+            <h3>datetime - Dates and Times</h3>
+
+            <div class="code-block"><span class="keyword">from</span> datetime <span class="keyword">import</span> date, datetime, timedelta
+
+<span class="comment"># Current date</span>
+today = date.<span class="function">today</span>()
+<span class="function">print</span>(today)  <span class="comment"># 2024-XX-XX</span>
+
+<span class="comment"># Current time</span>
+now = datetime.<span class="function">now</span>()
+<span class="function">print</span>(now)  <span class="comment"># 2024-XX-XX XX:XX:XX.XXXXXX</span>
+
+<span class="comment"># Date calculation</span>
+tomorrow = today + timedelta(<span class="function">days</span>=<span class="number">1</span>)
+<span class="function">print</span>(tomorrow)  <span class="comment"># Tomorrow's date</span></div>
+
+            <h3>json - JSON Data</h3>
+
+            <div class="code-block"><span class="keyword">import</span> json
+
+<span class="comment"># Python object to JSON string</span>
+data = {<span class="string">"name"</span>: <span class="string">"Alice"</span>, <span class="string">"age"</span>: <span class="number">25</span>}
+json_str = json.<span class="function">dumps</span>(data)
+<span class="function">print</span>(json_str)  <span class="comment"># {"name": "Alice", "age": 25}</span>
+
+<span class="comment"># JSON string to Python object</span>
+parsed = json.<span class="function">loads</span>(json_str)
+<span class="function">print</span>(parsed[<span class="string">"name"</span>])  <span class="comment"># Alice</span></div>
+
+            <h2>Exercises</h2>
+
+            <div class="info-box">
+                <strong>Exercise 1:</strong> Write a program to generate a list of 10 random numbers and find the maximum<br><br>
+                <strong>Exercise 2:</strong> Write a program to calculate the date 100 days from now<br><br>
+                <strong>Exercise 3:</strong> Create a custom module containing utility functions
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Summary</strong>
+                <ul>
+                    <li>Modules are files containing Python definitions and statements</li>
+                    <li>Use import statements to import modules</li>
+                    <li>Python provides rich built-in modules</li>
+                    <li>You can create custom modules to organize code</li>
+                    <li>Use dir() function to view module contents</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="oop.html" class="btn btn-secondary">← Previous</a>
+                <a href="advanced.html" class="btn">Next: Advanced →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python Tutorial | Making Programming Learning Simple and Fun</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python进阶 - Python教程</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教程</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教程目录</h3>
+            <ul>
+                <li><a href="../index.html">简介</a></li>
+                <li><a href="install.html">安装Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基础语法</a></li>
+                <li><a href="functions.html">函数</a></li>
+                <li><a href="oop.html">面向对象</a></li>
+                <li><a href="modules.html">模块</a></li>
+                <li><a href="advanced.html" class="active">进阶</a></li>
+                <li><a href="practice.html">实战练习</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python进阶主题</h1>
+
+            <p>恭喜你完成了基础章节的学习！现在让我们探索一些更高级的Python主题。</p>
+
+            <h2>文件操作</h2>
+
+            <div class="code-block"><span class="comment"># 写入文件</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"hello.txt"</span>, <span class="string">"w"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> f:
+    f.<span class="function">write</span>(<span class="string">"Hello, World!\n"</span>)
+
+<span class="comment"># 读取文件</span>
+<span class="keyword">with</span> <span class="function">open</span>(<span class="string">"hello.txt"</span>, <span class="string">"r"</span>, encoding=<span class="string">"utf-8"</span>) <span class="keyword">as</span> f:
+    content = f.<span class="function">read</span>()
+    <span class="function">print</span>(content)</div>
+
+            <h2>异常处理</h2>
+
+            <div class="code-block"><span class="keyword">try</span>:
+    result = <span class="number">10</span> / <span class="number">0</span>
+<span class="keyword">except</span> <span class="function">ZeroDivisionError</span>:
+    <span class="function">print</span>(<span class="string">"不能除以零！"</span>)
+<span class="keyword">else</span>:
+    <span class="function">print</span>(<span class="string">"结果是:"</span>, result)
+<span class="keyword">finally</span>:
+    <span class="function">print</span>(<span class="string">"无论如何都会执行"</span>)</div>
+
+            <h2>列表推导式</h2>
+
+            <div class="code-block"><span class="comment"># 创建平方列表</span>
+squares = [x**<span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>)]
+<span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="comment"># 带条件的列表推导式</span>
+evens = [x <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">20</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]
+<span class="comment"># [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]</span></div>
+
+            <h2>装饰器</h2>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">timer</span>(<span class="keyword">func</span>):
+    <span class="keyword">def</span> <span class="function">wrapper</span>(*args, **kwargs):
+        <span class="keyword">import</span> time
+        start = time.<span class="function">time</span>()
+        result = <span class="function">func</span>(*args, **kwargs)
+        end = time.<span class="function">time</span>()
+        <span class="function">print</span>(<span class="string">f"{func.__name__} 耗时: {end-start:.4f}秒"</span>)
+        <span class="keyword">return</span> result
+    <span class="keyword">return</span> wrapper
+
+<span class="keyword">@timer</span>
+<span class="keyword">def</span> <span class="function">slow_function</span>():
+    <span class="keyword">import</span> time
+    time.<span class="function">sleep</span>(<span class="number">0.1</span>)
+    <span class="keyword">return</span> <span class="string">"完成"</span>
+
+<span class="function">slow_function</span>()</div>
+
+            <h2>生成器</h2>
+
+            <div class="code-block"><span class="keyword">def</span> <span class="function">countdown</span>(n):
+    <span class="keyword">while</span> n > <span class="number">0</span>:
+        <span class="keyword">yield</span> n
+        n -= <span class="span class="number">1</span>
+
+<span class="comment"># 使用生成器</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> <span class="function">countdown</span>(<span class="number">5</span>):
+    <span class="function">print</span>(i)</div>
+
+            <h2>继续学习</h2>
+
+            <p>你已经掌握了Python的基础知识！接下来可以：</p>
+
+            <div class="info-box">
+                <ul>
+                    <li><strong>实践项目：</strong> 做一些小项目来巩固知识</li>
+                    <li><strong>阅读源码：</strong> 学习优秀开源项目的代码</li>
+                    <li><strong>深入专题：</strong> 研究Web开发、数据分析等方向</li>
+                    <li><strong>加入社区：</strong> 参与Python社区讨论</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="modules.html" class="btn btn-secondary">← 上一章</a>
+                <a href="practice.html" class="btn">实战练习 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教程 | 让编程学习变得简单有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

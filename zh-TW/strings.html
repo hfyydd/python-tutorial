@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python字串 - Python教學</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        .method-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .method-table th { background: #3498db; color: white; padding: 12px; text-align: left; }
+        .method-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        .method-table tr:hover { background: #f8f9fa; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Python教學</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 教學目錄</h3>
+            <ul>
+                <li><a href="../index.html">簡介</a></li>
+                <li><a href="install.html">安裝Python</a></li>
+                <li><a href="first-step.html">第一步</a></li>
+                <li><a href="basics.html">基礎語法</a>
+                    <ul>
+                        <li><a href="data-types.html" class="sub-item">資料類型</a></li>
+                        <li><a href="strings.html" class="sub-item active">字串</a></li>
+                        <li><a href="lists.html" class="sub-item">列表</a></li>
+                        <li><a href="conditions.html" class="sub-item">條件判斷</a></li>
+                        <li><a href="loops.html" class="sub-item">迴圈</a></li>
+                    </ul>
+                </li>
+                <li><a href="functions.html">函數</a></li>
+                <li><a href="oop.html">物件導向</a></li>
+                <li><a href="modules.html">模組</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Python字串詳解</h1>
+
+            <p>字串是Python中最常用的資料類型之一。在本章中，我們將深入學習字串的各種操作和常用方法。</p>
+
+            <h2>建立字串</h2>
+
+            <p>在Python中，字串可以用單引號、雙引號或三引號建立：</p>
+
+            <div class="code-block"><span class="comment"># 單引號字串</span>
+str1 = <span class="string">'Hello'</span>
+
+<span class="comment"># 雙引號字串</span>
+str2 = <span class="string">"World"</span>
+
+<span class="comment"># 三引號字串（可以跨行）</span>
+str3 = <span class="string">'''
+這是一個
+多行字串
+'''</span></div>
+
+            <h2>字串串接</h2>
+
+            <h3>使用 + 運算子</h3>
+
+            <div class="code-block">greeting = <span class="string">"Hello"</span>
+name = <span class="string">"Python"</span>
+message = greeting + <span class="string">" "</span> + name
+<span class="function">print</span>(message)  <span class="comment"># Hello Python</span></div>
+
+            <h3>使用 join() 方法</h3>
+
+            <div class="code-block">words = [<span class="string">"Hello"</span>, <span class="string">"Beautiful"</span>, <span class="string">"World"</span>]
+sentence = <span class="string">" "</span>.<span class="function">join</span>(words)
+<span class="function">print</span>(sentence)  <span class="comment"># Hello Beautiful World</span></div>
+
+            <h2>字串重複</h2>
+
+            <div class="code-block">echo = <span class="string">"Ha "</span> * <span class="number">3</span>
+<span class="function">print</span>(echo)  <span class="comment"># Ha Ha Ha </span>
+
+<span class="comment"># 建立分隔線</span>
+line = <span class="string">"-"</span> * <span class="number">50</span>
+<span class="function">print</span>(line)</div>
+
+            <h2>字串長度</h2>
+
+            <div class="code-block">text = <span class="string">"Python程式設計"</span>
+<span class="function">print</span>(<span class="function">len</span>(text))  <span class="comment"># 8</span></div>
+
+            <div class="info-box">
+                <strong>💡 注意：</strong> len()函數返回字串中的字元數量，包括空格和標點符號。
+            </div>
+
+            <h2>存取字串中的字元</h2>
+
+            <p>Python中字串是 immutable（不可變）的序列，可以透過索引存取單個字元：</p>
+
+            <div class="code-block">word = <span class="string">"Python"</span>
+
+<span class="function">print</span>(word[<span class="number">0</span>])  <span class="comment"># P (第一個字元)</span>
+<span class="function">print</span>(word[<span class="number">1</span>])  <span class="comment"># y</span>
+<span class="function">print</span>(word[-<span class="number">1</span>])  <span class="comment"># n (最後一個字元)</span>
+<span class="function">print</span>(word[-<span class="number">2</span>])  <span class="comment"># o</span></div>
+
+            <h2>字串切片</h2>
+
+            <p>使用切片可以取得字串的一部分：</p>
+
+            <div class="code-block">text = <span class="string">"Hello Python"</span>
+
+<span class="function">print</span>(text[<span class="number">0</span>:<span class="number">5</span>])   <span class="comment"># Hello</span>
+<span class="function">print</span>(text[<span class="number">6</span>:])    <span class="comment"># Python</span>
+<span class="function">print</span>(text[:<span class="number">5</span>])    <span class="comment"># Hello</span>
+<span class="function">print</span>(text[::<span class="number">2</span>])   <span class="comment"># HloPto (每隔一個字元)</span>
+<span class="function">print</span>(text[::-<span class="number">1</span>])  <span class="comment"># nohtyP olleH (反轉字串)</span></div>
+
+            <div class="info-box">
+                <strong>💡 切片語法：</strong> [開始:結束:步長]。開始位置包含，結束位置不包含。
+            </div>
+
+            <h2>字串格式化</h2>
+
+            <h3>f-string (Python 3.6+)</h3>
+
+            <div class="code-block">name = <span class="string">"小明"</span>
+age = <span class="number">25</span>
+
+<span class="comment"># 使用f-string（推薦）</span>
+message = <span class="string">f"我叫{name}，今年{age}歲"</span>
+<span class="function">print</span>(message)
+
+<span class="comment"># 表達式計算</span>
+a, b = <span class="number">10</span>, <span class="number">5</span>
+<span class="function">print</span>(<span class="string">f"{a} + {b} = {a+b}"</span>)  <span class="comment"># 10 + 5 = 15</span>
+
+<span class="comment"># 格式化數字</span>
+pi = <span class="number">3.14159</span>
+<span class="function">print</span>(<span class="string">f"π = {pi:.2f}"</span>)  <span class="comment"># π = 3.14</span></div>
+
+            <h3>format() 方法</h3>
+
+            <div class="code-block"><span class="comment"># 位置參數</span>
+<span class="function">print</span>(<span class="string">"我是{}，今年{}歲"</span>.<span class="function">format</span>(<span class="string">"小明"</span>, <span class="number">25</span>))
+
+<span class="comment"># 關鍵字參數</span>
+<span class="function">print</span>(<span class="string">"我是{name}，今年{age}歲"</span>.<span class="function">format</span>(name=<span class="string">"小明"</span>, age=<span class="number">25</span>))
+
+<span class="comment"># 數字格式化</span>
+<span class="function">print</span>(<span class="string">"價格: {:.2f}元"</span>.<span class="function">format</span>(<span class="number">19.99</span>))  <span class="comment"># 價格: 19.99元</span></div>
+
+            <h2>字串常用方法</h2>
+
+            <h3>大小寫轉換</h3>
+
+            <div class="code-block">text = <span class="string">"hello python"</span>
+
+<span class="function">print</span>(text.<span class="function">upper</span>())    <span class="comment"># HELLO PYTHON</span>
+<span class="function">print</span>(text.<span class="function">lower</span>())    <span class="comment"># hello python</span>
+<span class="function">print</span>(text.<span class="function">title</span>())     <span class="comment"># Hello Python</span>
+<span class="function">print</span>(text.<span class="function">capitalize</span>())  <span class="comment"># Hello python</span></div>
+
+            <h3>尋找和取代</h3>
+
+            <div class="code-block">text = <span class="string">"Hello Python, Python is great"</span>
+
+<span class="comment"># 尋找子串位置</span>
+<span class="function">print</span>(text.<span class="function">find</span>(<span class="string">"Python"</span>))   <span class="comment"># 6</span>
+<span class="function">print</span>(text.<span class="function">index</span>(<span class="string">"Python"</span>))   <span class="comment"># 6</span>
+<span class="function">print</span>(text.<span class="function">rfind</span>(<span class="string">"Python"</span>))  <span class="comment"># 15 (從右邊尋找)</span>
+
+<span class="comment"># 取代</span>
+new_text = text.<span class="function">replace</span>(<span class="string">"Python"</span>, <span class="string">"Java"</span>)
+<span class="function">print</span>(new_text)  <span class="comment"># Hello Java, Java is great</span></div>
+
+            <h3>去除空白</h3>
+
+            <div class="code-block">text = <span class="string">"  Hello Python  "</span>
+
+<span class="function">print</span>(text.<span class="function">strip</span>())    <span class="comment"># "Hello Python" (去除兩端空白)</span>
+<span class="function">print</span>(text.<span class="function">lstrip</span>())   <span class="comment"># "Hello Python  " (去除左邊空白)</span>
+<span class="function">print</span>(text.<span class="function">rstrip</span>())   <span class="comment"># "  Hello Python" (去除右邊空白)</span>
+
+<span class="comment"># 去除指定字元</span>
+text2 = <span class="string">"***Hello***"</span>
+<span class="function">print</span>(text2.<span class="function">strip</span>(<span class="string">"*"</span>))  <span class="comment"># "Hello"</span></div>
+
+            <h3>分割和連接</h3>
+
+            <div class="code-block"><span class="comment"># 分割字串</span>
+text = <span class="string">"apple,banana,orange"</span>
+fruits = text.<span class="function">split</span>(<span class="string">","</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['apple', 'banana', 'orange']</span>
+
+<span class="comment"># 按空白分割</span>
+sentence = <span class="string">"Hello   World   Python"</span>
+words = sentence.<span class="function">split</span>()
+<span class="function">print</span>(words)  <span class="comment"># ['Hello', 'World', 'Python']</span>
+
+<span class="comment"># 分割成行</span>
+multiline = <span class="string">"""Line 1
+Line 2
+Line 3"""</span>
+lines = multiline.<span class="function">splitlines</span>()
+<span class="function">print</span>(lines)  <span class="comment"># ['Line 1', 'Line 2', 'Line 3']</span></div>
+
+            <h3>判斷方法</h3>
+
+            <div class="code-block"><span class="function">print</span>(<span class="string">"hello"</span>.<span class="function">islower</span>())  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"HELLO"</span>.<span class="function">isupper</span>())  <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"Hello123"</span>.<span class="function">isalnum</span>())  <span class="comment"># True (字母和數字)</span>
+<span class="function">print</span>(<span class="string">"Hello"</span>.<span class="function">isalpha</span>())  <span class="comment"># True (只有字母)</span>
+<span class="function">print</span>(<span class="string">"12345"</span>.<span class="function">isdigit</span>())  <span class="comment"># True (只有數字)</span>
+<span class="function">print</span>(<span class="string">"   "</span>.<span class="function">isspace</span>())  <span class="comment"># True (只有空白字元)</span></div>
+
+            <h2>字串對齊</h2>
+
+            <div class="code-block">text = <span class="string">"Python"</span>
+
+<span class="function">print</span>(text.<span class="function">center</span>(<span class="number">20</span>, <span class="string">"*"</span>))  <span class="comment"># *******Python*******</span>
+<span class="function">print</span>(text.<span class="function">ljust</span>(<span class="number">20</span>, <span class="string">"-"</span>))   <span class="comment"># Python-------------</span>
+<span class="function">print</span>(text.<span class="function">rjust</span>(<span class="number">20</span>, <span class="string">"-"</span>))   <span class="comment%">-------------</span>Python</div>
+
+            <h2>計數和檢查</h2>
+
+            <div class="code-block">text = <span class="string">"hello world hello"</span>
+
+<span class="comment"># 計數子串出現次數</span>
+<span class="function">print</span>(text.<span class="function">count</span>(<span class="string">"hello"</span>))  <span class="comment"># 2</span>
+<span class="function">print</span>(text.<span class="function">count</span>(<span class="string">"l"</span>))      <span class="comment"># 5</span>
+
+<span class="comment"># 檢查開始/結束</span>
+<span class="function">print</span>(text.<span class="function">startswith</span>(<span class="string">"hello"</span>))  <span class="comment"># True</span>
+<span class="function">print</span>(text.<span class="function">endswith</span>(<span class="string">"hello"</span>))    <span class="comment"># True</span>
+<span class="function">print</span>(text.<span class="function">startswith</span>(<span class="string">"world"</span>))  <span class="comment"># False</span></div>
+
+            <h2>跳脫字元</h2>
+
+            <div class="code-block"><span class="comment"># 常用跳脫字元</span>
+text = <span class="string">"Hello\nWorld"</span>  <span class="comment"># 換行</span>
+quote = <span class="string">"She said: \"Hi\""</span>  <span class="comment"># 引號</span>
+path = <span class="string">"C:\\Users\\Name"</span>  <span class="comment"># 反斜線</span>
+tab = <span class="string">"Hello\tWorld"</span>  <span class="comment"># 製表符</span>
+
+<span class="comment"># 使用原始字串（不跳脫）</span>
+raw_path = <span class="string">r"C:\Users\Name"</span>
+<span class="function">print</span>(raw_path)  <span class="comment"># C:\Users\Name</span></div>
+
+            <h2>字串是不可變的</h2>
+
+            <div class="warning-box">
+                <strong>⚠️ 重要：</strong> 字串是不可變的！你不能直接修改字串中的字元。
+            </div>
+
+            <div class="code-block">text = <span class="string">"Python"</span>
+<span class="comment"># text[0] = "J"  # 錯誤！不能直接修改</span>
+
+<span class="comment"># 正確做法：建立新字串</span>
+new_text = <span class="string">"J"</span> + text[<span class="number">1</span>:]
+<span class="function">print</span>(new_text)  <span class="comment"># Jython</span></div>
+
+            <h2>字串常用方法總結</h2>
+
+            <table class="method-table">
+                <tr>
+                    <th>方法</th>
+                    <th>描述</th>
+                </tr>
+                <tr>
+                    <td>len(s)</td>
+                    <td>返回字串長度</td>
+                </tr>
+                <tr>
+                    <td>s.upper()</td>
+                    <td>轉換為大寫</td>
+                </tr>
+                <tr>
+                    <td>s.lower()</td>
+                    <td>轉換為小寫</td>
+                </tr>
+                <tr>
+                    <td>s.title()</td>
+                    <td>轉換為標題格式</td>
+                </tr>
+                <tr>
+                    <td>s.strip()</td>
+                    <td>去除兩端空白</td>
+                </tr>
+                <tr>
+                    <td>s.split()</td>
+                    <td>分割字串為列表</td>
+                </tr>
+                <tr>
+                    <td>s.join(iterable)</td>
+                    <td>連接序列為字串</td>
+                </tr>
+                <tr>
+                    <td>s.find(sub)</td>
+                    <td>尋找子串位置</td>
+                </tr>
+                <tr>
+                    <td>s.replace(old, new)</td>
+                    <td>取代子串</td>
+                </tr>
+                <tr>
+                    <td>s.startswith(prefix)</td>
+                    <td>檢查是否以prefix開頭</td>
+                </tr>
+                <tr>
+                    <td>s.endswith(suffix)</td>
+                    <td>檢查是否以suffix結尾</td>
+                </tr>
+                <tr>
+                    <td>s.count(sub)</td>
+                    <td>統計子串出現次數</td>
+                </tr>
+            </table>
+
+            <h2>練習題</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> 編寫程式，將使用者輸入的字串首字母大寫，其餘小寫<br><br>
+                <strong>練習2：</strong> 編寫程式，檢查一個字串是否是回文（正讀反讀都一樣）<br><br>
+                <strong>練習3：</strong> 編寫程式，統計一段文字中每個單詞出現的次數
+            </div>
+
+            <div class="success-box">
+                <strong>✅ 小結</strong>
+                <ul>
+                    <li>字串可以用單引號、雙引號或三引號建立</li>
+                    <li>字串是不可變的序列類型</li>
+                    <li>可以使用索引和切片存取字元</li>
+                    <li>f-string是推薦的字串格式化方法</li>
+                    <li>Python提供了豐富的字串方法用於各種操作</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="data-types.html" class="btn btn-secondary">← 上一章</a>
+                <a href="lists.html" class="btn">下一章：列表詳解 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Python教學 | 讓程式設計學習變得簡單有趣</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>

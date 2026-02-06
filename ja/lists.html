@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pythonリスト - Pythonチュートリアル</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .navbar { background: #2c3e50; color: white; padding: 0 0; }
+        .navbar-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 24px; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, #306998, #FFD43B); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .container { display: flex; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 120px); }
+        .sidebar { width: 250px; background: white; padding: 20px; height: 100%; box-shadow: 2px 0 4px rgba(0,0,0,0.05); }
+        .sidebar h3 { font-size: 14px; color: #888; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar a { color: #555; text-decoration: none; display: block; padding: 8px 12px; border-radius: 6px; transition: all 0.3s; font-size: 14px; }
+        .sidebar a:hover, .sidebar a.active { background: #e8f4f8; color: #2c3e50; }
+        .sidebar .sub-item { padding-left: 24px; font-size: 13px; }
+        .main-content { flex: 1; background: white; margin: 20px; margin-left: 0; padding: 40px 50px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .main-content h1 { font-size: 32px; margin-bottom: 20px; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .main-content h2 { font-size: 24px; margin: 30px 0 15px; color: #2c3e50; }
+        .main-content h3 { font-size: 20px; margin: 25px 0 12px; color: #34495e; }
+        .main-content p { margin-bottom: 15px; text-align: justify; }
+        .main-content ul, .main-content ol { margin: 15px 0 15px 30px; }
+        .main-content li { margin-bottom: 8px; }
+        .code-block { background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', 'Osaka-Mono', monospace; font-size: 14px; margin: 15px 0; overflow-x: auto; }
+        .output { background: #1a1a1a; color: #00ff00; padding: 15px; border-radius: 6px; font-family: 'Monaco', 'Menlo', 'Osaka-Mono', monospace; font-size: 14px; margin: 15px 0; }
+        .info-box { background: #e8f4f8; border-left: 4px solid #3498db; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .warning-box { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px 20px; margin: 20px 0; border-radius: 4px; }
+        .success-box { background: #d4edda; border-left: 4px solid #28a745; padding: 15px 20px; margin: 20px 0; border-radius: 4px; color: #155724; }
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .function { color: #50fa7b; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+        .btn { display: inline-block; padding: 12px 30px; background: #3498db; color: white; text-decoration: none; border-radius: 25px; font-weight: bold; margin: 10px 10px 10px 0; transition: all 0.3s; }
+        .btn:hover { background: #2980b9; transform: translateY(-2px); }
+        .btn-secondary { background: #95a5a6; }
+        .btn-secondary:hover { background: #7f8c8d; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        .footer p { color: #95a5a6; font-size: 14px; }
+        .method-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .method-table th { background: #3498db; color: white; padding: 12px; text-align: left; }
+        .method-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        .method-table tr:hover { background: #f8f9fa; }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; }
+            .main-content { margin: 10px; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <div class="logo-icon">🐍</div>
+                <span>Pythonチュートリアル</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>📚 目次</h3>
+            <ul>
+                <li><a href="../index.html">はじめに</a></li>
+                <li><a href="install.html">Pythonのインストール</a></li>
+                <li><a href="first-step.html">最初のステップ</a></li>
+                <li><a href="basics.html">基本構文</a>
+                    <ul>
+                        <li><a href="data-types.html" class="sub-item">データ型</a></li>
+                        <li><a href="strings.html" class="sub-item">文字列</a></li>
+                        <li><a href="lists.html" class="sub-item active">リスト</a></li>
+                        <li><a href="conditions.html" class="sub-item">条件分岐</a></li>
+                        <li><a href="loops.html" class="sub-item">ループ</a></li>
+                    </ul>
+                </li>
+                <li><a href="functions.html">関数</a></li>
+                <li><a href="oop.html">オブジェクト指向</a></li>
+                <li><a href="modules.html">モジュール</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <h1>Pythonリスト詳解</h1>
+
+            <p>リストはPythonで最もよく使われるデータ構造の一つです。複数のアイテムを格納でき、これらのアイテムは異なる型でも構いません。</p>
+
+            <h2>リストの作成</h2>
+
+            <p>リストは角括弧 <code>[]</code> を使用して作成し、アイテムはカンマで区切ります：</p>
+
+            <div class="code-block"><span class="comment"># 空のリストを作成</span>
+empty_list = []
+
+<span class="comment"># 数値を含むリストを作成</span>
+numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+
+<span class="comment"># 文字列を含むリストを作成</span>
+fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+
+<span class="comment"># 混合型リスト</span>
+mixed = [<span class="number">1</span>, <span class="string">"Hello"</span>, <span class="keyword">True</span>, <span class="number">3.14</span>]
+
+<span class="comment"># ネストされたリスト</span>
+nested = [[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]]</div>
+
+            <h2>リスト要素へのアクセス</h2>
+
+            <p>インデックスを使ってリスト内の要素にアクセスします。インデックスは0から始まります：</p>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>, <span class="string">"ブドウ"</span>]
+
+<span class="function">print</span>(fruits[<span class="number">0</span>])   <span class="comment"># リンゴ（最初の要素）</span>
+<span class="function">print</span>(fruits[<span class="number">1</span>])   <span class="comment"># バナナ</span>
+<span class="function">print</span>(fruits[-<span class="number">1</span>])  <span class="comment"># ブドウ（最後の要素）</span>
+<span class="function">print</span>(fruits[-<span class="number">2</span>])  <span class="comment"># オレンジ</span></div>
+
+            <h2>リストのスライス</h2>
+
+            <p>スライスを使ってリストの一部を取得できます：</p>
+
+            <div class="code-block">numbers = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]
+
+<span class="function">print</span>(numbers[<span class="number">2</span>:<span class="number">5</span>])   <span class="comment"># [2, 3, 4]</span>
+<span class="function">print</span>(numbers[:<span class="number">5</span>])    <span class="comment"># [0, 1, 2, 3, 4]</span>
+<span class="function">print</span>(numbers[<span class="number">5</span>:])    <span class="comment"># [5, 6, 7, 8, 9]</span>
+<span class="function">print</span>(numbers[::<span class="number">2</span>])   <span class="comment"># [0, 2, 4, 6, 8]（1つおき）</span>
+<span class="function">print</span>(numbers[::-<span class="number">1</span>])  <span class="comment"># [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]（反転）</span></div>
+
+            <h2>リスト要素の変更</h2>
+
+            <p>リストは可変です。インデックスを使って要素を変更できます：</p>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+fruits[<span class="number">1</span>] = <span class="string">"イチゴ"</span>
+<span class="function">print</span>(fruits)  <span class="comment"># ['リンゴ', 'イチゴ', 'オレンジ']</span></div>
+
+            <h2>要素の追加</h2>
+
+            <h3>append() - 末尾に追加</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>]
+fruits.<span class="function">append</span>(<span class="string">"オレンジ"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['リンゴ', 'バナナ', 'オレンジ']</span></div>
+
+            <h3>insert() - 指定位置に挿入</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>]
+fruits.<span class="function">insert</span>(<span class="number">1</span>, <span class="string">"オレンジ"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['リンゴ', 'オレンジ', 'バナナ']</span></div>
+
+            <h3>extend() - リストを拡張</h3>
+
+            <div class="code-block">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+list2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+list1.<span class="function">extend</span>(list2)
+<span class="function">print</span>(list1)  <span class="comment"># [1, 2, 3, 4, 5, 6]</span></div>
+
+            <h2>要素の削除</h2>
+
+            <h3>remove() - 値を指定して削除</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+fruits.<span class="function">remove</span>(<span class="string">"バナナ"</span>)
+<span class="function">print</span>(fruits)  <span class="comment"># ['リンゴ', 'オレンジ']</span></div>
+
+            <h3>pop() - 要素を削除して返す</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+<span class="comment"># 最後の要素を削除</span>
+last = fruits.<span class="function">pop</span>()
+<span class="function">print</span>(last)    <span class="comment"># オレンジ</span>
+<span class="function">print</span>(fruits)  <span class="comment"># ['リンゴ', 'バナナ']</span>
+
+<span class="comment"># 指定位置の要素を削除</span>
+fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+second = fruits.<span class="function">pop</span>(<span class="number">1</span>)
+<span class="function">print</span>(second)   <span class="comment"># バナナ</span>
+<span class="function">print</span>(fruits)   <span class="comment"># ['リンゴ', 'オレンジ']</span></div>
+
+            <h3>del - 位置を指定して削除</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+<span class="keyword">del</span> fruits[<span class="number">1</span>]
+<span class="function">print</span>(fruits)  <span class="comment"># ['リンゴ', 'オレンジ']</span>
+
+<span class="comment"># リスト全体を削除</span>
+<span class="keyword">del</span> fruits</div>
+
+            <h3>clear() - リストを空にする</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+fruits.<span class="function">clear</span>()
+<span class="function">print</span>(fruits)  <span class="comment"># []</span></div>
+
+            <h2>リスト操作</h2>
+
+            <h3>リストの長さ</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+<span class="function">print</span>(<span class="function">len</span>(fruits))  <span class="comment"># 3</span></div>
+
+            <h3>リストの結合</h3>
+
+            <div class="code-block">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+list2 = [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]
+combined = list1 + list2
+<span class="function">print</span>(combined)  <span class="comment"># [1, 2, 3, 4, 5, 6]</span></div>
+
+            <h3>リストの繰り返し</h3>
+
+            <div class="code-block">list1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+repeated = list1 * <span class="number">3</span>
+<span class="function">print</span>(repeated)  <span class="comment"># [1, 2, 3, 1, 2, 3, 1, 2, 3]</span></div>
+
+            <h3>要素が存在するかチェック</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+<span class="function">print</span>(<span class="string">"バナナ"</span> <span class="keyword">in</span> fruits)   <span class="comment"># True</span>
+<span class="function">print</span>(<span class="string">"ブドウ"</span> <span class="keyword">in</span> fruits)    <span class="comment"># False</span>
+<span class="function">print</span>(<span class="string">"ブドウ"</span> <span class="keyword">not in</span> fruits)  <span class="comment"># True</span></div>
+
+            <h2>リストのソート</h2>
+
+            <h3>sort() - インプレースソート</h3>
+
+            <div class="code-block">numbers = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">6</span>]
+numbers.<span class="function">sort</span>()
+<span class="function">print</span>(numbers)  <span class="comment"># [1, 1, 2, 3, 4, 5, 6, 9]</span>
+
+<span class="comment"># 降順ソート</span>
+numbers.<span class="function">sort</span>(reverse=<span class="keyword">True</span>)
+<span class="function">print</span>(numbers)  <span class="comment"># [9, 6, 5, 4, 3, 2, 1, 1]</span>
+
+<span class="comment"># 文字列のソート</span>
+fruits = [<span class="string">"banana"</span>, <span class="string">"apple"</span>, <span class="string">"cherry"</span>]
+fruits.<span class="function">sort</span>()
+<span class="function">print</span>(fruits)  <span class="comment"># ['apple', 'banana', 'cherry']</span></div>
+
+            <h3>sorted() - 新しいソート済みリストを返す</h3>
+
+            <div class="code-block">numbers = [<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>]
+sorted_numbers = <span class="function">sorted</span>(numbers)
+<span class="function">print</span>(sorted_numbers)  <span class="comment"># [1, 1, 3, 4, 5]</span>
+<span class="function">print</span>(numbers)        <span class="comment"># [3, 1, 4, 1, 5]（元のリストは変更なし）</span></div>
+
+            <h2>リストの反転</h2>
+
+            <h3>reverse() - インプレース反転</h3>
+
+            <div class="code-block">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+numbers.<span class="function">reverse</span>()
+<span class="function">print</span>(numbers)  <span class="comment"># [5, 4, 3, 2, 1]</span></div>
+
+            <h3>スライスで反転</h3>
+
+            <div class="code-block">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]
+reversed_numbers = numbers[::-<span class="number">1</span>]
+<span class="function">print</span>(reversed_numbers)  <span class="comment"># [5, 4, 3, 2, 1]</span></div>
+
+            <h2>リストのコピー</h2>
+
+            <div class="warning-box">
+                <strong>⚠️ 注意：</strong> = を使った代入は参照を作成するだけで、コピーにはなりません。
+            </div>
+
+            <div class="code-block">original = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+
+<span class="comment"># 間違った方法：参照を作るだけ</span>
+copy1 = original
+copy1[<span class="number">0</span>] = <span class="number">99</span>
+<span class="function">print</span>(original)  <span class="comment"># [99, 2, 3]（元のリストも変更された！）</span>
+
+<span class="comment"># 正しい方法1：copy()を使用</span>
+original = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]
+copy2 = original.<span class="function">copy</span>()
+copy2[<span class="number">0</span>] = <span class="number">99</span>
+<span class="function">print</span>(original)  <span class="comment"># [1, 2, 3]（元のリストは変更なし）</span>
+
+<span class="comment"># 正しい方法2：list()を使用</span>
+copy3 = <span class="function">list</span>(original)
+
+<span class="comment"># 正しい方法3：スライスを使用</span>
+copy4 = original[:]</div>
+
+            <h2>リスト内包表記</h2>
+
+            <p>リスト内包表記はリストを作成する簡潔な方法です：</p>
+
+            <div class="code-block"><span class="comment"># 従来の方法</span>
+squares = []
+<span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>):
+    squares.<span class="function">append</span>(x ** <span class="number">2</span>)
+
+<span class="comment"># リスト内包表記を使用</span>
+squares = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>)]
+<span class="function">print</span>(squares)  <span class="comment"># [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]</span>
+
+<span class="comment"># 条件付きリスト内包表記</span>
+even_squares = [x ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="function">range</span>(<span class="number">10</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]
+<span class="function">print</span>(even_squares)  <span class="comment"># [0, 4, 16, 36, 64]</span>
+
+<span class="comment"># 文字列の処理</span>
+words = [<span class="string">"hello"</span>, <span class="string">"world"</span>, <span class="string">"python"</span>]
+uppercase = [word.<span class="function">upper</span>() <span class="keyword">for</span> word <span class="keyword">in</span> words]
+<span class="function">print</span>(uppercase)  <span class="comment"># ['HELLO', 'WORLD', 'PYTHON']</span></div>
+
+            <h2>リストメソッドまとめ</h2>
+
+            <table class="method-table">
+                <tr>
+                    <th>メソッド</th>
+                    <th>説明</th>
+                </tr>
+                <tr>
+                    <td>len(list)</td>
+                    <td>リストの長さを返す</td>
+                </tr>
+                <tr>
+                    <td>list.append(item)</td>
+                    <td>末尾に要素を追加</td>
+                </tr>
+                <tr>
+                    <td>list.insert(index, item)</td>
+                    <td>指定位置に要素を挿入</td>
+                </tr>
+                <tr>
+                    <td>list.remove(item)</td>
+                    <td>値を指定して要素を削除</td>
+                </tr>
+                <tr>
+                    <td>list.pop([index])</td>
+                    <td>要素を削除して返す</td>
+                </tr>
+                <tr>
+                    <td>list.clear()</td>
+                    <td>リストを空にする</td>
+                </tr>
+                <tr>
+                    <td>list.index(item)</td>
+                    <td>要素のインデックスを返す</td>
+                </tr>
+                <tr>
+                    <td>list.count(item)</td>
+                    <td>要素の出現回数をカウント</td>
+                </tr>
+                <tr>
+                    <td>list.sort()</td>
+                    <td>リストをインプレースソート</td>
+                </tr>
+                <tr>
+                    <td>list.reverse()</td>
+                    <td>リストをインプレース反転</td>
+                </tr>
+                <tr>
+                    <td>list.copy()</td>
+                    <td>リストをコピー</td>
+                </tr>
+            </table>
+
+            <h2>リストの反復処理</h2>
+
+            <h3>forループを使用</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+<span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:
+    <span class="function">print</span>(fruit)</div>
+
+            <h3>enumerate()でインデックスを取得</h3>
+
+            <div class="code-block">fruits = [<span class="string">"リンゴ"</span>, <span class="string">"バナナ"</span>, <span class="string">"オレンジ"</span>]
+<span class="keyword">for</span> index, fruit <span class="keyword">in</span> <span class="function">enumerate</span>(fruits):
+    <span class="function">print</span>(<span class="string">f"{index}: {fruit}"</span>)</div>
+
+            <div class="output">0: リンゴ
+1: バナナ
+2: オレンジ</div>
+
+            <h2>練習問題</h2>
+
+            <div class="info-box">
+                <strong>練習1：</strong> リスト内の最大値と最小値を見つけるプログラムを書いてください（組み込み関数を使用せず）<br><br>
+                <strong>練習2：</strong> リストからすべての重複要素を削除するプログラムを書いてください<br><br>
+                <strong>練習3：</strong> 2つのリストをマージしてソートするプログラムを書いてください
+            </div>
+
+            <div class="success-box">
+                <strong>✅ まとめ</strong>
+                <ul>
+                    <li>リストは可変なシーケンス型で、異なる型の要素を格納できます</li>
+                    <li>インデックスを使って要素にアクセス・変更できます</li>
+                    <li>append()、insert()、extend()は要素の追加に使用します</li>
+                    <li>remove()、pop()、delは要素の削除に使用します</li>
+                    <li>リスト内包表記はリストを作成する簡潔な方法です</li>
+                    <li>sort()とsorted()はソート、reverse()は反転に使用します</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <a href="strings.html" class="btn btn-secondary">← 前の章</a>
+                <a href="conditions.html" class="btn">次の章：条件分岐 →</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 Pythonチュートリアル | プログラミング学習をシンプルに楽しく</p>
+    </footer>
+
+    <script src="../js/i18n.js"></script>
+</body>
+</html>
